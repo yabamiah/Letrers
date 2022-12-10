@@ -1,18 +1,13 @@
-## Getting Started
+# Letras de Músicas
+<br>
+O software desenvolvido tem como objetivo organizar artistas e músicas, possuindo obções como listagem de músicas por artista e busca por música.
+Trabalho desenvolvido para a matéria de Orientação a Objetos, durante meu 3° semestre na Universidade de Brasíia.
+<br>
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+### Equipe
+- Maria Alice Bernardo da Costa Silva
+- Vinícius Mendes Martins
 
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+### Releases
+- Primeiro: versão inicial do UML do projeto e o código java com o diagrama de classes modelado; 
+- Segundo: versão final do trabalho com o diagrama de classes atualizado, o diagrama de pacotes, o código java atendendo as funcionalidades requeridas, os testes unitários e a documentação JavaDoc.
