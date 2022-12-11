@@ -26,9 +26,6 @@ public class App {
 		System.out.println(Catarina.getNome()); //teste de Playlist
 		System.out.println(ForaDaCasinhaLetra.getMusicaNome()); //teste de Letra de Musica
 		System.out.println(ManoelGomes.getNome()); //teste de Album
-		System.out.println(Justin.getNome()); //teste de Album
-		
-		
-		
+		System.out.println(Justin.getNome()); //teste de Artista
     }
 }
