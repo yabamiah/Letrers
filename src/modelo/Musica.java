@@ -78,7 +78,7 @@ public class Musica {
         this.letraId = letraId;
     }
 
-    public Boolean adicionarEmPlaylista(Playlist playlist, Musica musica) {
+    public Boolean adicionarEmPlaylist(Playlist playlist, Musica musica) {
         return playlist.getMusicas().add(musica);
     }
 }

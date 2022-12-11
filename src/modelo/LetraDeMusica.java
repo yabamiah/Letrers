@@ -58,12 +58,4 @@ public class LetraDeMusica {
     public void setArtistaNome(String artistaNome) {
         this.artistaNome = artistaNome;
     }
-
-    public String verTraducao() {
-        return corpoTraduzido;
-    }
-
-    public String verOriginal() {
-        return corpoOriginal;
-    }
 }
