@@ -3,26 +3,16 @@ package modelo;
 import java.util.*;
 
 public class Album {
-    private int id;
     private String nome;
     private int qtdMusica;
     private ArrayList<Musica> musicas;
-    private String artistaNome;
+    private ArrayList<String> artistas;
 
-    public Album(int id, String nome, int qtdMusica, ArrayList<Musica> musicas, String artistaNome) {
-        this.id = id;
+    public Album(String nome, int qtdMusica, ArrayList<Musica> musicas, ArrayList<String> artistas) {
         this.nome = nome;
         this.qtdMusica = qtdMusica;
         this.musicas = musicas;
-        this.artistaNome = artistaNome;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.artistas = artistas;
     }
 
     public String getNome() {
@@ -36,7 +26,7 @@ public class Album {
     public int getQtdMusica() {
         return qtdMusica;
     }
-
+    
     public void setQtdMusica(int qtdMusica) {
         this.qtdMusica = qtdMusica;
     }
@@ -49,11 +39,11 @@ public class Album {
         this.musicas = musicas;
     }
 
-    public String getArtistaNome() {
-        return artistaNome;
+    public ArrayList<String> getArtistas() {
+        return artistas;
     }
 
-    public void setArtistaNome(String artistaNome) {
-        this.artistaNome = artistaNome;
+    public void setArtistaNome(ArrayList<String> artistas) {
+        this.artistas = artistas;
     }
 }

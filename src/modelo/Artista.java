@@ -7,9 +7,14 @@ public class Artista extends Pessoa {
     private ArrayList<String> generos;
     private ArrayList<Musica> musicas;
     
-    public Artista(int id, String nome, int classificacao, ArrayList<String> generos, ArrayList<Musica> musicas) {
-        super(id, nome);
-    	this.classificacao = classificacao;
+
+    public Artista(String nome, ArrayList<String> generos) {
+        super(nome);
+        this.generos = generos;
+    }
+
+    public Artista(String nome, ArrayList<String> generos, ArrayList<Musica> musicas) {
+        super(nome);
         this.generos = generos;
         this.musicas = musicas;
     }

@@ -6,25 +6,29 @@ public class App {
 	
 	public static void main(String[] args) throws Exception {
 		
-		Usuario Selena = new Usuario(1, "Selena");
-		Musica ForaDaCasinha = new Musica("ForaDaCasinha", "Selena",
-				"Pop", 1, 1, 1, 1);
+		Usuario Selena = new Usuario("Selena");
+		// Acho que para criar uma música, será necessário criar um artista primeiro
+		Musica ForaDaCasinha = new Musica("ForaDaCasinha", "Pop", 1);
 		
 		Playlist Catarina = Selena.criarPlaylist("catarina");
-		LetraDeMusica ForaDaCasinhaLetra = new LetraDeMusica(1, "Fora da Casinha, fora da casinha", "Out of the little house", "Fora da Casinha", "Selena");
+		// Acho que para criar uma letra de música, será necessário criar uma música primeiro
+		LetraDeMusica ForaDaCasinhaLetra = new LetraDeMusica("Fora da Casinha, fora da casinha", "Out of the little house");
 		
 		ArrayList<Musica> manoelGomes = new ArrayList<Musica>();
-		Album ManoelGomes = new Album(1, "Olha se você ainda me ama", 5, manoelGomes, "Manoel Gomes");
+
+		ArrayList<String> artistas = new ArrayList<String>();
+		artistas.add("Manoel Gomes");
+
+		Album ManoelGomes = new Album("Olha se você ainda me ama", 5, manoelGomes, artistas);
 		
-		ArrayList<String> pop = new ArrayList<String>();
-		Artista Justin = new Artista(1, "Justin", 1, pop, manoelGomes);
-		
-		
+		ArrayList<String> generos = new ArrayList<String>();
+		Artista Justin = new Artista("Justin", generos, manoelGomes);
+
 		//Prints
 		System.out.println(ForaDaCasinha.getNome()); //teste de Musica
 		System.out.println(Selena.getNome()); //teste de Usuário
 		System.out.println(Catarina.getNome()); //teste de Playlist
-		System.out.println(ForaDaCasinhaLetra.getMusicaNome()); //teste de Letra de Musica
+		System.out.println(ForaDaCasinhaLetra.getCorpoOriginal()); //teste de Letra de Musica
 		System.out.println(ManoelGomes.getNome()); //teste de Album
 		System.out.println(Justin.getNome()); //teste de Artista
     }

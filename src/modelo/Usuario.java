@@ -5,8 +5,13 @@ import java.util.*;
 public class Usuario extends Pessoa{
 	private ArrayList<Playlist> playlist;
 	
-	public Usuario(int id, String nome) {
-		super(id, nome);
+	public Usuario(String nome) {
+		super(nome);
+	}
+
+	public Usuario(String nome, ArrayList<Playlist> playlist) {
+		super(nome);
+		this.playlist = playlist;
 	}
 	
 	public ArrayList<Playlist> getPlaylist() {
@@ -18,7 +23,7 @@ public class Usuario extends Pessoa{
 	}
 	
 	public Playlist criarPlaylist(String nome) {
-		Playlist playlist = new Playlist(1, nome);
+		Playlist playlist = new Playlist(nome);
 		return playlist;
 	}
 }

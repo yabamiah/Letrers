@@ -3,29 +3,18 @@ package modelo;
 import java.util.*;
 
 public class Playlist {
-    private int id;
     private String nome;
     private int qtdMusica;
     private ArrayList<Musica> musicas;
 
-    public Playlist(int id, String nome, int qtdMusica, ArrayList<Musica> musicas) {
-        this.id = id;
+    public Playlist(String nome, int qtdMusica, ArrayList<Musica> musicas) {
         this.nome = nome;
         this.qtdMusica = qtdMusica;
         this.musicas = musicas;
     }
     
-    public Playlist(int id, String nome) {
-    	this.id = id;
-    	this.nome = nome;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public Playlist(String nome) {
+        this.nome = nome;
     }
 
     public String getNome() {
@@ -50,5 +39,9 @@ public class Playlist {
 
     public void setMusicas(ArrayList<Musica> musicas) {
         this.musicas = musicas;
+    }
+
+    public Boolean adicionarEmPlaylist(Musica musica) {
+        return getMusicas().add(musica);
     }
 }
