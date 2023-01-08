@@ -1,6 +1,6 @@
 package modelo;
 
-//import java.util.*;
+import java.lang.StringBuilder;
 
 public class LetraDeMusica {
     private String corpoOriginal;
@@ -29,5 +29,15 @@ public class LetraDeMusica {
 
     public void setCorpoTraduzido(String corpoTraduzido) {
         this.corpoTraduzido = corpoTraduzido;
+    }
+
+    public String toString() {
+        StringBuilder letra = new StringBuilder();
+        letra.append("\tLETRA TRADUZIDA\n\n");
+        letra.append(corpoTraduzido +"\n\n\n");
+        letra.append("\tLETRA ORIGINAL\n\n");
+        letra.append(corpoOriginal + "\n\n");
+
+        return letra.toString();
     }
 }

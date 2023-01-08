@@ -20,7 +20,7 @@ public class ControleMusica {
 
     public Boolean removerMusica(Musica musica) {
         for (int i = 0; i < this.qtdMusicas; i++) {
-            if (this.musicas[i].getId() == musica.getId()) {
+            if (this.musicas[i].getNome() == musica.getNome()) {
                 this.musicas[i] = null;
                 this.qtdMusicas--;
                 return true;
@@ -33,7 +33,7 @@ public class ControleMusica {
 
     public Boolean editarMusica(Musica musica) {
         for (int i = 0; i < this.qtdMusicas; i++) {
-            if (this.musicas[i].getId() == musica.getId()) {
+            if (this.musicas[i].getNome() == musica.getNome()) {
                 this.musicas[i] = musica;
                 return true;
             } else {

@@ -26,4 +26,9 @@ public class Musica {
   public void setClassificacao(int classificacao) {
     this.classificacao = classificacao;
   }
+
+  public String toString() {
+    String musica = "Nome da música: " + nome + ", Genêro: " + genero + ", Classificação: " + classificacao;
+    return musica;
+  }
 }

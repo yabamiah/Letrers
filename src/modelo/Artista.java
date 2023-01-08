@@ -42,4 +42,9 @@ public class Artista extends Pessoa {
     public void setMusicas(ArrayList<Musica> musicas) {
         this.musicas = musicas;
     }
+
+    public String toString() {
+        String artista = "Nome do artista: " + getNome() + ", Genêros: " + generos + ", Músicas: " + musicas;
+        return artista;
+    }
 }

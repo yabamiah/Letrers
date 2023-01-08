@@ -44,4 +44,9 @@ public class Playlist {
     public Boolean adicionarEmPlaylist(Musica musica) {
         return getMusicas().add(musica);
     }
+
+    public String toString() {
+        String playlist = "Músicas: " + musicas;
+        return playlist;
+    }
 }

@@ -46,4 +46,9 @@ public class Album {
     public void setArtistaNome(ArrayList<String> artistas) {
         this.artistas = artistas;
     }
+
+    public String toString() {
+        String album = "Nome do Álbum: " + nome + ", Artistas: " + artistas + ", Músicas: " + musicas;
+        return album;
+    }
 }
