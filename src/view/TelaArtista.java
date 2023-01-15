@@ -44,7 +44,7 @@ public class TelaArtista {
         JScrollPane listaGenerosScroll = new JScrollPane(listaGeneros);
         listaGenerosScroll.setBounds(450, 29, 60, 22);
 
-        acessadas = new JLabel("Músicasais Acessadas:");
+        acessadas = new JLabel("Músicas mais Acessadas:");
         acessadas.setBounds(260, 60, 200, 50);
 
         // Lista de musicas
