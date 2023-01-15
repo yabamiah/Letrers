@@ -1,7 +1,7 @@
 package view;
 
 import java.awt.Color;
-
+import java.awt.*;
 import javax.swing.*;
 
 public class TelaArtista {
@@ -25,11 +25,12 @@ public class TelaArtista {
 
         nomeArtista = new JLabel("Lana Del Rey");
         nomeArtista.setBounds(300, -10, 200, 50);
+        nomeArtista.setFont(new Font("Arial", Font.BOLD, 16));
 
         classificacao = new JLabel("Classificação: 4.5");
         classificacao.setBounds(200, 16, 200, 50);
 
-        generos = new JLabel("Generos:");
+        generos = new JLabel("Genêros:");
         generos.setBounds(380, 16, 200, 50);
 
         // Lista de generos
@@ -43,7 +44,7 @@ public class TelaArtista {
         JScrollPane listaGenerosScroll = new JScrollPane(listaGeneros);
         listaGenerosScroll.setBounds(450, 29, 60, 22);
 
-        acessadas = new JLabel("Mais Acessadas:");
+        acessadas = new JLabel("Músicasais Acessadas:");
         acessadas.setBounds(260, 60, 200, 50);
 
         // Lista de musicas
@@ -53,6 +54,7 @@ public class TelaArtista {
         listaMusicas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listaMusicas.setLayoutOrientation(JList.VERTICAL);
         listaMusicas.setVisibleRowCount(-1);
+        listaMusicas.setForeground( new Color(255, 0, 110) );
         
         JScrollPane listaMusicasScroll = new JScrollPane(listaMusicas);
         listaMusicasScroll.setBounds(260, 100, 200, 100);
@@ -67,6 +69,7 @@ public class TelaArtista {
         listaAlbuns.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listaAlbuns.setLayoutOrientation(JList.VERTICAL);
         listaAlbuns.setVisibleRowCount(-1);
+        listaAlbuns.setForeground( new Color(255, 0, 110) );
 
         JScrollPane listaAlbunsScroll = new JScrollPane(listaAlbuns);
         listaAlbunsScroll.setBounds(260, 270, 200, 70);
