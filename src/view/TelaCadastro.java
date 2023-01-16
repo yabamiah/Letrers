@@ -1,49 +1,86 @@
 package view;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class TelaCadastro {
 
+	private JFrame cadastro;
+	private JLabel tituloCadastro;
+	private JLabel insiraUsuario;
+	private JTextField usuarioCampo;
+	private JLabel nomeTipoDeUsuario;
+	private JLabel nomeTipoArtista;
+	private JLabel nomeTipoUsuarioComum;
+	private JCheckBox checkArtista;
+	private JCheckBox checkUsuario;
+	private JButton btnCadastrar;
+	private JButton btnLogin;
+	
 	public TelaCadastro() {
 		
-		JFrame cadastro = new JFrame("Cadastro");
-		cadastro.setSize(800,500);
+		//Frame
+		cadastro = new JFrame("Cadastro");
+		cadastro.setBounds(200,0,1000,700);
 		
-		//Cadastro
-		JLabel tituloCadastro = new JLabel("Cadastro");
-		JLabel nomeUsuario = new JLabel("Adicione um nome:"); ///fica no meio
-		JTextField fieldNome = new JTextField("");			 ///fica no meio
-		JButton usuarioBtn = new JButton("Usuário");
-		JButton artistaBtn = new JButton("Artista");
+		Color corFundo = new Color(132,70,150);
+		cadastro.getContentPane().setBackground( corFundo );
 		
-		//x,y,largura, altura
-		tituloCadastro.setBounds(175,10,500,100);
-		nomeUsuario.setBounds(362,92,500,100);		///fica no meio
-		fieldNome.setBounds(362,154,110,25);		///fica no meio
-		usuarioBtn.setBounds(100,200,100,50);
-		artistaBtn.setBounds(250,200,100,50);
+		//titulo
+		tituloCadastro = new JLabel("Cadastro");
+		tituloCadastro.setBounds(400,50,200,150); //x,y,larg,alt
+		tituloCadastro.setFont(new Font("Arial", 20, 40));
 		
+		insiraUsuario = new JLabel("Insira seu nome:");
+		insiraUsuario.setBounds(420,220,130,30);
+		insiraUsuario.setFont(new Font("", 10,17));
+		
+		usuarioCampo = new JTextField("");
+		usuarioCampo.setBounds(380,260,200,30);
+		
+		nomeTipoDeUsuario = new JLabel("Você é:");
+		nomeTipoDeUsuario.setBounds(455,320,100,20);
+		
+		nomeTipoArtista = new JLabel("Artista");
+		nomeTipoArtista.setBounds(400,340,100,20);
+		
+		checkArtista = new JCheckBox();
+		checkArtista.setBounds(410,360,15,15);
+		
+		nomeTipoUsuarioComum = new JLabel("Usuário");
+		nomeTipoUsuarioComum.setBounds(515,340,100,20);
+		
+		checkUsuario = new JCheckBox();
+		checkUsuario.setBounds(525,360,15,15);
+		
+		btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.setBounds(380,425,200,40);
+		
+		btnLogin = new JButton("Já possuo conta!");
+		btnLogin.setBounds(380,475,200,15);
+		btnLogin.setForeground(Color.white);
+		btnLogin.setBackground(null);
+		btnLogin.setOpaque(false);
+		btnLogin.setContentAreaFilled(false);
+		btnLogin.setBorderPainted(false);
+		
+		//add
 		cadastro.add(tituloCadastro);
-		cadastro.add(nomeUsuario);
-		cadastro.add(fieldNome);
-		cadastro.add(usuarioBtn);
-		cadastro.add(artistaBtn);
-		
-		//Login
-		JLabel tituloLogin = new JLabel("Login");
-		JButton entrarBtn = new JButton("Entrar");
-		
-		tituloLogin.setBounds(475,10,500,100);
-		entrarBtn.setBounds(475,200,100,50);
-		
-		cadastro.add(tituloLogin);
-		cadastro.add(entrarBtn);
-		
+		cadastro.add(insiraUsuario);
+		cadastro.add(usuarioCampo);
+		cadastro.add(nomeTipoDeUsuario);
+		cadastro.add(nomeTipoArtista);
+		cadastro.add(checkArtista);
+		cadastro.add(nomeTipoUsuarioComum);
+		cadastro.add(checkUsuario);
+		cadastro.add(btnCadastrar);
+		cadastro.add(btnLogin);
+				
 		cadastro.setLayout(null);
 		cadastro.setVisible(true);
 		
 	}
-
+		
 	public static void main(String[] args) {
 		TelaCadastro tela = new TelaCadastro();
     }

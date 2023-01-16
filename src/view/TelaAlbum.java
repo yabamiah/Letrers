@@ -11,7 +11,7 @@ public class TelaAlbum {
     private JList<String> listaMusicas;
 
     public TelaAlbum() {
-        JFrame album = new JFrame("Album");
+        JFrame album = new JFrame("Album"); //Trocar para variavel Nome Album
         album.setSize(800,500);
         album.setLayout(null);
         album.getContentPane().setBackground(Color.PINK);
