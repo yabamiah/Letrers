@@ -1,9 +1,12 @@
 package view;
 
 import javax.swing.*;
-import java.awt.*;
 
-public class TelaUsuario {
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class TelaUsuario implements ActionListener{
 	JFrame telaCentral;
 	JLabel bemVindo;
 	JLabel miPlaylist;
@@ -52,5 +55,11 @@ public class TelaUsuario {
 	
 	public static void main(String[] args) {
 		TelaUsuario tela = new TelaUsuario();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
