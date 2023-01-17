@@ -21,7 +21,7 @@ public class TelaCadastro {
 		
 		//Frame
 		cadastro = new JFrame("Cadastro");
-		cadastro.setBounds(200,0,1000,700);
+		cadastro.setBounds(250,0,900,700);
 		
 		Color corFundo = new Color(132,70,150);
 		cadastro.getContentPane().setBackground( corFundo );
@@ -29,11 +29,11 @@ public class TelaCadastro {
 		//titulo
 		tituloCadastro = new JLabel("Cadastro");
 		tituloCadastro.setBounds(400,50,200,150); //x,y,larg,alt
-		tituloCadastro.setFont(new Font("Arial", 20, 40));
+		tituloCadastro.setFont(new Font("Arial", Font.PLAIN, 40));
 		
 		insiraUsuario = new JLabel("Insira seu nome:");
 		insiraUsuario.setBounds(420,220,130,30);
-		insiraUsuario.setFont(new Font("", 10,17));
+		insiraUsuario.setFont(new Font("", Font.PLAIN,17));
 		
 		usuarioCampo = new JTextField("");
 		usuarioCampo.setBounds(380,260,200,30);

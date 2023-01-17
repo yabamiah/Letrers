@@ -19,18 +19,18 @@ public class TelaInicial {
 		
 		titulo = new JLabel("LeTrErS");
 		titulo.setBounds(375,160,250,150);
-		titulo.setFont(new Font("", 10,65));
+		titulo.setFont(new Font("", Font.PLAIN,65));
 		
 		btnLogin = new JButton("Entrar");
 		btnLogin.setBounds(425,350,150,45);
-		btnLogin.setFont(new Font("",10,20));
+		btnLogin.setFont(new Font("",Font.PLAIN,20));
 		btnLogin.setBorderPainted(false);
 		btnLogin.setForeground(Color.white);
 		btnLogin.setBackground(new Color(56,96,46));
 		
 		btnCadastro = new JButton("Criar conta");
 		btnCadastro.setBounds(425,440,150,45);
-		btnCadastro.setFont(new Font("",10,20));
+		btnCadastro.setFont(new Font("",Font.PLAIN,20));
 		btnCadastro.setBorderPainted(false);
 		btnCadastro.setForeground(Color.white);
 		btnCadastro.setBackground(new Color(56,96,46));

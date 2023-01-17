@@ -24,11 +24,11 @@ public class TelaLogin {
 		//titulo
 		tituloLogin = new JLabel("Login");
 		tituloLogin.setBounds(430,50,200,150); //x,y,larg,alt
-		tituloLogin.setFont(new Font("Arial", 20, 40));
+		tituloLogin.setFont(new Font("Arial", Font.PLAIN, 40));
 		
 		insiraUsuario = new JLabel("Insira seu nome:");
 		insiraUsuario.setBounds(420,230,150,40);
-		insiraUsuario.setFont(new Font("", 10,18));
+		insiraUsuario.setFont(new Font("", Font.PLAIN,18));
 		
 		usuarioCampo = new JTextField("");
 		usuarioCampo.setBounds(360,275,250,50);

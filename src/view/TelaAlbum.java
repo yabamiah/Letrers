@@ -24,7 +24,8 @@ public class TelaAlbum {
         nomeArtista.setBounds(100, 80, 200, 50);
         nomeArtista.setFont(new Font("Arial", Font.BOLD, 12));
 
-        String musicas[] = {"Blue Jeans", "Video Games", "Summertime Sadness", "Born to Die", "Young and Beautiful", "Off to the", "Lust for life"};
+        String musicas[] = {"Blue Jeans", "Video Games", "Summertime Sadness", 
+        		"Born to Die", "Young and Beautiful", "Off to the", "Lust for life"};
         listaMusicas = new JList<String>(musicas);
         listaMusicas.setBounds(100, 130, 200, 200);
         listaMusicas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
