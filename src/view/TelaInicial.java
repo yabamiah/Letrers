@@ -1,6 +1,9 @@
 package view;
 
 import javax.swing.*;
+
+import organized_views.TelaCadastro;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +13,7 @@ public class TelaInicial implements ActionListener {
 	private JFrame inicio;
 	private JLabel titulo;
 	private JButton btnLogin;
-	private JButton btnCadastro;
+	private JButton btnCadastro;	
 	
 	public TelaInicial() {
 		
@@ -52,17 +55,20 @@ public class TelaInicial implements ActionListener {
 		inicio.setVisible(true);
 	}
 	
+	public void TrocaTela(int opcao) {
+		
+	}
+	
 	public static void main(String[] args) {
 		TelaInicial tela = new TelaInicial();
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "entrar") {
-			new TelaLogin();
+			TelaCadastroLogin rota = new TelaCadastroLogin.mudarTela(2);
 		}
 		else if(e.getActionCommand() == "registrar") {
-			new TelaCadastro();
+			TelaCadastroLogin rota = new TelaCadastroLogin(1);
 		}
 	}
 	

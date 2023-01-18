@@ -21,7 +21,7 @@ public class TelaMusica implements ActionListener{
 	private JButton excluir;
 	private JButton editar;
 	
-	public TelaMusica() {
+	public void TelaMusica() {
 		frame = new JFrame();
 		frame.setSize(900,700);
 		frame.setLocationRelativeTo(null);
