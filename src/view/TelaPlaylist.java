@@ -2,15 +2,18 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class TelaPlaylist {
+public class TelaPlaylist implements ActionListener{
 	JFrame frame;
 	JLabel nomePlaylist;
 	JList<String> listaMusicas;
 	
-	JButton editarPlaylist;
-	JButton excluirPlaylist;
+	JButton editar;
+	JButton excluir;
 	JButton voltar;
+	JButton addMusica;
 	
 	//temporário
 	String musicas[] = {"Apocalypse", "Sunsetz", "Cry", "K.", "Sweet", "Sesame Syrup", 
@@ -18,7 +21,7 @@ public class TelaPlaylist {
 	
 	public TelaPlaylist() {
 		frame = new JFrame("Letrers - " + "Nome da Playlist");
-		frame.setBounds(250,0,900,700);
+		frame.setSize(900,700);
 		frame.getContentPane().setBackground(new Color(132,70,150));
 
 		nomePlaylist = new JLabel("Meu Apocalipse");
@@ -26,22 +29,54 @@ public class TelaPlaylist {
 		listaMusicas = new JList<String>(musicas);
         listaMusicas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
-		editarPlaylist = new JButton("Editar Playlist");
-		excluirPlaylist = new JButton("Excluir Playlist");
-		voltar = new JButton("Voltar");
-		
 		frame.add(nomePlaylist);
 		frame.add(listaMusicas);
-		frame.add(editarPlaylist);
-		frame.add(excluirPlaylist);
-		frame.add(voltar);
 		
+		btnVoltar();
+		btnExcluir();
+		btnAddMusica();
+		btnEditar();
+		
+		frame.setLocationRelativeTo(null);
 		frame.setLayout(new FlowLayout());
 		frame.setVisible(true);
+	}	
+	
+	public void btnAddMusica() {
+		addMusica = new JButton("Adicionar Música");
+		
+		frame.add(addMusica);
+	}
+	
+	public void btnEditar() {
+		editar = new JButton("Editar Playlist");
+		frame.add(editar);
+	}
+	
+	public void btnVoltar() {
+		voltar = new JButton("Voltar");
+		
+		frame.add(voltar);
+	}
+	
+	public void btnExcluir() {
+		excluir = new JButton("Excluir Playlist");
+		
+		excluir.setActionCommand("excluir");
+		excluir.addActionListener(this);
+		frame.add(excluir);
 	}
 	
 	public static void main(String[] args) {
 		TelaPlaylist tela = new TelaPlaylist(); 
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getActionCommand() == "excluir") {
+		}
+		
 	}
 	
 }

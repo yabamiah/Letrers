@@ -40,7 +40,7 @@ public class TelaUsuario implements ActionListener{
 		buscar = new JTextField("                   ");
 		btnBuscar = new JButton("Buscar música");
 		
-		btnCriarPlay = new JButton("Criar Playlist");
+		
 		btnMais = new JButton("Mais opções");
 		
 		telaCentral.add(bemVindo);
@@ -50,22 +50,27 @@ public class TelaUsuario implements ActionListener{
 		telaCentral.add(listaArtistasFav);
 		telaCentral.add(buscar);
 		telaCentral.add(btnBuscar);
-		telaCentral.add(btnCriarPlay);
 		telaCentral.add(btnMais);
-				
+		btnCriarPlaylist();
+		
 		telaCentral.setLayout(new FlowLayout());
 		telaCentral.setVisible(true);
 	}
 	
-	
+	public void btnCriarPlaylist() {
+		btnCriarPlay = new JButton("Criar Playlist");
+		btnCriarPlay.setActionCommand("criarPlaylist");
+		btnCriarPlay.addActionListener(this);
+		telaCentral.add(btnCriarPlay);
+	}
 	
 	public static void main(String[] args) {
 		TelaUsuario tela = new TelaUsuario();
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		if(e.getActionCommand() == "criarPlaylist") {
+			new TelaCriarPlaylist();
+		}
 	}
 }
