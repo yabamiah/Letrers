@@ -2,8 +2,10 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class TelaInicial {
+public class TelaInicial implements ActionListener {
 
 	private JFrame inicio;
 	private JLabel titulo;
@@ -13,7 +15,7 @@ public class TelaInicial {
 	public TelaInicial() {
 		
 		inicio = new JFrame("Letrers");
-		inicio.setBounds(200,0,1000,700);
+		inicio.setSize(1000,700);
 		Color corFundo = new Color(132,70,150);
 		inicio.getContentPane().setBackground( corFundo );
 		
@@ -28,6 +30,9 @@ public class TelaInicial {
 		btnLogin.setForeground(Color.white);
 		btnLogin.setBackground(new Color(56,96,46));
 		
+		btnLogin.setActionCommand("entrar");
+		btnLogin.addActionListener(this);
+		
 		btnCadastro = new JButton("Criar conta");
 		btnCadastro.setBounds(425,440,150,45);
 		btnCadastro.setFont(new Font("",Font.PLAIN,20));
@@ -35,16 +40,30 @@ public class TelaInicial {
 		btnCadastro.setForeground(Color.white);
 		btnCadastro.setBackground(new Color(56,96,46));
 		
+		btnCadastro.setActionCommand("registrar");
+		btnCadastro.addActionListener(this);
+		
 		inicio.add(titulo);
 		inicio.add(btnLogin);
 		inicio.add(btnCadastro);
 		
+		inicio.setLocationRelativeTo(null);
 		inicio.setLayout(null);
 		inicio.setVisible(true);
 	}
 	
 	public static void main(String[] args) {
 		TelaInicial tela = new TelaInicial();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getActionCommand() == "entrar") {
+			new TelaLogin();
+		}
+		else if(e.getActionCommand() == "registrar") {
+			new TelaCadastro();
+		}
 	}
 	
 }

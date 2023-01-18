@@ -16,6 +16,7 @@ public class TelaUsuario implements ActionListener{
 	JButton btnBuscar;
 	JButton btnCriarPlay;
 	JButton btnMais;
+	JTextField buscar;
 	
 	String usuario = "Marys";
 	String playlists[] = {"Meu Apocalipse", "Estados Extremos de Euforia", 
@@ -36,7 +37,9 @@ public class TelaUsuario implements ActionListener{
 		miArtistas = new JLabel("Meus Artistas Favoritos");
 		listaArtistasFav = new JList<String>(artistas);
 		
+		buscar = new JTextField("                   ");
 		btnBuscar = new JButton("Buscar música");
+		
 		btnCriarPlay = new JButton("Criar Playlist");
 		btnMais = new JButton("Mais opções");
 		
@@ -45,6 +48,7 @@ public class TelaUsuario implements ActionListener{
 		telaCentral.add(listaPlaylists);
 		telaCentral.add(miArtistas);
 		telaCentral.add(listaArtistasFav);
+		telaCentral.add(buscar);
 		telaCentral.add(btnBuscar);
 		telaCentral.add(btnCriarPlay);
 		telaCentral.add(btnMais);
@@ -52,6 +56,8 @@ public class TelaUsuario implements ActionListener{
 		telaCentral.setLayout(new FlowLayout());
 		telaCentral.setVisible(true);
 	}
+	
+	
 	
 	public static void main(String[] args) {
 		TelaUsuario tela = new TelaUsuario();

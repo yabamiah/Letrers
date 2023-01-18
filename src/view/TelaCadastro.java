@@ -2,18 +2,15 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class TelaCadastro {
+public class TelaCadastro implements ActionListener {
 
 	private JFrame cadastro;
 	private JLabel tituloCadastro;
 	private JLabel insiraUsuario;
 	private JTextField usuarioCampo;
-	private JLabel nomeTipoDeUsuario;
-	private JLabel nomeTipoArtista;
-	private JLabel nomeTipoUsuarioComum;
-	private JCheckBox checkArtista;
-	private JCheckBox checkUsuario;
 	private JButton btnCadastrar;
 	private JButton btnLogin;
 	
@@ -21,7 +18,7 @@ public class TelaCadastro {
 		
 		//Frame
 		cadastro = new JFrame("Cadastro");
-		cadastro.setBounds(250,0,900,700);
+		cadastro.setSize(600,700);
 		
 		Color corFundo = new Color(132,70,150);
 		cadastro.getContentPane().setBackground( corFundo );
@@ -38,23 +35,10 @@ public class TelaCadastro {
 		usuarioCampo = new JTextField("");
 		usuarioCampo.setBounds(380,260,200,30);
 		
-		nomeTipoDeUsuario = new JLabel("Você é:");
-		nomeTipoDeUsuario.setBounds(455,320,100,20);
-		
-		nomeTipoArtista = new JLabel("Artista");
-		nomeTipoArtista.setBounds(400,340,100,20);
-		
-		checkArtista = new JCheckBox();
-		checkArtista.setBounds(410,360,15,15);
-		
-		nomeTipoUsuarioComum = new JLabel("Usuário");
-		nomeTipoUsuarioComum.setBounds(515,340,100,20);
-		
-		checkUsuario = new JCheckBox();
-		checkUsuario.setBounds(525,360,15,15);
-		
 		btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.setBounds(380,425,200,40);
+		btnCadastrar.setActionCommand("cadastrar");
+		btnCadastrar.addActionListener(this);
 		
 		btnLogin = new JButton("Já possuo conta!");
 		btnLogin.setBounds(380,475,200,15);
@@ -63,19 +47,18 @@ public class TelaCadastro {
 		btnLogin.setOpaque(false);
 		btnLogin.setContentAreaFilled(false);
 		btnLogin.setBorderPainted(false);
+		btnLogin.setActionCommand("login");
+		btnLogin.addActionListener(this);
 		
 		//add
 		cadastro.add(tituloCadastro);
 		cadastro.add(insiraUsuario);
 		cadastro.add(usuarioCampo);
-		cadastro.add(nomeTipoDeUsuario);
-		cadastro.add(nomeTipoArtista);
-		cadastro.add(checkArtista);
-		cadastro.add(nomeTipoUsuarioComum);
-		cadastro.add(checkUsuario);
 		cadastro.add(btnCadastrar);
 		cadastro.add(btnLogin);
 				
+
+		cadastro.setLocationRelativeTo(null);
 		cadastro.setLayout(null);
 		cadastro.setVisible(true);
 		
@@ -84,4 +67,13 @@ public class TelaCadastro {
 	public static void main(String[] args) {
 		TelaCadastro tela = new TelaCadastro();
     }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getActionCommand() == "cadastrar") {
+			new TelaUsuario();
+		} else if(e.getActionCommand() == "login") {
+			new TelaLogin();
+		}	
+	}
 }
