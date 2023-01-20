@@ -1,8 +1,8 @@
-package organized_views;
+package view;
 
 import javax.swing.*;
 
-import view.TelaUsuario;
+import views_finalizadas.TelaUsuario;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
