@@ -3,8 +3,6 @@ package views_finalizadas;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import view.TelaCriarPlaylist;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,7 +49,10 @@ public class TelaUsuario implements ActionListener{
 		miPlaylist.setFont(new Font("", Font.PLAIN, 15));
 		
 		listaPlaylists = new JList<String>(playlists);
-		listaPlaylists.setBounds(115,130,300,330);
+		listaPlaylists.setBounds(120,130,295,330);
+		listaPlaylists.setBackground(new Color(121,150,71));
+		listaPlaylists.setForeground(new Color(0,0,0));
+		listaPlaylists.setFont(new Font("", Font.BOLD, 15));
 		
 		//Artistas
 		miArtistas = new JLabel("Meus Artistas Favoritos");
@@ -60,7 +61,10 @@ public class TelaUsuario implements ActionListener{
 		miArtistas.setFont(new Font("", Font.PLAIN, 15));
 		
 		listaArtistasFav = new JList<String>(artistas);
-		listaArtistasFav.setBounds(485,130,300,330);
+		listaArtistasFav.setBounds(490,130,295,330);
+		listaArtistasFav.setBackground(new Color(121,150,71));
+		listaArtistasFav.setForeground(new Color(0,0,0));
+		listaArtistasFav.setFont(new Font("", Font.BOLD,15));
 		
 		//Add
 		ImagemFundo("/imagem/Home.jpg");

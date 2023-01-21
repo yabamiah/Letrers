@@ -46,9 +46,6 @@ public class TelaAdicionarMusica {
 		
 		listaAlbuns = new JComboBox<String>(albuns);
 		
-		
-		
-		
 		frame.add(titulo);
 		frame.add(btnAdicionar);
 		frame.add(btnCancelar);
