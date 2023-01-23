@@ -2,8 +2,6 @@ package view;
 
 import javax.swing.*;
 
-import views_finalizadas.TelaUsuario;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

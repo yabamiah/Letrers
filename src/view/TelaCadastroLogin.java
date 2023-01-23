@@ -1,4 +1,4 @@
-package views_finalizadas;
+package view;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

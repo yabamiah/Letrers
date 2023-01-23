@@ -1,4 +1,4 @@
-package views_finalizadas;
+package view;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -39,8 +39,8 @@ public class TelaCriarPlaylist implements ActionListener{
 		//panel.setBounds(0,0,100,200);
 		
 		labelTituloFrame = new JLabel("Criar Playlist");
-		labelTituloFrame.setBounds(385,40, 300, 30);
-		labelTituloFrame.setFont(new Font("", Font.PLAIN, 20));
+		labelTituloFrame.setBounds(327,30, 300, 50);
+		labelTituloFrame.setFont(new Font("Times New Roman", Font.BOLD, 40));
 		labelTituloFrame.setForeground(Color.white);
 		
 		frame.add(labelTituloFrame);
@@ -75,13 +75,14 @@ public class TelaCriarPlaylist implements ActionListener{
 		labelNomeMusica.setForeground(Color.white);
 		labelNomeMusica.setBounds(80,220,150,30);
 		
-		fieldNomeMusica = new JTextField("             ");
+		fieldNomeMusica = new JTextField("");
 		fieldNomeMusica.setBounds(80,250,200,25);
 		
 		adicionarMusica = new JButton("Adicionar Música");
 		adicionarMusica.setBounds(290,250,140,25);
 		adicionarMusica.setBackground(new Color(0,0,0));
 		adicionarMusica.setForeground(Color.white);
+		adicionarMusica.setBorder(null);
 		
 		frame.add(labelNomeMusica);
 		frame.add(fieldNomeMusica);
@@ -101,11 +102,13 @@ public class TelaCriarPlaylist implements ActionListener{
 		removerMusica.setBounds(500,400,130,20);
 		removerMusica.setBackground(new Color(0,0,0));
 		removerMusica.setForeground(Color.white);
+		removerMusica.setBorder(null);
 		
 		atualizarLista = new JButton("Atualizar Lista");
 		atualizarLista.setBounds(670,400,130,20);
 		atualizarLista.setBackground(new Color(0,0,0));
 		atualizarLista.setForeground(Color.white);
+		atualizarLista.setBorder(null);
 		
 		frame.add(labelSelecMusicas);
 		frame.add(listSelecMusicas);
@@ -118,6 +121,7 @@ public class TelaCriarPlaylist implements ActionListener{
 		criar.setBounds(100,400,250,40);
 		criar.setBackground(new Color(0,0,0));
 		criar.setForeground(Color.white);
+		criar.setBorder(null);
 		
 		frame.add(criar);
 	}
@@ -125,10 +129,11 @@ public class TelaCriarPlaylist implements ActionListener{
 	public void btnCancelar() {
 		cancelar = new JButton("Cancelar");
 		cancelar.setBounds(100,450,250,40);
-		cancelar.setBackground(new Color(155,40,40));
+		cancelar.setBackground(new Color(155,0,0));
 		cancelar.setForeground(Color.white);
 		cancelar.setActionCommand("cancelar");
 		cancelar.addActionListener(this);
+		cancelar.setBorder(null);
 		
 		frame.add(cancelar);
 	}

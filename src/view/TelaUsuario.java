@@ -1,4 +1,4 @@
-package views_finalizadas;
+package view;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -39,8 +39,8 @@ public class TelaUsuario implements ActionListener{
 		//Cabeçalho
 		bemVindo = new JLabel("Bem vindo(a) " + usuario);
 		bemVindo.setForeground(Color.white);
-		bemVindo.setBounds(75,25,400,40);
-		bemVindo.setFont(new Font("", Font.PLAIN, 22));
+		bemVindo.setBounds(75,35,400,40);
+		bemVindo.setFont(new Font("Times New Roman", Font.BOLD, 27));
 		
 		//Playlists
 		miPlaylist = new JLabel("Minhas Playlists");
@@ -96,6 +96,7 @@ public class TelaUsuario implements ActionListener{
 		btnBuscar.setBorderPainted(true);
 		btnBuscar.setActionCommand("buscar");
 		btnBuscar.addActionListener(this);
+		btnBuscar.setBorder(null);
 
 		frame.add(buscar);
 		frame.add(btnBuscar);
@@ -109,6 +110,8 @@ public class TelaUsuario implements ActionListener{
 		btnMais.setBorderPainted(true);
 		btnMais.setActionCommand("mais");
 		btnMais.addActionListener(this);
+		btnMais.setBorder(null);
+		
 		frame.add(btnMais);
 	}
 	
@@ -118,6 +121,7 @@ public class TelaUsuario implements ActionListener{
 		btnCriarPlay.setForeground(Color.white);
 		btnCriarPlay.setBackground(new Color(0,0,0));
 		btnCriarPlay.setBorderPainted(true);
+		btnCriarPlay.setBorder(null);
 		
 		btnCriarPlay.setActionCommand("criarPlaylist");
 		btnCriarPlay.addActionListener(this);
@@ -150,7 +154,8 @@ public class TelaUsuario implements ActionListener{
 			new TelaCriarPlaylist();
 			frame.dispose();
 		}else if(e.getActionCommand() == "mais") {
-			
+			new TelaMaisOpcoes();
+			frame.dispose();
 		}else if(e.getActionCommand() == "buscar") {
 			
 			frame.dispose();
