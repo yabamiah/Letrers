@@ -19,7 +19,18 @@ public class Dados {
     public void EncherDados() {
         for(int i =0; i < 5; i++) {
             Artista artista = new Artista("Artista " + i, new ArrayList<String>(), new ArrayList<Musica>());
-            this.artistas.add(artista);
+            Usuario usuario = new Usuario("Usuario " + i);
+            Musica musica = new Musica("Musica " + i, "Genero " + i);
+            LetraDeMusica letra = new LetraDeMusica("CorpoOriginal " + i, "CorpoTraduzido " + i);
+            Album album = new Album("Album " + i, i, new ArrayList<Musica>(), new ArrayList<String>());
+            Playlist playlist = new Playlist("Playlist " + i, i, new ArrayList<Musica>());
+            
+            artistas.add(artista);
+            usuarios[i] = usuario;
+            letras[i] = letra;
+            albuns[i] = album;
+            playlists[i] = playlist;
+            musicas[i] = musica;
         }
     }
 
