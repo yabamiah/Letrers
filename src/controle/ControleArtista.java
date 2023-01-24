@@ -1,25 +1,38 @@
 package controle;
 
-import modelo.Artista;
+import modelo.*;
+import java.util.ArrayList;
 
 public class ControleArtista {
-    private Artista[] artistas;
+    private ArrayList<Artista> artistas;
     private int qtdArtistas;
 
-    public ControleArtista() {
-        this.artistas = new Artista[100];
-        this.qtdArtistas = 0;
+    public ControleArtista(ControleDados cd) {
+        this.artistas = cd.getArtistas();
+        this.qtdArtistas = cd.getQtdArtistas();
     }
 
-    public void adicionarArtista(Artista artista) {
-
+    public int getQtdArtistas() {
+        return qtdArtistas;
     }
 
-    public Boolean removerArtista(Artista artista) {
-        return false;
+    public void setQtdArtistas(int qtdArtistas) {
+        this.qtdArtistas = qtdArtistas;
     }
 
-    public Boolean editarArtista(Artista artista) {
-        return false;
+    public ArrayList<String> getNomeArtista() {
+        ArrayList<String> nomes = new ArrayList<String>();
+        for (int i = 0; i < artistas.size(); i++) {
+            nomes.add(artistas.get(i).getNome());
+        }
+        return nomes;
+    }
+
+    public String getGeneroArtista(int i) {
+        return artistas.get(i).getGeneros().get(i);
+    }
+
+    public String getMusicasArtista(int i) {
+        return artistas.get(i).getMusicas().get(i).getNome();
     }
 }
