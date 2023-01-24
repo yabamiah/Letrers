@@ -9,20 +9,20 @@ public class App {
 		
 		Usuario Selena = new Usuario("Selena");
 		// Acho que para criar uma música, será necessário criar um artista primeiro
-		Musica ForaDaCasinha = new Musica("ForaDaCasinha", "Pop", 1);
-		Musica cachorroPrego = new Musica("tomaLheCachorro", "rock paulera", 0 );
+		//Musica ForaDaCasinha = new Musica("ForaDaCasinha", "Pop", 1);
+		//Musica cachorroPrego = new Musica("tomaLheCachorro", "rock paulera", 0 );
 		
 		Playlist Catarina = Selena.criarPlaylist("catarina");
 		// Acho que para criar uma letra de música, será necessário criar uma música primeiro
-		LetraDeMusica foraDaCasinhaLetra = new LetraDeMusica("Fora da Casinha, fora da casinha", "Out of the little house");
+		//LetraDeMusica foraDaCasinhaLetra = new LetraDeMusica("Fora da Casinha, fora da casinha", "Out of the little house");
 		
 		ArrayList<Musica> manoelGomes = new ArrayList<Musica>();
 		Catarina.setMusicas(manoelGomes); 
-		Catarina.adicionarEmPlaylist(cachorroPrego); // Um problema, so consigo usar se passar algum ArrayList
+		//Catarina.adicionarEmPlaylist(cachorroPrego); // Um problema, so consigo usar se passar algum ArrayList
 
 		ArrayList<String> artistas = new ArrayList<String>();
 		artistas.add("Manoel Gomes");
-		Catarina.adicionarEmPlaylist(ForaDaCasinha);
+		//Catarina.adicionarEmPlaylist(ForaDaCasinha);
 
 		Album ManoelGomes = new Album("Olha se você ainda me ama", 5, manoelGomes, artistas);
 		
@@ -40,7 +40,7 @@ public class App {
 		//System.out.println(ManoelGomes.getNome()); //teste de Album
 		//System.out.println(Justin.getNome()); //teste de Artista
 		System.out.println(Justin.toString());
-		System.out.println(ForaDaCasinha.toString());
+		//System.out.println(ForaDaCasinha.toString());
 		System.out.println(Catarina.toString());
 		System.out.println(ManoelGomes.toString());
     }

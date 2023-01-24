@@ -39,6 +39,9 @@ public class TelaMaisOpcoes implements ActionListener {
 		addMusica.setForeground(Color.white);
 		addMusica.setBackground(new Color(0,0,0));
 		
+		addMusica.setActionCommand("addMusica");
+		addMusica.addActionListener(this);
+		
 		frame.add(addMusica);
 	}
 	
@@ -47,6 +50,9 @@ public class TelaMaisOpcoes implements ActionListener {
 		addArtista.setBounds(334,70,150,50);
 		addArtista.setForeground(Color.white);
 		addArtista.setBackground(new Color(0,0,0));
+		
+		addArtista.setActionCommand("addArtista");
+		addArtista.addActionListener(this);
 		
 		frame.add(addArtista);
 	}
@@ -57,6 +63,9 @@ public class TelaMaisOpcoes implements ActionListener {
 		excluirMusica.setForeground(Color.white);
 		excluirMusica.setBackground(new Color(155,0,0));
 		
+		excluirMusica.setActionCommand("excluir musica");
+		excluirMusica.addActionListener(this);
+		
 		frame.add(excluirMusica);
 	}
 	
@@ -65,6 +74,9 @@ public class TelaMaisOpcoes implements ActionListener {
 		excluirArtista.setBounds(334,150,150,50);
 		excluirArtista.setForeground(Color.white);
 		excluirArtista.setBackground(new Color(155,0,0));
+		
+		excluirArtista.setActionCommand("excluir artista");
+		excluirArtista.addActionListener(this);
 		
 		frame.add(excluirArtista);
 	}
@@ -91,7 +103,21 @@ public class TelaMaisOpcoes implements ActionListener {
 		if(e.getActionCommand() == "voltar") {
 			new TelaUsuario();
 			frame.dispose();
+			
+		} else if(e.getActionCommand() == "addMusica") {
+			new TelaAdicionarMusica();
+			frame.dispose();
+			
+		}else if(e.getActionCommand() == "addArtista") {
+			new TelaAdicionarArtista();
+			frame.dispose();
+			
+		}else if(e.getActionCommand() == "excluir musica") {
+			
+		}else if(e.getActionCommand() == "excluir artista") {
+			
 		}
+		
 		
 	}
 }

@@ -19,9 +19,9 @@ public class TelaMusica implements ActionListener{
 	private JButton excluir;
 	private JButton editar;
 	
-	public void TelaMusica() {
+	public TelaMusica() {
 		frame = new JFrame();
-		frame.setSize(900,700);
+		frame.setSize(900,600);
 		frame.setLocationRelativeTo(null);
 		frame.getContentPane().setBackground(new Color(132,70,150));
 		frame.setLayout(new FlowLayout());
@@ -81,7 +81,7 @@ public class TelaMusica implements ActionListener{
 	}
 	
 	public static void main(String[] args) {
-		TelaMusica tela = new TelaMusica(); 
+		new TelaMusica(); 
 	}
 
 	@Override

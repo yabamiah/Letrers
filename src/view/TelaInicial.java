@@ -27,7 +27,7 @@ public class TelaInicial implements ActionListener {
 	public TelaInicial() {
 		
 		frame = new JFrame("Letters");
-		frame.setSize(800,600);
+		frame.setSize(900,600);
 		
 		//botão Login
 		btnLogin = new JButton("Entrar");
