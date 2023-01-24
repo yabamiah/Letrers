@@ -7,10 +7,9 @@ public class Musica {
   private String genero;
   private int classificacao;
 
-  public Musica(String nome, String genero, int classificacao) {
+  public Musica(String nome, String genero) {
     this.nome = nome;
     this.genero = genero;
-    this.classificacao = classificacao;
   }
 
   public String getNome() { return nome; }

@@ -6,20 +6,24 @@ public class ControleLetra {
     private LetraDeMusica[] letras;
     private int qtdLetras;
 
-    public ControleLetra() {
-        this.letras = new LetraDeMusica[100];
-        this.qtdLetras = 0;
+    public ControleLetra(ControleDados cd) {
+        this.letras = cd.getLetras();
+        this.qtdLetras = cd.getQtdLetras();
     }
 
-    public void adicionarLetra(LetraDeMusica letra) {
-
+    public int getQtdLetras() {
+        return qtdLetras;
     }
 
-    public Boolean removerLetra(LetraDeMusica letra) {
-        return false;
+    public void setQtdLetras(int qtdLetras) {
+        this.qtdLetras = qtdLetras;
     }
 
-    public Boolean editarLetra(LetraDeMusica letra) {
-        return false;
+    public String getCorpoOriginal(int i) {
+        return letras[i].getCorpoOriginal();
+    }
+
+    public String getCorpoTraduzido(int i) {
+        return letras[i].getCorpoTraduzido();
     }
 }
