@@ -1,9 +1,10 @@
 package controle;
 
 import modelo.Usuario;
+import java.util.ArrayList;
 
 public class ControleUsuario {
-    private Usuario[] usuarios;
+    private ArrayList<Usuario> usuarios;
     private int qtdusuarios;
 
     public ControleUsuario(ControleDados cd) {
@@ -22,12 +23,12 @@ public class ControleUsuario {
     public String[] getNomeUsuarios() {
         String[] nomes = new String[qtdusuarios];
         for (int i = 0; i < qtdusuarios; i++) {
-            nomes[i] = usuarios[i].getNome();
+            nomes[i] = usuarios.get(i).getNome();
         }
         return nomes;
     }
 
     public String getPlayListUsuario(int i) {
-        return usuarios[i].toString();
+        return usuarios.get(i).toString();
     }
 }
