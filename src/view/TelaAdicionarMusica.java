@@ -168,7 +168,7 @@ public class TelaAdicionarMusica implements ActionListener {
 		if(e.getActionCommand() == "criar") {
 			//ir pra tela da musica
 		} else if(e.getActionCommand() == "cancelar") {
-			new TelaMaisOpcoes();
+			new TelaUsuario();
 			frame.dispose();
 			
 		} else if(e.getActionCommand() == "criarAlbum") {

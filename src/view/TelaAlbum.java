@@ -9,14 +9,15 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class TelaAlbum implements ActionListener {
-	private String album = "Born to Die";
-	private String artista = "Lana Del Rey";
 	
     private JFrame frame;
     private JLabel nomeAlbum;
     private JLabel nomeArtista;
     private JButton voltar;
     
+    
+    private String album = "Born to Die";
+	private String artista = "Lana Del Rey";
     private JList<String> listaMusicas;
     String musicas[] = {"Blue Jeans", "Video Games", "Summertime Sadness", 
     		"Born to Die", "Young and Beautiful", "Off to the", "Lust for life"};
@@ -26,10 +27,7 @@ public class TelaAlbum implements ActionListener {
     public TelaAlbum() {
         frame = new JFrame("Album - " + album); //Trocar para variavel Nome Album
         frame.setSize(900,600);
-        frame.setLayout(null);
-        frame.getContentPane().setBackground(Color.PINK);
-        frame.setLocationRelativeTo(null);
-
+        
         nomeAlbum = new JLabel(album);
         nomeAlbum.setBounds(193, 50, 300, 50);
         nomeAlbum.setFont(new Font("Times New Roman", Font.BOLD, 25));
@@ -46,6 +44,8 @@ public class TelaAlbum implements ActionListener {
         frame.add(nomeAlbum);
         frame.add(nomeArtista);
         
+        frame.setLayout(null);
+        frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }

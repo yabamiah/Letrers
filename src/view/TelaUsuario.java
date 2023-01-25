@@ -19,7 +19,8 @@ public class TelaUsuario implements ActionListener{
 	private JList<String> listaArtistasFav;
 	private JButton btnBuscar;
 	private JButton btnCriarPlay;
-	private JButton btnMais;
+	private JButton addArtista;
+	//private JButton btnMais;
 	private JTextField buscar;
 	
 	String usuario = "Marys";
@@ -46,24 +47,24 @@ public class TelaUsuario implements ActionListener{
 		miPlaylist = new JLabel("Minhas Playlists");
 		miPlaylist.setForeground(Color.white);
 		miPlaylist.setBounds(215,100,200,20);
-		miPlaylist.setFont(new Font("", Font.PLAIN, 15));
+		miPlaylist.setFont(new Font("", Font.BOLD, 18));
 		
 		listaPlaylists = new JList<String>(playlists);
-		listaPlaylists.setBounds(120,130,295,330);
+		listaPlaylists.setBounds(115,130,295,330);
 		listaPlaylists.setBackground(new Color(121,150,71));
-		listaPlaylists.setForeground(new Color(0,0,0));
+		listaPlaylists.setForeground(new Color(30,30,30));
 		listaPlaylists.setFont(new Font("", Font.BOLD, 15));
 		
 		//Artistas
 		miArtistas = new JLabel("Meus Artistas Favoritos");
 		miArtistas.setForeground(Color.white);
-		miArtistas.setBounds(565,100,200,20);
-		miArtistas.setFont(new Font("", Font.PLAIN, 15));
+		miArtistas.setBounds(525,100,300,20);
+		miArtistas.setFont(new Font("", Font.BOLD, 18));
 		
 		listaArtistasFav = new JList<String>(artistas);
 		listaArtistasFav.setBounds(490,130,295,330);
 		listaArtistasFav.setBackground(new Color(121,150,71));
-		listaArtistasFav.setForeground(new Color(0,0,0));
+		listaArtistasFav.setForeground(new Color(30,30,30));
 		listaArtistasFav.setFont(new Font("", Font.BOLD,15));
 		
 		//Add
@@ -74,7 +75,7 @@ public class TelaUsuario implements ActionListener{
 		frame.add(listaArtistasFav);
 		Buscar();
 		btnCriarPlaylist();
-		btnMais();
+		btnAddArtista();
 		frame.add(miPlaylist);
 		frame.add(panel);
 		
@@ -102,18 +103,29 @@ public class TelaUsuario implements ActionListener{
 		frame.add(btnBuscar);
 	}
 	
-	public void btnMais() {
-		btnMais = new JButton("Mais opções");
-		btnMais.setBounds(680,540,120,30);
-		btnMais.setForeground(Color.white);
-		btnMais.setBackground(new Color(0,0,0));
-		btnMais.setBorderPainted(true);
-		btnMais.setActionCommand("mais");
-		btnMais.addActionListener(this);
-		btnMais.setBorder(null);
+	public void btnAddArtista() {
+		addArtista = new JButton("Adicionar Artista");
+		addArtista.setBounds(670,540,130,30);
+		addArtista.setForeground(Color.white);
+		addArtista.setBackground(new Color(0,0,0));
+		addArtista.setBorderPainted(true);
+		addArtista.setBorder(null);
 		
-		frame.add(btnMais);
+		addArtista.setActionCommand("addArtista");
+		addArtista.addActionListener(this);
+		
+		frame.add(addArtista);
 	}
+	
+	/*
+	 * public void btnMais() { btnMais = new JButton("Mais opções");
+	 * btnMais.setBounds(680,540,120,30); btnMais.setForeground(Color.white);
+	 * btnMais.setBackground(new Color(0,0,0)); btnMais.setBorderPainted(true);
+	 * btnMais.setActionCommand("mais"); btnMais.addActionListener(this);
+	 * btnMais.setBorder(null);
+	 * 
+	 * frame.add(btnMais); }
+	 */
 	
 	public void btnCriarPlaylist() {
 		btnCriarPlay = new JButton("Criar Playlist");
@@ -153,9 +165,10 @@ public class TelaUsuario implements ActionListener{
 		if(e.getActionCommand() == "criarPlaylist") {
 			new TelaCriarPlaylist();
 			frame.dispose();
-		}else if(e.getActionCommand() == "mais") {
-			new TelaMaisOpcoes();
+		}else if(e.getActionCommand() == "addArtista") {
+			new TelaAdicionarArtista();
 			frame.dispose();
+			
 		}else if(e.getActionCommand() == "buscar") {
 			
 			frame.dispose();
