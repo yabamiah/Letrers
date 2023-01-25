@@ -1,9 +1,11 @@
 package controle;
 
+import java.util.ArrayList;
+
 import modelo.Album;
 
 public class ControleAlbum {
-    private Album[] albuns;
+    private ArrayList<Album> albuns;
     private int qtdAlbuns;
 
     public ControleAlbum(ControleDados cd) {
@@ -22,17 +24,17 @@ public class ControleAlbum {
     public String[] getNomeAlbuns() {
         String[] nomes = new String[qtdAlbuns];
         for (int i = 0; i < qtdAlbuns; i++) {
-            nomes[i] = albuns[i].getNome();
+            nomes[i] = albuns.get(i).getNome();
         }
         return nomes;
     }
 
     public String getMusicasAlbum(int i) {
         String musicas = "";
-        for (int j = 0; j < albuns[i].getQtdMusica(); j++) {
-            int tam = albuns[i].getMusicas().size();
+        for (int j = 0; j < albuns.get(i).getQtdMusica(); j++) {
+            int tam = albuns.get(i).getMusicas().size();
             for (int k = 0; k < tam; k++) {
-                musicas += albuns[i].getMusicas().get(k).getNome() + ", ";
+                musicas += albuns.get(i).getMusicas().get(k).getNome() + ", ";
             }
         }
         return musicas;
@@ -40,10 +42,10 @@ public class ControleAlbum {
 
     public String getArtistasAlbum(int i) {
         String artistas = "";
-        for (int j = 0; j < albuns[i].getQtdMusica(); j++) {
-            int tam = albuns[i].getArtistas().size();
+        for (int j = 0; j < albuns.get(i).getQtdMusica(); j++) {
+            int tam = albuns.get(i).getArtistas().size();
             for (int k = 0; k < tam; k++) {
-                artistas += albuns[i].getArtistas().get(k) + ", ";
+                artistas += albuns.get(i).getArtistas().get(k) + ", ";
             }
         }
         return artistas;

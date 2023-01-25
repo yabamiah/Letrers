@@ -1,9 +1,10 @@
 package controle;
 
 import modelo.LetraDeMusica;
+import java.util.ArrayList;
 
 public class ControleLetra {
-    private LetraDeMusica[] letras;
+    private ArrayList<LetraDeMusica> letras;
     private int qtdLetras;
 
     public ControleLetra(ControleDados cd) {
@@ -20,10 +21,10 @@ public class ControleLetra {
     }
 
     public String getCorpoOriginal(int i) {
-        return letras[i].getCorpoOriginal();
+        return letras.get(i).getCorpoOriginal();
     }
 
     public String getCorpoTraduzido(int i) {
-        return letras[i].getCorpoTraduzido();
+        return letras.get(i).getCorpoTraduzido();
     }
 }

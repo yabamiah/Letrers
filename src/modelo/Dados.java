@@ -5,15 +5,15 @@ import java.util.ArrayList;
 public class Dados {
     private ArrayList<Artista> artistas = new ArrayList<Artista>();
     private int qtdArtistas = 0;
-    private Usuario[] usuarios = new Usuario[10];
+    private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
     private int qtdUsuarios = 0;
-    private Musica[] musicas = new Musica[10];
+    private ArrayList<Musica> musicas = new ArrayList<Musica>();
     private int qtdMusicas = 0;
-    private LetraDeMusica[] letras = new LetraDeMusica[10];
+    private ArrayList<LetraDeMusica> letras = new ArrayList<LetraDeMusica>();
     private int qtdLetras = 0;
-    private Album[] albuns = new Album[10];
+    private ArrayList<Album> albuns = new ArrayList<Album>();
     private int qtdAlbuns = 0;
-    private Playlist[] playlists = new Playlist[10];
+    private ArrayList<Playlist> playlists = new ArrayList<Playlist>();
     private int qtdPlaylists = 0;
 
     public void EncherDados() {
@@ -23,14 +23,14 @@ public class Dados {
             Musica musica = new Musica("Musica " + i, "Genero " + i);
             LetraDeMusica letra = new LetraDeMusica("CorpoOriginal " + i, "CorpoTraduzido " + i);
             Album album = new Album("Album " + i, i, new ArrayList<Musica>(), new ArrayList<String>());
-            Playlist playlist = new Playlist("Playlist " + i, i, new ArrayList<Musica>());
-            
+            Playlist playlist = new Playlist("Playlist " + i, i, new ArrayList<Musica>());            
+
             artistas.add(artista);
-            usuarios[i] = usuario;
-            letras[i] = letra;
-            albuns[i] = album;
-            playlists[i] = playlist;
-            musicas[i] = musica;
+            usuarios.add(usuario);
+            musicas.add(musica);
+            letras.add(letra);
+            albuns.add(album);
+            playlists.add(playlist);
         }
     }
 
@@ -55,21 +55,20 @@ public class Dados {
         this.qtdArtistas = qtdArtistas;
     }
 
-    public Usuario[] getUsuarios() {
+    public ArrayList<Usuario> getUsuarios() {
         return usuarios;
     }
 
-    public void setUsuarios(Usuario[] usuarios) {
+    public void setUsuarios(ArrayList<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
 
     public void adicionarUsuario(Usuario usuario) {
-        this.usuarios[qtdUsuarios] = usuario;
-        qtdUsuarios++;
+        this.usuarios.add(usuario);
     }
 
     public int getQtdUsuarios() {
-        this.qtdUsuarios = usuarios.length;
+        this.qtdUsuarios = usuarios.size();
         return qtdUsuarios;
     }
 
@@ -77,22 +76,21 @@ public class Dados {
         this.qtdUsuarios = qtdUsuarios;
     }
 
-    public Musica[] getMusicas() {
-        qtdMusicas = musicas.length;
+    public ArrayList<Musica> getMusicas() {
         return musicas;
     }
 
-    public void setMusicas(Musica[] musicas) {
+    public void setMusicas(ArrayList<Musica> musicas) {
         this.musicas = musicas;
     }
 
     public void adicionarMusica(Musica musica) {
-        this.musicas[qtdMusicas] = musica;
+        this.musicas.add(musica);
         qtdMusicas++;
     }
 
     public int getQtdMusicas() {
-        this.qtdMusicas = musicas.length;
+        this.qtdMusicas = musicas.size();
         return qtdMusicas;
     }
 
@@ -100,21 +98,21 @@ public class Dados {
         this.qtdMusicas = qtdMusicas;
     }
 
-    public LetraDeMusica[] getLetras() {
+    public ArrayList<LetraDeMusica> getLetras() {
         return letras;
     }
 
-    public void setLetras(LetraDeMusica[] letras) {
+    public void setLetras(ArrayList<LetraDeMusica> letras) {
         this.letras = letras;
     }
 
     public void adicionarLetra(LetraDeMusica letra) {
-        this.letras[qtdLetras] = letra;
+        this.letras.add(letra);
         qtdLetras++;
     }
 
     public int getQtdLetras() {
-        this.qtdLetras = letras.length;
+        qtdLetras = letras.size();
         return qtdLetras;
     }
 
@@ -122,21 +120,21 @@ public class Dados {
         this.qtdLetras = qtdLetras;
     }
 
-    public Album[] getAlbuns() {
+    public ArrayList<Album> getAlbuns() {
         return albuns;
     }
 
-    public void setAlbuns(Album[] albuns) {
+    public void setAlbuns(ArrayList<Album> albuns) {
         this.albuns = albuns;
     }
 
     public void adicionarAlbum(Album album) {
-        this.albuns[qtdAlbuns] = album;
+        this.albuns.add(album);
         qtdAlbuns++;
     }
 
     public int getQtdAlbuns() {
-        this.qtdAlbuns = albuns.length;
+        qtdAlbuns = albuns.size();
         return qtdAlbuns;
     }
 
@@ -144,21 +142,21 @@ public class Dados {
         this.qtdAlbuns = qtdAlbuns;
     }
 
-    public Playlist[] getPlaylists() {
+    public ArrayList<Playlist> getPlaylists() {
         return playlists;
     }
 
-    public void setPlaylists(Playlist[] playlists) {
+    public void setPlaylists(ArrayList<Playlist> playlists) {
         this.playlists = playlists;
     }
 
     public void adicionarPlaylist(Playlist playlist) {
-        this.playlists[qtdPlaylists] = playlist;
+        this.playlists.add(playlist);
         qtdPlaylists++;
     }
 
     public int getQtdPlaylists() {
-        this.qtdPlaylists = playlists.length;
+        this.qtdPlaylists = playlists.size();
         return qtdPlaylists;
     }
 

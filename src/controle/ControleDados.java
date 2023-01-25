@@ -8,7 +8,7 @@ public class ControleDados {
     private Dados dados = new Dados();
 
     public ControleDados() {
-        this.dados = new Dados();
+        dados.EncherDados();
     }
 
     public Dados getDados() {
@@ -27,7 +27,7 @@ public class ControleDados {
         return dados.getQtdArtistas();
     }
 
-    public Usuario[] getUsuarios() {
+    public ArrayList<Usuario> getUsuarios() {
         return dados.getUsuarios();
     }
 
@@ -35,7 +35,7 @@ public class ControleDados {
         return dados.getQtdUsuarios();
     }
 
-    public Musica[] getMusicas() {
+    public ArrayList<Musica> getMusicas() {
         return dados.getMusicas();
     }
 
@@ -43,7 +43,7 @@ public class ControleDados {
         return dados.getQtdMusicas();
     }
 
-    public LetraDeMusica[] getLetras() {
+    public ArrayList<LetraDeMusica> getLetras() {
         return dados.getLetras();
     }
 
@@ -51,7 +51,7 @@ public class ControleDados {
         return dados.getQtdLetras();
     }
 
-    public Playlist[] getPlaylists() {
+    public ArrayList<Playlist> getPlaylists() {
         return dados.getPlaylists();
     }
 
@@ -59,7 +59,7 @@ public class ControleDados {
         return dados.getQtdPlaylists();
     }
 
-    public Album[] getAlbuns() {
+    public ArrayList<Album> getAlbuns() {
         return dados.getAlbuns();
     }
 
@@ -125,11 +125,11 @@ public class ControleDados {
     /*
      * CRUD de Uusario
      */
-    public boolean adicionarUsuario(String nome, ArrayList<String> generos, ArrayList<Musica> musicas) {
+    public boolean adicionarUsuario(String nome, ArrayList<Playlist> playlist) {
         int count = 0;
 
-        for(int i = 0; i < dados.getQtdArtistas(); i++) {
-            boolean verif = dados.getArtistas().get(i).getNome().equals(nome);
+        for(int i = 0; i < dados.getQtdUsuarios(); i++) {
+            boolean verif = dados.getUsuarios().get(i).getNome().equals(nome);
 
             if(verif) {
                 count++;
@@ -137,12 +137,12 @@ public class ControleDados {
         }
 
         if(count >= 1) {
-            System.out.println("Artista já cadastrado!");
+            System.out.println("Usuário já cadastrado!");
             return false;
         } else {
-            System.out.println("Artista cadastrado com sucesso!");
-            Artista a = new Artista(nome, generos, musicas);
-            dados.adicionarArtista(a);
+            System.out.println("Usuário cadastrado com sucesso!");
+            Usuario a = new Usuario(nome, playlist);
+            dados.adicionarUsuario(a);
             return true;
         }
     }
@@ -184,7 +184,7 @@ public class ControleDados {
         int count = 0;
 
         for(int i = 0; i < dados.getQtdMusicas(); i++) {
-            boolean verif = dados.getMusicas()[i].getNome().equals(nome);
+            boolean verif = dados.getMusicas().get(i).getNome().equals(nome);
 
             if(verif) {
                 count++;
@@ -203,11 +203,11 @@ public class ControleDados {
     }
 
     public Boolean removerMusica(int idx) {
-        String nome = dados.getMusicas()[idx].getNome();
+        String nome = dados.getMusicas().get(idx).getNome();
 
         for(int i = 0; i < dados.getQtdMusicas(); i++) {
-            if(dados.getMusicas()[i].getNome().equals(nome)) {
-                dados.getMusicas()[i] = null;
+            if(dados.getMusicas().get(i).getNome().equals(nome)) {
+                dados.getMusicas().remove(i);
                 dados.setQtdMusicas(dados.getQtdMusicas() - 1);
                 return true;
             }
@@ -217,12 +217,12 @@ public class ControleDados {
     }
 
     public Boolean editarMusica(int idx, String nomeNovo, String genero) {
-        String nomeAntigo = dados.getMusicas()[idx].getNome();
+        String nomeAntigo = dados.getMusicas().get(idx).getNome();
 
         for(int i = 0; i < dados.getQtdMusicas(); i++) {
-            if(dados.getMusicas()[i].getNome().equals(nomeAntigo)) {
-                dados.getMusicas()[i].setNome(nomeNovo);
-                dados.getMusicas()[i].setGenero(genero);
+            if(dados.getMusicas().get(i).getNome().equals(nomeAntigo)) {
+                dados.getMusicas().get(i).setNome(nomeNovo);
+                dados.getMusicas().get(i).setGenero(genero);
                 return true;
             }
         }
@@ -237,7 +237,7 @@ public class ControleDados {
         int count = 0;
 
         for(int i = 0; i < dados.getQtdLetras(); i++) {
-            boolean verif = dados.getLetras()[i].getCorpoOriginal().equals(corpoOriginal);
+            boolean verif = dados.getLetras().get(i).getCorpoOriginal().equals(corpoOriginal);
 
             if(verif) {
                 count++;
@@ -256,11 +256,11 @@ public class ControleDados {
     }
 
     public Boolean removerLetra(int idx) {
-        String nome = dados.getLetras()[idx].getCorpoOriginal();
+        String nome = dados.getLetras().get(idx).getCorpoOriginal();
 
         for(int i = 0; i < dados.getQtdLetras(); i++) {
-            if(dados.getLetras()[i].getCorpoOriginal().equals(nome)) {
-                dados.getLetras()[i] = null;
+            if(dados.getLetras().get(i).getCorpoOriginal().equals(nome)) {
+                dados.getLetras().remove(i);
                 dados.setQtdLetras(dados.getQtdLetras() - 1);
                 return true;
             }
@@ -270,12 +270,12 @@ public class ControleDados {
     }
 
     public Boolean editarLetra(int idx, String corpoOriginalNovo, String corpoTraduzidoNovo) {
-        String corpoOriginalAntigo = dados.getLetras()[idx].getCorpoOriginal();
+        String corpoOriginalAntigo = dados.getLetras().get(idx).getCorpoOriginal();
 
         for(int i = 0; i < dados.getQtdLetras(); i++) {
-            if(dados.getLetras()[i].getCorpoOriginal().equals(corpoOriginalAntigo)) {
-                dados.getLetras()[i].setCorpoOriginal(corpoOriginalNovo);
-                dados.getLetras()[i].setCorpoTraduzido(corpoTraduzidoNovo);
+            if(dados.getLetras().get(i).getCorpoOriginal().equals(corpoOriginalAntigo)) {
+                dados.getLetras().get(i).setCorpoOriginal(corpoOriginalNovo);
+                dados.getLetras().get(i).setCorpoTraduzido(corpoTraduzidoNovo);
                 return true;
             }
         }
@@ -291,7 +291,7 @@ public class ControleDados {
         int count = 0;
 
         for(int i = 0; i < dados.getQtdAlbuns(); i++) {
-            boolean verif = dados.getAlbuns()[i].getNome().equals(nome);
+            boolean verif = dados.getAlbuns().get(i).getNome().equals(nome);
 
             if(verif) {
                 count++;
@@ -310,11 +310,11 @@ public class ControleDados {
     }
 
     public boolean removarAlbum(int idx) {
-        String nome = dados.getAlbuns()[idx].getNome();
+        String nome = dados.getAlbuns().get(idx).getNome();
 
         for(int i = 0; i < dados.getQtdAlbuns(); i++) {
-            if(dados.getAlbuns()[i].getNome().equals(nome)) {
-                dados.getAlbuns()[i] = null;
+            if(dados.getAlbuns().get(i).getNome().equals(nome)) {
+                dados.getAlbuns().remove(i);
                 dados.setQtdAlbuns(dados.getQtdAlbuns() - 1);
                 return true;
             }
@@ -324,14 +324,14 @@ public class ControleDados {
     }
 
     public boolean editarAlbum(int idx, String nomeNovo, ArrayList<Musica> musicas, ArrayList<String> artistas) {
-        String nomeAntigo = dados.getAlbuns()[idx].getNome();
+        String nomeAntigo = dados.getAlbuns().get(idx).getNome();
 
         for(int i = 0; i < dados.getQtdAlbuns(); i++) {
-            if(dados.getAlbuns()[i].getNome().equals(nomeAntigo)) {
-                dados.getAlbuns()[i].setNome(nomeNovo);
-                dados.getAlbuns()[i].setMusicas(musicas);
-                dados.getAlbuns()[i].setQtdMusica(musicas.size());
-                dados.getAlbuns()[i].setArtistaNome(artistas);
+            if(dados.getAlbuns().get(i).getNome().equals(nomeAntigo)) {
+                dados.getAlbuns().get(i).setNome(nomeNovo);
+                dados.getAlbuns().get(i).setMusicas(musicas);
+                dados.getAlbuns().get(i).setQtdMusica(musicas.size());
+                dados.getAlbuns().get(i).setArtistaNome(artistas);
                 return true;
             }
         }
@@ -347,7 +347,7 @@ public class ControleDados {
         int count = 0;
 
         for(int i = 0; i < dados.getQtdPlaylists(); i++) {
-            boolean verif = dados.getPlaylists()[i].getNome().equals(nome);
+            boolean verif = dados.getPlaylists().get(i).getNome().equals(nome);
 
             if(verif) { count++; } 
         }
@@ -364,11 +364,11 @@ public class ControleDados {
     }
 
     public boolean removerPlaylist(int idx) {
-        String nome = dados.getPlaylists()[idx].getNome();
+        String nome = dados.getPlaylists().get(idx).getNome();
 
         for(int i = 0; i < dados.getQtdPlaylists(); i++) {
-            if(dados.getPlaylists()[i].getNome().equals(nome)) {
-                dados.getPlaylists()[i] = null;
+            if(dados.getPlaylists().get(i).getNome().equals(nome)) {
+                dados.getPlaylists().remove(i);
                 dados.setQtdPlaylists(dados.getQtdPlaylists() - 1);
                 return true;
             }
@@ -378,13 +378,13 @@ public class ControleDados {
     }
 
     public boolean editarPlaylist(int idx, String nomeNovo, ArrayList<Musica> musicas) {
-        String nomeAntigo = dados.getPlaylists()[idx].getNome();
+        String nomeAntigo = dados.getPlaylists().get(idx).getNome();
 
         for(int i = 0; i < dados.getQtdPlaylists(); i++) {
-            if(dados.getPlaylists()[i].getNome().equals(nomeAntigo)) {
-                dados.getPlaylists()[i].setNome(nomeNovo);
-                dados.getPlaylists()[i].setMusicas(musicas);
-                dados.getPlaylists()[i].setQtdMusica(musicas.size());
+            if(dados.getPlaylists().get(i).getNome().equals(nomeAntigo)) {
+                dados.getPlaylists().get(i).setNome(nomeNovo);
+                dados.getPlaylists().get(i).setMusicas(musicas);
+                dados.getPlaylists().get(i).setQtdMusica(musicas.size());
                 return true;
             }
         }
@@ -398,16 +398,9 @@ public class ControleDados {
      */
     public static void main(String[] args) {
         ControleDados cd = new ControleDados();
+
         ArrayList<String> generos = new ArrayList<String>();
         ArrayList<Musica> musicas = new ArrayList<Musica>();
-
-        cd.dados.EncherDados();
-
-        ArrayList<Artista> artistas = new ArrayList<Artista>();
-        artistas.add(new Artista("Artista 1", generos, musicas));
-
-        Artista artista = new Artista("!1##!2", generos, musicas);
-        Artista artista2 = new Artista("!@#$2", generos, musicas);
 
         cd.adicionarArtista("Artista 0", generos, musicas);
         cd.adicionarArtista("!@#$@!", generos, musicas);
@@ -416,18 +409,30 @@ public class ControleDados {
 
 
         var ca = new ControleArtista(cd).getNomeArtista();
-        System.out.println("--------------------");
-        System.out.println(ca);
+        //System.out.println("--------------------");
+        //System.out.println(ca);
         
         cd.removerArtista(5);
 
         ca = new ControleArtista(cd).getNomeArtista();
-        System.out.println("--------------------");
-        System.out.println(ca);
+        //System.out.println("--------------------");
+        //System.out.println(ca);
 
         //cd.adicionarArtista("Artista 34", generos, musicas);
         cd.editarArtista(4, "Artista 87", generos, musicas);
         //System.out.println(cd.getArtistas());
+
+        //cd.adicionarAlbum("Master of Puppets", musicas, generos);
+        //cd.adicionarAlbum("Master of Puppets", musicas, generos);
+
+        System.out.println(cd.dados.getUsuarios());
+        System.out.println(cd.dados.getArtistas());
+        System.out.println(cd.dados.getMusicas());
+        System.out.println(cd.dados.getLetras());
+        System.out.println(cd.dados.getAlbuns());
+        System.out.println(cd.dados.getPlaylists());
+
+        //System.out.println(cd.getAlbuns());
     }
 
 }
