@@ -41,11 +41,11 @@ public class TelaArtista implements ActionListener{
         frame.getContentPane().setBackground(Color.PINK);
            
         nomeArtista = new JLabel(artista);
-        nomeArtista.setBounds(385, 10, 300, 50);
+        nomeArtista.setBounds(385, 20, 300, 50);
         nomeArtista.setFont(new Font("Times New Roman", Font.BOLD, 25));
         nomeArtista.setForeground(Color.white);
         
-        ImagemFundo("/imagem/Home.jpg");
+        ImagemFundo("/imagem/Home.png");
         frame.add(nomeArtista);
         btnVoltar();
         areaAlbum();
@@ -186,9 +186,16 @@ public class TelaArtista implements ActionListener{
 			frame.dispose();
 			
 		} else if(e.getActionCommand() == "editar") {
+			new TelaAdicionarArtista();
+			frame.dispose();
 			
 		} else if(e.getActionCommand() == "excluir") {
+			new TelaUsuario();
+			frame.dispose();
 			
+		} else if(e.getActionCommand() == "addMusica") {
+			new TelaAdicionarMusica();
+			frame.dispose();
 		}
 		
 	}

@@ -9,18 +9,15 @@ public class TelaAdicionarMusica implements ActionListener {
 	private JFrame frame;
 	private JButton criar;
 	private JButton cancelar;
-	private JButton btnCriarAlbum;
 	private JButton btnCriarArtista;
 	private JLabel titulo;
 	private JLabel nomeMusica;
-	private JLabel nomeAlbum;
 	private JLabel nomeArtista;
 	private JLabel nomeLetra;
 	private JLabel nomeTraducao;
 	private JTextField musica;
 	private JTextArea letra;
 	private JTextArea traducao;	
-	private JComboBox<String> listaAlbuns;
 	private JComboBox<String> listaArtista;
 	
 	private String[] albuns = {"Midnight", "Lover", "Red", "evermore"};
@@ -31,13 +28,13 @@ public class TelaAdicionarMusica implements ActionListener {
 		frame.getContentPane().setBackground(new Color(121,150,71));
 		
 		titulo = new JLabel("Adicionar Música");
-		titulo.setBounds(330,30,300,30);
-		titulo.setFont(new Font("Times New Roman", Font.BOLD, 30));
-		titulo.setForeground(Color.black);
+		titulo.setBounds(290,30,400,30);
+		titulo.setFont(new Font("Times New Roman", Font.BOLD, 40));
+		titulo.setForeground(Color.white);
 		
 		frame.add(titulo);
 		musica();
-		album();
+		//album();
 		artista();
 		letra();
 		traducao();
@@ -63,36 +60,13 @@ public class TelaAdicionarMusica implements ActionListener {
 		frame.add(nomeMusica);
 	}
 	
-	public void album() {
-		nomeAlbum = new JLabel("Selecionar álbum:");
-		nomeAlbum.setBounds(350,112,120,20);
-		nomeAlbum.setForeground(Color.black);
-		
-		listaAlbuns = new JComboBox<String>(albuns);
-		listaAlbuns.setBounds(350,135,120,25);
-		listaAlbuns.setBackground(Color.white);
-		listaAlbuns.setForeground(Color.black);
-		
-		btnCriarAlbum = new JButton("Criar Álbum");
-		btnCriarAlbum.setBackground(Color.black);
-		btnCriarAlbum.setForeground(Color.white);
-		btnCriarAlbum.setBorder(null);
-		btnCriarAlbum.setBounds(475,135,125,25);
-		btnCriarAlbum.setActionCommand("criarAlbum");
-		btnCriarAlbum.addActionListener(this);
-		
-		frame.add(nomeAlbum);
-		frame.add(listaAlbuns);
-		frame.add(btnCriarAlbum);
-	}
-	
 	public void artista() {
 		nomeArtista = new JLabel("Selecionar artista:");
-		nomeArtista.setBounds(650,112,170,20);
+		nomeArtista.setBounds(350,112,120,20);
 		nomeArtista.setForeground(Color.black);
 		
 		listaArtista = new JComboBox<String>(albuns);
-		listaArtista.setBounds(650,135,170,25);
+		listaArtista.setBounds(350,135,120,25);
 		listaArtista.setBackground(Color.white);
 		listaArtista.setForeground(Color.black);
 		
@@ -100,7 +74,7 @@ public class TelaAdicionarMusica implements ActionListener {
 		btnCriarArtista.setBackground(Color.black);
 		btnCriarArtista.setForeground(Color.white);
 		btnCriarArtista.setBorder(null);
-		btnCriarArtista.setBounds(650,170,170,25);
+		btnCriarArtista.setBounds(475,135,125,25);
 		btnCriarArtista.setActionCommand("criarArtista");
 		btnCriarArtista.addActionListener(this);
 		
@@ -140,7 +114,7 @@ public class TelaAdicionarMusica implements ActionListener {
 		criar.setBackground(new Color(0,0,0));
 		criar.setForeground(Color.white);
 		criar.setBorder(null);
-		criar.setActionCommand("criarMusica");
+		criar.setActionCommand("adicionar");
 		criar.addActionListener(this);
 		
 		frame.add(criar);
@@ -165,14 +139,12 @@ public class TelaAdicionarMusica implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand() == "criar") {
+		if(e.getActionCommand() == "adicionar") {
 			//ir pra tela da musica
-		} else if(e.getActionCommand() == "cancelar") {
-			new TelaUsuario();
 			frame.dispose();
 			
-		} else if(e.getActionCommand() == "criarAlbum") {
-			new TelaCriarAlbum();
+		} else if(e.getActionCommand() == "cancelar") {
+			new TelaUsuario();
 			frame.dispose();
 			
 		} else if(e.getActionCommand() == "criarArtista") {

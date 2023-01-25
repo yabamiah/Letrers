@@ -27,6 +27,10 @@ public class ControleUsuario {
         }
         return nomes;
     }
+    
+    public String getNomeUsuario(int idx) {
+    	return usuarios.get(idx).getNome();
+    }
 
     public String getPlayListUsuario(int i) {
         return usuarios.get(i).toString();

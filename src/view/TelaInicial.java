@@ -31,7 +31,7 @@ public class TelaInicial implements ActionListener {
 		
 		//botão Login
 		btnLogin = new JButton("Entrar");
-		btnLogin.setBounds(225,450,150,45);
+		btnLogin.setBounds(275,450,150,45);
 		btnLogin.setFont(new Font("",Font.PLAIN,20));
 		btnLogin.setBorderPainted(false);
 		btnLogin.setForeground(Color.white);
@@ -42,7 +42,7 @@ public class TelaInicial implements ActionListener {
 		
 		//botão Cadastro
 		btnCadastro = new JButton("Criar conta");
-		btnCadastro.setBounds(425,450,150,45);
+		btnCadastro.setBounds(475,450,150,45);
 		btnCadastro.setFont(new Font("",Font.PLAIN,20));
 		btnCadastro.setBorderPainted(false);
 		btnCadastro.setForeground(Color.white);

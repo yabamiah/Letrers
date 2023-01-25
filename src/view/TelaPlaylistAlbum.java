@@ -8,41 +8,51 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class TelaAlbum implements ActionListener {
+public class TelaPlaylistAlbum implements ActionListener {
 	
-    private JFrame frame;
-    private JLabel nomeAlbum;
-    private JLabel nomeArtista;
-    private JButton voltar;
-    
-    
-    private String album = "Born to Die";
+	private String albumPlaylist = "Born to Die";
 	private String artista = "Lana Del Rey";
     private JList<String> listaMusicas;
     String musicas[] = {"Blue Jeans", "Video Games", "Summertime Sadness", 
     		"Born to Die", "Young and Beautiful", "Off to the", "Lust for life"};
     private JScrollPane listaMusicasScroll;
-
+	
     
-    public TelaAlbum() {
-        frame = new JFrame("Album - " + album); //Trocar para variavel Nome Album
+    private JFrame frame;
+    private JLabel nomeAlbumPlaylist = new JLabel(albumPlaylist);;
+    private JLabel nomeArtista  = new JLabel(artista);
+    private JButton voltar;
+    private JButton editar = new JButton("Editar");;
+    private JButton excluir = new JButton("Excluir");
+    private static int opcao = 1;
+        
+    public TelaPlaylistAlbum(int opcao) {
+    	
+    	if(opcao == 1) {
+    		frame = new JFrame("Álbum - " + albumPlaylist);
+    		
+    		nomeAlbumPlaylist.setBounds(193, 50, 300, 50);
+	        nomeArtista.setBounds(193, 80, 300, 50);
+	        nomeArtista.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+	        nomeArtista.setForeground(Color.white);	        
+	        
+    	} else {
+    		frame = new JFrame("Playlist - " + albumPlaylist);    		
+            nomeAlbumPlaylist.setBounds(193, 60, 300, 50);
+    	}
+        
         frame.setSize(900,600);
         
-        nomeAlbum = new JLabel(album);
-        nomeAlbum.setBounds(193, 50, 300, 50);
-        nomeAlbum.setFont(new Font("Times New Roman", Font.BOLD, 25));
-        nomeAlbum.setForeground(Color.white);
-
-        nomeArtista = new JLabel(artista);
-        nomeArtista.setBounds(193, 80, 300, 50);
-        nomeArtista.setFont(new Font("Times New Roman", Font.PLAIN, 16));
-        nomeArtista.setForeground(Color.white);
+        nomeAlbumPlaylist.setFont(new Font("Times New Roman", Font.BOLD, 25));
+        nomeAlbumPlaylist.setForeground(Color.white);
         
-        ImagemFundo("/imagem/Home.jpg");
+        ImagemFundo("/imagem/Home.png");
         btnVoltar();
         listaMus();
-        frame.add(nomeAlbum);
-        frame.add(nomeArtista);
+        btnEditar();
+        btnExcluir();
+        if(opcao == 1)	frame.add(nomeArtista);
+        frame.add(nomeAlbumPlaylist);
         
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
@@ -81,8 +91,33 @@ public class TelaAlbum implements ActionListener {
         		listaMusicas.getWidth(), listaMusicas.getHeight());
         listaMusicasScroll.setBorder(null);
         
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(listaMusicasScroll);
     }
+    
+    public void btnEditar() {
+		editar.setBounds(100,540,120,30);
+		editar.setForeground(Color.white);
+		editar.setBackground(Color.black);
+		editar.setBorderPainted(true);
+		editar.setActionCommand("editar");
+		editar.addActionListener(this);
+		editar.setBorder(null);
+		
+		frame.add(editar);
+	}
+	
+	public void btnExcluir() {
+		excluir.setBounds(680,540,120,30);
+		excluir.setForeground(Color.white);
+		excluir.setBackground(Color.black);
+		excluir.setBorderPainted(true);
+		excluir.setActionCommand("excluir");
+		excluir.addActionListener(this);
+		excluir.setBorder(null);
+	
+		frame.add(excluir);
+	}
     
     public void ImagemFundo(String srcImg) {
 		try {
@@ -101,7 +136,7 @@ public class TelaAlbum implements ActionListener {
 	}
 
     public static void main(String[] args) {
-        new TelaAlbum();
+        new TelaPlaylistAlbum(opcao);
     }
 
 	@Override
@@ -109,7 +144,14 @@ public class TelaAlbum implements ActionListener {
 		if(e.getActionCommand() == "voltar") {
 			new TelaUsuario();
 			frame.dispose();
+			
+		} else if(e.getActionCommand() == "editar") {
+			new TelaCriarPlaylistAlbum(opcao);
+			frame.dispose();
+			
+		} else if(e.getActionCommand() == "excluir") {
+			new TelaUsuario();
+			frame.dispose();
 		}
-		
 	}
 }

@@ -1,6 +1,7 @@
 package view;
 
 import javax.imageio.ImageIO;
+import controle.*;
 import javax.swing.*;
 
 import java.awt.*;
@@ -19,6 +20,8 @@ public class TelaCadastroLogin implements ActionListener {
 	private JButton btnCadastroLogin;
 	private JButton voltar;
 	private static int opcao = 1;
+	private controle.ControleDados cd;
+
 	
 	public TelaCadastroLogin(int opcao) {
 		
@@ -58,22 +61,6 @@ public class TelaCadastroLogin implements ActionListener {
 		frame.add(voltar);
 	}
 	
-	public void ImagemFundo(String srcImg) {
-		try {
-			BufferedImage img = ImageIO.read(getClass().getResource(srcImg));
-			Image dimg = img.getScaledInstance(frame.getWidth(), frame.getHeight(), Image.SCALE_SMOOTH);
-			ImageIcon icon = new ImageIcon(dimg);
-			JLabel label = new JLabel();
-			label.setIcon(icon);
-			frame.getContentPane().add(label, BorderLayout.CENTER);
-			frame.setContentPane(label);
-			frame.pack();
-			
-		}catch(IOException err) {
-			err.printStackTrace();
-		}
-	}
-	
 	public void TituloPagina(int opcao) {
 		if(opcao == 1) {
 			tituloCadastro = new JLabel("Cadastro");
@@ -83,14 +70,16 @@ public class TelaCadastroLogin implements ActionListener {
 			tituloCadastro.setBounds(202,60,200,150); //x,y,larg,alt
 		}
 		
-		tituloCadastro.setFont(new Font("Arial", Font.PLAIN, 40));
+		tituloCadastro.setFont(new Font("Times New Roman", Font.BOLD, 40));
+		tituloCadastro.setForeground(Color.white);
 		frame.add(tituloCadastro);
 	}
 	
 	public void InfoUsuario() {
 		insiraUsuario = new JLabel("Insira seu nome:");
 		insiraUsuario.setBounds(190,205,130,30);
-		insiraUsuario.setFont(new Font("", Font.PLAIN,17));
+		insiraUsuario.setFont(new Font("Times New Roman", Font.PLAIN,17));
+		insiraUsuario.setForeground(Color.white);
 		
 		usuarioCampo = new JTextField("");
 		usuarioCampo.setBounds(150,250,200,30);
@@ -115,16 +104,40 @@ public class TelaCadastroLogin implements ActionListener {
 		frame.add(btnCadastroLogin);
 	}
 	
+	public void ImagemFundo(String srcImg) {
+		try {
+			BufferedImage img = ImageIO.read(getClass().getResource(srcImg));
+			Image dimg = img.getScaledInstance(frame.getWidth(), frame.getHeight(), Image.SCALE_SMOOTH);
+			ImageIcon icon = new ImageIcon(dimg);
+			JLabel label = new JLabel();
+			label.setIcon(icon);
+			frame.getContentPane().add(label, BorderLayout.CENTER);
+			frame.setContentPane(label);
+			frame.pack();
+			
+		}catch(IOException err) {
+			err.printStackTrace();
+		}
+	}
+	
 	public static void main(String[] args) {
 		TelaCadastroLogin tela = new TelaCadastroLogin(opcao);
     }
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "cadastrar") {
-			new TelaUsuario();
-			frame.dispose();
+			String nome = usuarioCampo.getText();
+			cd = new ControleDados();
+			boolean verif = cd.adicionarArtista(nome, null, null);
+			if(verif) {
+				new TelaUsuario(cd, 2);
+				frame.dispose();
+			} else {
+				JOptionPane.showMessageDialog(null,"Opção não encontrada!", null, 
+						JOptionPane.ERROR_MESSAGE);
+			}
 		} else if(e.getActionCommand() == "logar") {
-			new TelaUsuario();
+			//new TelaUsuario();
 			frame.dispose();
 		} else if(e.getActionCommand() == "voltar") {
 			new TelaInicial();
