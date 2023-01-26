@@ -123,6 +123,7 @@ public class TelaUsuario implements ActionListener{
 		listaPlaylists = new JList<String>(controleP.getNomePlaylists());
 		listaPlaylists.setBounds(115,130,295,330);
 		listaPlaylists.setBackground(new Color(121,150,71));
+		
 		miArtistas = new JLabel("Meus Artistas Favoritos");
 		miArtistas.setForeground(Color.white);
 		miArtistas.setBounds(525,100,300,20);
@@ -224,8 +225,14 @@ public class TelaUsuario implements ActionListener{
 			frame.dispose();
 			
 		}else if(e.getActionCommand() == "buscar") {
+			String nomeMusica = buscar.getText();
 			
+			int idxMusica = cd.buscarMusica(nomeMusica);
+			
+				
+			new TelaMusica(cd, idxMusica);
 			frame.dispose();
+		
 		}
 	}
 }

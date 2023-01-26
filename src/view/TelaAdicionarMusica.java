@@ -24,13 +24,16 @@ public class TelaAdicionarMusica implements ActionListener {
 	private ControleMusica controleMusica;
 	private ControleDados controleDados;
 	private int idxArtista;
+	private int idxUsuario;
 	
 	private String[] albuns = {"Midnight", "Lover", "Red", "evermore"};
 	
-	public TelaAdicionarMusica(ControleDados cd, int idxArtista){
+	public TelaAdicionarMusica(ControleDados cd, int idxArtista, int idxUsuario){
 		controleDados = cd;
 		controleMusica = new ControleMusica(cd);
 		this.idxArtista = idxArtista;
+		
+		this.idxUsuario = idxUsuario;
 		
 		frame = new JFrame("Letters");
 		frame.setSize(900,600);
@@ -76,6 +79,7 @@ public class TelaAdicionarMusica implements ActionListener {
 		btnCriar();
 		btnCancelar();
 		
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null); //centraliza o frame
 		frame.setLayout(null);
@@ -180,13 +184,13 @@ public class TelaAdicionarMusica implements ActionListener {
 			boolean verif = controleDados.adicionarMusica(nomeMusica, null);
 
 			if(verif) {
-				new TelaArtista(controleDados, idxArtista);
+				new TelaArtista(controleDados, idxArtista, idxUsuario);
 				frame.dispose();
 			} else {
 				JOptionPane.showMessageDialog(null, "Música já cadastrada!");
 			}
 		} else if(e.getActionCommand() == "cancelar") {
-			//TelaArtista(controleDados);
+			new TelaArtista(controleDados, idxArtista, idxUsuario);
 			frame.dispose();
 			
 		} else if(e.getActionCommand() == "criarArtista") {

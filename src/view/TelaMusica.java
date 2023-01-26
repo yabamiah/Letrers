@@ -24,6 +24,8 @@ public class TelaMusica implements ActionListener{
 	private JScrollPane textoLetraScroll;
 	private JScrollPane textoTraducaoScroll;
 	
+	
+	
 	private String musica = "champagne problems";
 	private String artista = "Taylor Swift";
 	private String letra = "You booked the night train for a reason\r\n"
@@ -139,7 +141,7 @@ public class TelaMusica implements ActionListener{
 			+ "Você não vai se lembrar de todos os meus\r\n"
 			+ "Problemas insignificantes";
 	
-	public TelaMusica() {
+	public TelaMusica(controle.ControleDados cd, int idxMusica) {
 		frame = new JFrame("Letters - " + musica);
 		frame.setSize(900,600);
 		

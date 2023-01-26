@@ -33,14 +33,17 @@ public class TelaArtista implements ActionListener{
 	private ControleMusica controlM;
 	private ControleAlbum controlAl;
 	private ControleDados cd;
+	private int idxUsuario;
     
-    public TelaArtista(ControleDados cd, int idxArtista) {
+    public TelaArtista(ControleDados cd, int idxArtista, int idxUsuario) {
 		this.cd = cd;
 		controlM = new controle.ControleMusica(cd);
 		controlA = new controle.ControleArtista(cd);
 		controlAl = new controle.ControleAlbum(cd);
 		nomeArtista = new JLabel(controlA.getNomeArtista(idxArtista));
 
+		this.idxUsuario = idxUsuario;
+		
 		this.idxArtista = idxArtista;
 		artistaAtual = controlA.getNomeArtista(idxArtista);
 
@@ -223,7 +226,7 @@ public class TelaArtista implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "voltar") {
-			//new TelaUsuario();
+			new TelaUsuario(cd, idxUsuario);
 			frame.dispose();
 			
 		} else if(e.getActionCommand() == "editar") {
@@ -235,35 +238,20 @@ public class TelaArtista implements ActionListener{
 
 			if(verif) {
 				JOptionPane.showMessageDialog(null, "Artista excluído com sucesso!");
+				new TelaUsuario(cd, idxUsuario);
 				frame.dispose();
+				
 			} else {
 				JOptionPane.showMessageDialog(null, "Erro ao excluir artista!");
+				new TelaUsuario(cd, idxUsuario);
+				frame.dispose();
 			}
 			frame.dispose();
 			
 		} else if(e.getActionCommand() == "addMusica") {
-			new TelaAdicionarMusica(cd, idxArtista);
+			new TelaAdicionarMusica(cd, idxArtista, idxUsuario);
 			frame.dispose();
 		}
 		
 	}
 }
-
-/*
-classificacao = new JLabel("Classificação: 4.5");
-classificacao.setBounds(200, 16, 200, 50);
-
-generos = new JLabel("Genêros:");
-generos.setBounds(380, 16, 200, 50);
-frame.add(generos);
-
-String generosArrays[] = {"Pop", "Rock", "Indie"};
-listaGeneros = new JList<String>(generosArrays);
-listaGeneros.setBounds(400, 29, 100, 100);
-listaGeneros.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-listaGeneros.setLayoutOrientation(JList.HORIZONTAL_WRAP);
-listaGeneros.setVisibleRowCount(4);
-
-frame.add(classificacao);
-frame.add(listaGenerosScroll);
- */

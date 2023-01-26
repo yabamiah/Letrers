@@ -107,10 +107,10 @@ public class TelaAdicionarArtista implements ActionListener {
 			//ControleDados cd = new ControleDados();
 			boolean verif = cd.adicionarArtista(nomeArtista, null, null);
 
-			int idx = cd.buscarArtista(nomeArtista);
+			int idxArtista = cd.buscarArtista(nomeArtista);
 
 			if(verif) {
-				new TelaUsuario(cd, idxUsuario);
+				new TelaArtista(cd, idxArtista, idxUsuario);
 				frame.dispose();
 			} else {
 				JOptionPane.showMessageDialog(null, "Artista já existe!");
@@ -118,7 +118,7 @@ public class TelaAdicionarArtista implements ActionListener {
 
 			frame.dispose();
 		} else if(e.getActionCommand() == "cancelar") {
-			new TelaUsuario(cd);
+			new TelaUsuario(cd, idxUsuario);
 			frame.dispose();
 		}
 		
