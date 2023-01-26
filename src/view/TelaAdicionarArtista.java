@@ -97,11 +97,6 @@ public class TelaAdicionarArtista implements ActionListener {
 		frame.add(cancelar);
 	}
 
-	public static void main(String[] args) {
-		new TelaAdicionarArtista();
-	}
-
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "criar") {
@@ -121,7 +116,7 @@ public class TelaAdicionarArtista implements ActionListener {
 
 			frame.dispose();
 		} else if(e.getActionCommand() == "cancelar") {
-			new TelaUsuario();
+			new TelaUsuario(cd);
 			frame.dispose();
 		}
 		

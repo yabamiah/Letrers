@@ -432,6 +432,16 @@ public class ControleDados {
         return false;
     }
 
+    public int buscarPlaylist(String nome) {
+        for(int i = 0; i < dados.getQtdPlaylists(); i++) {
+            if(dados.getPlaylists().get(i).getNome().equals(nome)) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
 
     /*
      * Teste

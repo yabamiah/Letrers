@@ -43,9 +43,6 @@ public class TelaUsuario implements ActionListener{
 		frame = new JFrame("Letters");
 		frame.setSize(900,600);
 	
-		controleP = new ControlePlaylist(cd);
-		controleA = new ControleArtista(cd);
-		controleU = new ControleUsuario(cd);
 		panel = new JPanel();
 		panel.setBackground(new Color(121,150,71));
 		panel.setBounds(75,80,750,400);
@@ -95,7 +92,12 @@ public class TelaUsuario implements ActionListener{
 		frame.setVisible(true);
 	}
 
-	public TelaUsuario() {
+	public TelaUsuario(ControleDados cd) {
+		this.cd = cd;
+		controleP = new ControlePlaylist(cd);
+		controleA = new ControleArtista(cd);
+		controleU = new ControleUsuario(cd);
+
 		frame = new JFrame("Letters");
 		frame.setSize(900,600);
 		
@@ -130,7 +132,7 @@ public class TelaUsuario implements ActionListener{
 		listaArtistasFav.setFont(new Font("", Font.BOLD,15));
 		
 		//Add
-		ImagemFundo("./imagem/Home.png");
+		ImagemFundo("imagem/Home.png");
 		frame.add(bemVindo);
 		frame.add(listaPlaylists);
 		frame.add(miArtistas);
@@ -212,7 +214,7 @@ public class TelaUsuario implements ActionListener{
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "criarPlaylist") {
-			//new TelaCriarPlaylistAlbum(2);
+			new TelaCriarPlaylistAlbum(cd, 2);
 			frame.dispose();
 		}else if(e.getActionCommand() == "addArtista") {
 			new TelaAdicionarArtista(cd);

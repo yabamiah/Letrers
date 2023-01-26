@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class ControleArtista {
     private ArrayList<Artista> artistas;
-    private int qtdArtistas;
+    private int qtdArtistas = 10;
 
     public ControleArtista(ControleDados cd) {
         this.artistas = cd.getArtistas();

@@ -2,12 +2,15 @@ package view;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import controle.*;
+import modelo.Musica;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class TelaCriarPlaylistAlbum implements ActionListener{
 	
@@ -30,19 +33,26 @@ public class TelaCriarPlaylistAlbum implements ActionListener{
 	private JButton removerMusica = new JButton("Remover Música");;
 	private JButton removerArtista = new JButton("Remover Artista");;
 	private JButton atualizarLista;
+	private ControleDados cd;
+	private ControleArtista controleA;
+	private ControleMusica controleM;
 	
 	private static int opcao = 1;
 	
 	String musicas[] = {"Apocalipse", "champagne problems"};
 	
-	public TelaCriarPlaylistAlbum(int opcao) {
+	public TelaCriarPlaylistAlbum(ControleDados cd, int opcao) {
+		this.cd = cd;
+		controleA = new ControleArtista(cd);
+		controleM = new ControleMusica(cd);
+
 		if(opcao == 1) {
 			frame = new JFrame("Letters - Criar Álbum");
 			labelTituloFrame = new JLabel("Criar Álbum");
 			labelNomePlaylist = new JLabel("Nome do Álbum:");
 			atualizarLista = new JButton("Atualizar Listas");
 			
-			listSelecMusicas = new JList<String>(musicas);
+			listSelecMusicas = new JList<String>(controleM.getNomeMusicas());
 
 			labelSelecMusicas.setBounds(590,120,200,30);
 			listSelecMusicas.setBounds(500,150,300,100);
@@ -59,7 +69,7 @@ public class TelaCriarPlaylistAlbum implements ActionListener{
 			labelNomePlaylist = new JLabel("Nome da Playlist:");
 			atualizarLista = new JButton("Atualizar Lista");
 			
-			listSelecMusicas = new JList<String>(musicas);
+			listSelecMusicas = new JList<String>(controleM.getNomeMusicas());
 
 			labelSelecMusicas.setBounds(590,135,200,30);
 			listSelecMusicas.setBounds(500,170,300,220);
@@ -88,7 +98,7 @@ public class TelaCriarPlaylistAlbum implements ActionListener{
 		
 		btnCriar();
 		btnCancelar();
-		Imagem("/imagem/ImagemPlaylist2.jpg");
+		Imagem("imagem/ImagemPlaylist2.jpg");
 		
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
@@ -222,14 +232,27 @@ public class TelaCriarPlaylistAlbum implements ActionListener{
 	}
 	
 	public static void main(String[] args) {
-		new TelaCriarPlaylistAlbum(opcao);
+		new TelaCriarPlaylistAlbum(null, opcao);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "cancelar") {
-			new TelaUsuario();
+			new TelaUsuario(cd);
 			frame.dispose();
 		} else if(e.getActionCommand() == "criar") {//abrir tela playlist
+			String nomePlaylist = fieldNomePlaylist.getText();
+			ArrayList<Musica> musicas = new ArrayList();
+
+			for(int i = 0; i < listSelecMusicas.getModel().getSize(); i++) {
+				musicas.add( new Musica(listSelecMusicas.getModel().getElementAt(i), null));
+			}
+
+			boolean verif = cd.adicionarPlaylist(nomePlaylist, musicas);
+			int idx = cd.buscarPlaylist(nomePlaylist);
+
+			if(verif) {
+				new TelaPlaylistAlbum(2, cd, idx);
+			}
 			frame.dispose();
 			
 		} else if(e.getActionCommand() == "addMusica") {

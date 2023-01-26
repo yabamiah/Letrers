@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import controle.*;
 
 public class TelaPlaylistAlbum implements ActionListener {
 	
@@ -16,37 +17,46 @@ public class TelaPlaylistAlbum implements ActionListener {
     String musicas[] = {"Blue Jeans", "Video Games", "Summertime Sadness", 
     		"Born to Die", "Young and Beautiful", "Off to the", "Lust for life"};
     private JScrollPane listaMusicasScroll;
+	private ControleDados cd;
+	private ControleMusica controleM;
+	private ControlePlaylist controleP;
+	private int idx;
 	
     
     private JFrame frame;
-    private JLabel nomeAlbumPlaylist = new JLabel(albumPlaylist);;
+    private JLabel nomeAlbumPlaylist = new JLabel();
     private JLabel nomeArtista  = new JLabel(artista);
     private JButton voltar;
     private JButton editar = new JButton("Editar");;
     private JButton excluir = new JButton("Excluir");
     private static int opcao = 1;
         
-    public TelaPlaylistAlbum(int opcao) {
-    	
-    	if(opcao == 1) {
-    		frame = new JFrame("Álbum - " + albumPlaylist);
-    		
-    		nomeAlbumPlaylist.setBounds(193, 50, 300, 50);
-	        nomeArtista.setBounds(193, 80, 300, 50);
-	        nomeArtista.setFont(new Font("Times New Roman", Font.PLAIN, 16));
-	        nomeArtista.setForeground(Color.white);	        
-	        
-    	} else {
-    		frame = new JFrame("Playlist - " + albumPlaylist);    		
+    public TelaPlaylistAlbum(int opcao, ControleDados cd, int idx) {
+		this.cd = cd;
+		controleM = new ControleMusica(cd);
+		controleP = new ControlePlaylist(cd);
+		this.idx = idx;
+
+		if(opcao == 1) {
+			frame = new JFrame("Álbum - " + albumPlaylist);
+		
+			nomeAlbumPlaylist.setBounds(193, 50, 300, 50);
+			nomeArtista.setBounds(193, 80, 300, 50);
+			nomeArtista.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+			nomeArtista.setForeground(Color.white);	        
+
+		} else {
+			nomeAlbumPlaylist = new JLabel(controleP.getNomePlaylist(idx));
+			frame = new JFrame("Playlist - " + controleP.getNomePlaylist(idx));    		
             nomeAlbumPlaylist.setBounds(193, 60, 300, 50);
-    	}
+		}
         
         frame.setSize(900,600);
         
         nomeAlbumPlaylist.setFont(new Font("Times New Roman", Font.BOLD, 25));
         nomeAlbumPlaylist.setForeground(Color.white);
         
-        ImagemFundo("/imagem/Home.png");
+        ImagemFundo("imagem/Home.png");
         btnVoltar();
         listaMus();
         btnEditar();
@@ -75,7 +85,7 @@ public class TelaPlaylistAlbum implements ActionListener {
 	}
     
     public void listaMus() {
-        listaMusicas = new JList<String>(musicas);
+        listaMusicas = new JList<String>(controleM.getNomeMusicas());
         listaMusicas.setBounds(192, 135, 500, 325);
         listaMusicas.setFont(new Font("Times New Roman",Font.BOLD,18));
         //listaMusicas.setForeground(new Color(255, 0, 110));
@@ -135,22 +145,18 @@ public class TelaPlaylistAlbum implements ActionListener {
 		}
 	}
 
-    public static void main(String[] args) {
-        new TelaPlaylistAlbum(opcao);
-    }
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "voltar") {
-			new TelaUsuario();
+			new TelaUsuario(cd);
 			frame.dispose();
 			
 		} else if(e.getActionCommand() == "editar") {
-			new TelaCriarPlaylistAlbum(opcao);
+			//new TelaCriarPlaylistAlbum(opcao);
 			frame.dispose();
 			
 		} else if(e.getActionCommand() == "excluir") {
-			new TelaUsuario();
+			//new TelaUsuario(cd);
 			frame.dispose();
 		}
 	}

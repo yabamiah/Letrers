@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Dados {
     private ArrayList<Artista> artistas = new ArrayList<Artista>();
-    private int qtdArtistas = 0;
+    private int qtdArtistas = 10;
     private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
     private int qtdUsuarios = 0;
     private ArrayList<Musica> musicas = new ArrayList<Musica>();
@@ -44,6 +44,7 @@ public class Dados {
 
     public void adicionarArtista(Artista artista) {
         this.artistas.add(artista);
+        qtdArtistas++;
     }
 
     public int getQtdArtistas() {
