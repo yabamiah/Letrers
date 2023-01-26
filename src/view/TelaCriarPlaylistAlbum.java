@@ -36,15 +36,18 @@ public class TelaCriarPlaylistAlbum implements ActionListener{
 	private ControleDados cd;
 	private ControleArtista controleA;
 	private ControleMusica controleM;
+	private int idxUsuario;
 	
 	private static int opcao = 1;
 	
 	String musicas[] = {"Apocalipse", "champagne problems"};
 	
-	public TelaCriarPlaylistAlbum(ControleDados cd, int opcao) {
+	public TelaCriarPlaylistAlbum(ControleDados cd, int idx, int opcao) {
 		this.cd = cd;
 		controleA = new ControleArtista(cd);
 		controleM = new ControleMusica(cd);
+		
+		idxUsuario = idx;
 
 		if(opcao == 1) {
 			frame = new JFrame("Letters - Criar Álbum");
@@ -231,14 +234,11 @@ public class TelaCriarPlaylistAlbum implements ActionListener{
 		frame.add(label);
 	}
 	
-	public static void main(String[] args) {
-		new TelaCriarPlaylistAlbum(null, opcao);
-	}
-	
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "cancelar") {
-			new TelaUsuario(cd);
+			new TelaUsuario(cd, idxUsuario);
 			frame.dispose();
+			
 		} else if(e.getActionCommand() == "criar") {//abrir tela playlist
 			String nomePlaylist = fieldNomePlaylist.getText();
 			ArrayList<Musica> musicas = new ArrayList();
@@ -251,7 +251,7 @@ public class TelaCriarPlaylistAlbum implements ActionListener{
 			int idx = cd.buscarPlaylist(nomePlaylist);
 
 			if(verif) {
-				new TelaPlaylistAlbum(2, cd, idx);
+				new TelaPlaylistAlbum(2, cd, idx, idxUsuario);
 			}
 			frame.dispose();
 			

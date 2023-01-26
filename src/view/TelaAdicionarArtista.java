@@ -16,6 +16,7 @@ public class TelaAdicionarArtista implements ActionListener {
 	private JButton criar;
 	private JButton cancelar;
 	private ControleDados cd;
+	private int idxUsuario;
 	
 	public TelaAdicionarArtista() {
 		frame = new JFrame("Letters");
@@ -38,8 +39,9 @@ public class TelaAdicionarArtista implements ActionListener {
 		frame.setVisible(true);
 	}
 
-	public TelaAdicionarArtista(ControleDados cd) {
+	public TelaAdicionarArtista(ControleDados cd, int idx) {
 		this.cd = cd;
+		idxUsuario = idx;
 
 		frame = new JFrame("Letters");
 		frame.setSize(600,300);
@@ -108,7 +110,7 @@ public class TelaAdicionarArtista implements ActionListener {
 			int idx = cd.buscarArtista(nomeArtista);
 
 			if(verif) {
-				new TelaUsuario(cd, idx);
+				new TelaUsuario(cd, idxUsuario);
 				frame.dispose();
 			} else {
 				JOptionPane.showMessageDialog(null, "Artista já existe!");

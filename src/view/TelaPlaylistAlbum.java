@@ -20,7 +20,8 @@ public class TelaPlaylistAlbum implements ActionListener {
 	private ControleDados cd;
 	private ControleMusica controleM;
 	private ControlePlaylist controleP;
-	private int idx;
+	private int idxPlaylist;
+	private int idxUsuario;
 	
     
     private JFrame frame;
@@ -31,11 +32,13 @@ public class TelaPlaylistAlbum implements ActionListener {
     private JButton excluir = new JButton("Excluir");
     private static int opcao = 1;
         
-    public TelaPlaylistAlbum(int opcao, ControleDados cd, int idx) {
+    public TelaPlaylistAlbum(int opcao, ControleDados cd, int idxPlaylist, int idxUsuario) {
 		this.cd = cd;
 		controleM = new ControleMusica(cd);
 		controleP = new ControlePlaylist(cd);
-		this.idx = idx;
+		this.idxPlaylist = idxPlaylist;
+		
+		this.idxUsuario = idxUsuario;
 
 		if(opcao == 1) {
 			frame = new JFrame("Álbum - " + albumPlaylist);
@@ -46,8 +49,8 @@ public class TelaPlaylistAlbum implements ActionListener {
 			nomeArtista.setForeground(Color.white);	        
 
 		} else {
-			nomeAlbumPlaylist = new JLabel(controleP.getNomePlaylist(idx));
-			frame = new JFrame("Playlist - " + controleP.getNomePlaylist(idx));    		
+			nomeAlbumPlaylist = new JLabel(controleP.getNomePlaylist(idxPlaylist));
+			frame = new JFrame("Playlist - " + controleP.getNomePlaylist(idxPlaylist));    		
             nomeAlbumPlaylist.setBounds(193, 60, 300, 50);
 		}
         
@@ -148,7 +151,7 @@ public class TelaPlaylistAlbum implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "voltar") {
-			new TelaUsuario(cd);
+			new TelaUsuario(cd, idxUsuario);
 			frame.dispose();
 			
 		} else if(e.getActionCommand() == "editar") {
@@ -159,5 +162,6 @@ public class TelaPlaylistAlbum implements ActionListener {
 			//new TelaUsuario(cd);
 			frame.dispose();
 		}
+		
 	}
 }

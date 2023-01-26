@@ -27,6 +27,7 @@ public class TelaUsuario implements ActionListener{
 	private controle.ControlePlaylist controleP;
 	private controle.ControleArtista controleA;
 	private ControleDados cd;
+	private int idxUsuario;
 	
 	String usuario = "Marys";
 	String playlists[] = {"Meu Apocalipse", "Estados Extremos de Euforia", 
@@ -39,6 +40,8 @@ public class TelaUsuario implements ActionListener{
 		controleP = new controle.ControlePlaylist(cd);
 		controleA = new controle.ControleArtista(cd);
 		controleU = new controle.ControleUsuario(cd);
+		
+		idxUsuario = idx;
 
 		frame = new JFrame("Letters");
 		frame.setSize(900,600);
@@ -214,10 +217,10 @@ public class TelaUsuario implements ActionListener{
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "criarPlaylist") {
-			new TelaCriarPlaylistAlbum(cd, 2);
+			new TelaCriarPlaylistAlbum(cd, idxUsuario, 2);
 			frame.dispose();
 		}else if(e.getActionCommand() == "addArtista") {
-			new TelaAdicionarArtista(cd);
+			new TelaAdicionarArtista(cd, idxUsuario);
 			frame.dispose();
 			
 		}else if(e.getActionCommand() == "buscar") {
