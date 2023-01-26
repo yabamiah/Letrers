@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import controle.*;
 
 public class TelaArtista implements ActionListener{
 	
@@ -26,26 +27,69 @@ public class TelaArtista implements ActionListener{
     private JButton editar;
     private JButton excluir;
     private JButton addMusica;
+	private String artistaAtual;
+	private int idxArtista;
+	private ControleArtista controlA;
+	private ControleMusica controlM;
+	private ControleAlbum controlAl;
+	private ControleDados cd;
     
-    private String artista = "Taylor Swift";
-    private String albunsNomes[] = {"Anti-Hero", "Midnights", "Red", "Fearless",
-    		"evermore", "folklore", "Lover", "reputation", "1989", "Speak now"};
-    String musicas[] = {"champagne problems", "no body, no crime", "Mr.Perfectly Fine(Taylor's Version)",
-    		"exile", "Paper Rings", "Afterglow", "Love Story(Taylor's Version)", "Snow On The Beach",
-    		"Red", "Run(Taylor's Version)", "All Too Well(Taylor's Version)", "I Knew You Were Trouble(Taylor's Version)", "22(Taylor's Version)",
-    		"Dear John", "Last Kiss", "Wildest Dreams(Taylor's Version)"};
-    
-    public TelaArtista() {
-        frame = new JFrame("Letters - " + artista);
+    public TelaArtista(ControleDados cd, int idxArtista) {
+		this.cd = cd;
+		controlM = new controle.ControleMusica(cd);
+		controlA = new controle.ControleArtista(cd);
+		controlAl = new controle.ControleAlbum(cd);
+		nomeArtista = new JLabel(controlA.getNomeArtista(idxArtista));
+
+		this.idxArtista = idxArtista;
+		artistaAtual = controlA.getNomeArtista(idxArtista);
+
+        frame = new JFrame("Letters - " + artistaAtual);
         frame.setSize(900,600);
         frame.getContentPane().setBackground(Color.PINK);
-           
-        nomeArtista = new JLabel(artista);
+
         nomeArtista.setBounds(385, 20, 300, 50);
         nomeArtista.setFont(new Font("Times New Roman", Font.BOLD, 25));
         nomeArtista.setForeground(Color.white);
         
-        ImagemFundo("/imagem/Home.png");
+        ImagemFundo("imagem/Home.png");
+        frame.add(nomeArtista);
+        btnVoltar();
+        areaAlbum();
+        areaMusica();
+        btnAddMusica();
+        btnEditar();
+        btnExcluir();
+        
+        frame.setLayout(null); 
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+
+	public TelaArtista(ControleDados cd, ControleMusica cm, int idxArtista) {
+		this.cd = cd;
+		controlM = new ControleMusica(cd);
+		controlA = new controle.ControleArtista(cd);
+		controlAl = new controle.ControleAlbum(cd);
+		System.out.println(cd.getMusicas());
+		System.out.println(controlM.getNomeMusicas());
+		System.out.println(cm.getNomeMusicas());
+
+		nomeArtista = new JLabel(controlA.getNomeArtista(idxArtista));
+
+		this.idxArtista = idxArtista;
+		artistaAtual = controlA.getNomeArtista(idxArtista);
+
+        frame = new JFrame("Letters - " + artistaAtual);
+        frame.setSize(900,600);
+        frame.getContentPane().setBackground(Color.PINK);
+
+        nomeArtista.setBounds(385, 20, 300, 50);
+        nomeArtista.setFont(new Font("Times New Roman", Font.BOLD, 25));
+        nomeArtista.setForeground(Color.white);
+        
+        ImagemFundo("imagem/Home.png");
         frame.add(nomeArtista);
         btnVoltar();
         areaAlbum();
@@ -80,7 +124,7 @@ public class TelaArtista implements ActionListener{
     	labelAlbum.setForeground(Color.white);
     	labelAlbum.setFont(new Font("Times New Roman", Font.BOLD, 18));
         
-        listaAlbuns = new JList<String>(albunsNomes);
+        listaAlbuns = new JList<String>(controlAl.getNomeAlbuns());
         listaAlbuns.setBounds(110, 120, 310, 330);
         //listaAlbuns.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //listaAlbuns.setLayoutOrientation(JList.VERTICAL);
@@ -91,8 +135,8 @@ public class TelaArtista implements ActionListener{
 
         listaAlbunsScroll = new JScrollPane(listaAlbuns);
         listaAlbunsScroll.setBounds(listaAlbuns.getX(), listaAlbuns.getY(), 
-        		listaAlbuns.getWidth(), listaAlbuns.getHeight());;
-       
+    		listaAlbuns.getWidth(), listaAlbuns.getHeight());;
+
         frame.add(labelAlbum);
         frame.add(listaAlbunsScroll);
     }
@@ -103,7 +147,8 @@ public class TelaArtista implements ActionListener{
     	labelMusica.setForeground(Color.white);
     	labelMusica.setFont(new Font("Times New Roman", Font.BOLD, 18));
     	
-        listaMusicas = new JList<String>(musicas);
+		listaMusicas = new JList<String>(controlM.getNomeMusicas());
+
         listaMusicas.setBounds(480, 120, 310, 330);
         listaMusicas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listaMusicas.setLayoutOrientation(JList.VERTICAL);
@@ -174,15 +219,11 @@ public class TelaArtista implements ActionListener{
 			err.printStackTrace();
 		}
 	}
-    
-    public static void main(String[] args) {
-        new TelaArtista();
-    }
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "voltar") {
-			new TelaUsuario();
+			//new TelaUsuario();
 			frame.dispose();
 			
 		} else if(e.getActionCommand() == "editar") {
@@ -190,11 +231,18 @@ public class TelaArtista implements ActionListener{
 			frame.dispose();
 			
 		} else if(e.getActionCommand() == "excluir") {
-			new TelaUsuario();
+			boolean verif = cd.removerArtista(idxArtista);
+
+			if(verif) {
+				JOptionPane.showMessageDialog(null, "Artista excluído com sucesso!");
+				frame.dispose();
+			} else {
+				JOptionPane.showMessageDialog(null, "Erro ao excluir artista!");
+			}
 			frame.dispose();
 			
 		} else if(e.getActionCommand() == "addMusica") {
-			new TelaAdicionarMusica();
+			new TelaAdicionarMusica(cd, idxArtista);
 			frame.dispose();
 		}
 		

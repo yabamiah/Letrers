@@ -34,7 +34,7 @@ public class TelaCadastroLogin implements ActionListener {
 		panel.setBounds(75,80,350,350);		
 		panel.setBackground(new Color(121,150,71));
 		
-		ImagemFundo("/imagem/Cadastro-Login.png");
+		ImagemFundo("imagem/Cadastro-Login.png");
 		TituloPagina(opcao);
 		InfoUsuario();
 		btnVoltar();
@@ -128,9 +128,11 @@ public class TelaCadastroLogin implements ActionListener {
 		if(e.getActionCommand() == "cadastrar") {
 			String nome = usuarioCampo.getText();
 			cd = new ControleDados();
-			boolean verif = cd.adicionarArtista(nome, null, null);
+			boolean verif = cd.adicionarUsuario(nome, null);
+			int idx = cd.BuscarUsuario(nome);
+			
 			if(verif) {
-				new TelaUsuario(cd, 2);
+				new TelaUsuario(cd, idx);
 				frame.dispose();
 			} else {
 				JOptionPane.showMessageDialog(null,"Opção não encontrada!", null, 

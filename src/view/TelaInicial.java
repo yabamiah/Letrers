@@ -52,7 +52,7 @@ public class TelaInicial implements ActionListener {
 		btnCadastro.addActionListener(this);
 		
 		//Add
-		ImagemFundo("/imagem/Pagina Inicial.jpg");
+		ImagemFundo("imagem/Pagina Inicial.jpg");
 		frame.add(btnLogin);
 		frame.add(btnCadastro);
 

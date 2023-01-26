@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import controle.*;
 
 public class TelaAdicionarArtista implements ActionListener {
 	
@@ -13,9 +14,33 @@ public class TelaAdicionarArtista implements ActionListener {
 	private JLabel labelArtista;
 	private JTextArea artista;
 	private JButton criar;
-	private JButton cancelar;	
+	private JButton cancelar;
+	private ControleDados cd;
 	
 	public TelaAdicionarArtista() {
+		frame = new JFrame("Letters");
+		frame.setSize(600,300);
+		frame.setLocationRelativeTo(null);
+		frame.getContentPane().setBackground(new Color(121,150,71));
+		
+		titulo = new JLabel("Adicionar Artista");
+		titulo.setBounds(180,30,300,30);
+		titulo.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		titulo.setForeground(Color.black);
+		
+		frame.add(titulo);
+		artista();
+		btnCriar();
+		btnCancelar();
+		
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLayout(null);
+		frame.setVisible(true);
+	}
+
+	public TelaAdicionarArtista(ControleDados cd) {
+		this.cd = cd;
+
 		frame = new JFrame("Letters");
 		frame.setSize(600,300);
 		frame.setLocationRelativeTo(null);
@@ -71,15 +96,29 @@ public class TelaAdicionarArtista implements ActionListener {
 		
 		frame.add(cancelar);
 	}
-	
+
 	public static void main(String[] args) {
 		new TelaAdicionarArtista();
 	}
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "criar") {
 			//exibir tela artista
+			String nomeArtista = artista.getText();
+			//ControleDados cd = new ControleDados();
+			boolean verif = cd.adicionarArtista(nomeArtista, null, null);
+
+			int idx = cd.buscarArtista(nomeArtista);
+
+			if(verif) {
+				new TelaUsuario(cd, idx);
+				frame.dispose();
+			} else {
+				JOptionPane.showMessageDialog(null, "Artista já existe!");
+			}
+
 			frame.dispose();
 		} else if(e.getActionCommand() == "cancelar") {
 			new TelaUsuario();

@@ -12,6 +12,14 @@ public class ControleArtista {
         this.qtdArtistas = cd.getQtdArtistas();
     }
 
+    public ArrayList<Artista> getArtistas() {
+        return artistas;
+    }
+
+    public void setArtistas(ArrayList<Artista> artistas) {
+        this.artistas = artistas;
+    }
+
     public int getQtdArtistas() {
         return qtdArtistas;
     }
@@ -20,12 +28,19 @@ public class ControleArtista {
         this.qtdArtistas = qtdArtistas;
     }
 
-    public ArrayList<String> getNomeArtista() {
-        ArrayList<String> nomes = new ArrayList<String>();
-        for (int i = 0; i < artistas.size(); i++) {
-            nomes.add(artistas.get(i).getNome());
+    public String[] getNomeArtistas() {
+        String[] nomes = new String[qtdArtistas];
+        for (int i = 0; i < qtdArtistas; i++) {
+            nomes[i] = artistas.get(i).getNome();
         }
         return nomes;
+    }
+
+    public String getNomeArtista(int i) {
+        if(artistas.get(i).getNome() == null)
+            return "Artista não encontrado";
+        else
+            return artistas.get(i).getNome();
     }
 
     public String getGeneroArtista(int i) {
@@ -34,5 +49,17 @@ public class ControleArtista {
 
     public String getMusicasArtista(int i) {
         return artistas.get(i).getMusicas().get(i).getNome();
+    }
+
+    public String[] getMusicas() {
+        String[] musicas = new String[artistas.size()];
+        for (int i = 0; i <= artistas.size(); i++) {
+            if (artistas.get(i).getMusicas() != null) {
+                return musicas;
+            } else {
+                musicas[i] = artistas.get(i).getMusicas().get(i).getNome();
+            }
+        }
+        return musicas;
     }
 }

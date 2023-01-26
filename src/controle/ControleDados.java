@@ -122,6 +122,16 @@ public class ControleDados {
         return false;
     }
 
+    public int buscarArtista(String nome) {
+        for(int i = 0; i < dados.getQtdArtistas(); i++) {
+            if(dados.getArtistas().get(i).getNome().equals(nome)) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     /*
      * CRUD de Uusario
      */
@@ -177,6 +187,16 @@ public class ControleDados {
         return false;
     }
 
+    public int BuscarUsuario(String nome) {
+        for(int i = 0; i < dados.getQtdUsuarios(); i++) {
+            if(dados.getUsuarios().get(i).getNome().equals(nome)) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     /*
      * CRUD de Músicas
      */
@@ -230,6 +250,16 @@ public class ControleDados {
         return false;
     }
 
+    public int buscarMusica(String nome) {
+        for(int i = 0; i < dados.getQtdMusicas(); i++) {
+            if(dados.getMusicas().get(i).getNome().equals(nome)) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     /*
      * CRUD de Letras
      */
@@ -281,6 +311,16 @@ public class ControleDados {
         }
         
         return false;
+    }
+
+    public int buscarLetra(String corpoOriginal) {
+        for(int i = 0; i < dados.getQtdLetras(); i++) {
+            if(dados.getLetras().get(i).getCorpoOriginal().equals(corpoOriginal)) {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     /*
@@ -408,13 +448,13 @@ public class ControleDados {
         cd.editarArtista(4, "Artista 37", generos, musicas);
 
 
-        var ca = new ControleArtista(cd).getNomeArtista();
+        var ca = new ControleArtista(cd).getNomeArtistas();
         //System.out.println("--------------------");
         //System.out.println(ca);
         
         cd.removerArtista(5);
 
-        ca = new ControleArtista(cd).getNomeArtista();
+        ca = new ControleArtista(cd).getNomeArtistas();
         //System.out.println("--------------------");
         //System.out.println(ca);
 

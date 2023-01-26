@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class ControleMusica {
     private ArrayList<Musica> musicas;
-    private int qtdMusicas;
+    private int qtdMusicas = 10;
 
     public ControleMusica(ControleDados cd) {
         this.musicas = cd.getMusicas();
@@ -20,12 +20,16 @@ public class ControleMusica {
         this.qtdMusicas = qtdMusicas;
     }
 
-    public String[] getNomeMusica() {
+    public String[] getNomeMusicas() {
         String[] nomes = new String[qtdMusicas];
         for (int i = 0; i < qtdMusicas; i++) {
             nomes[i] = musicas.get(i).getNome();
         }
         return nomes;
+    }
+
+    public void setMusicas(ArrayList<Musica> musicas) {
+        this.musicas = musicas;
     }
 
     public String getGeneroMusica(int i) {

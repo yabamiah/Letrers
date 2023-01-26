@@ -143,7 +143,7 @@ public class TelaMusica implements ActionListener{
 		frame = new JFrame("Letters - " + musica);
 		frame.setSize(900,600);
 		
-        ImagemFundo("/imagem/Home.jpg");
+        ImagemFundo("imagem/Home.png");
 		infoMusica();
 		Letra();
 		Traducao();
@@ -282,7 +282,7 @@ public class TelaMusica implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "voltar") {
-			new TelaUsuario();
+			//new TelaUsuario();
 			frame.dispose();
 			
 		} else if(e.getActionCommand() == "editar") {

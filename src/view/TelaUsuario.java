@@ -23,7 +23,10 @@ public class TelaUsuario implements ActionListener{
 	private JButton btnCriarPlay;
 	private JButton addArtista;
 	private JTextField buscar;
-	//private controle.ControleUsuario cs;
+	private controle.ControleUsuario controleU;
+	private controle.ControlePlaylist controleP;
+	private controle.ControleArtista controleA;
+	private ControleDados cd;
 	
 	String usuario = "Marys";
 	String playlists[] = {"Meu Apocalipse", "Estados Extremos de Euforia", 
@@ -31,17 +34,24 @@ public class TelaUsuario implements ActionListener{
 	String artistas[] = {"Manoel Gomes", "Alec Benjamin", "Valeria Almeida", "Taylor Swift"};
 	
 	
-	public TelaUsuario(/*ControleDados cd, int i*/) {
+	public TelaUsuario(controle.ControleDados cd, int idx) {
+		this.cd = cd;
+		controleP = new controle.ControlePlaylist(cd);
+		controleA = new controle.ControleArtista(cd);
+		controleU = new controle.ControleUsuario(cd);
+
 		frame = new JFrame("Letters");
 		frame.setSize(900,600);
-		
-		//cs = new ControleUsuario(cd);
+	
+		controleP = new ControlePlaylist(cd);
+		controleA = new ControleArtista(cd);
+		controleU = new ControleUsuario(cd);
 		panel = new JPanel();
 		panel.setBackground(new Color(121,150,71));
 		panel.setBounds(75,80,750,400);
 		
 		//Cabeçalho
-		bemVindo = new JLabel("Bem vindo(a) " /*+ cs.getNomeUsuario(i)*/);
+		bemVindo = new JLabel("Bem vindo(a) " + controleU.getNomeUsuario(idx));
 		bemVindo.setForeground(Color.white);
 		bemVindo.setBounds(75,35,400,40);
 		bemVindo.setFont(new Font("Times New Roman", Font.BOLD, 27));
@@ -52,7 +62,7 @@ public class TelaUsuario implements ActionListener{
 		miPlaylist.setBounds(215,100,200,20);
 		miPlaylist.setFont(new Font("", Font.BOLD, 18));
 		
-		listaPlaylists = new JList<String>(playlists);
+		listaPlaylists = new JList<String>(controleP.getNomePlaylists());
 		listaPlaylists.setBounds(115,130,295,330);
 		listaPlaylists.setBackground(new Color(121,150,71));
 		miArtistas = new JLabel("Meus Artistas Favoritos");
@@ -60,14 +70,67 @@ public class TelaUsuario implements ActionListener{
 		miArtistas.setBounds(525,100,300,20);
 		miArtistas.setFont(new Font("", Font.BOLD, 18));
 		
-		listaArtistasFav = new JList<String>(artistas);
+		listaArtistasFav = new JList<String>(controleA.getNomeArtistas());
 		listaArtistasFav.setBounds(490,130,295,330);
 		listaArtistasFav.setBackground(new Color(121,150,71));
 		listaArtistasFav.setForeground(new Color(30,30,30));
 		listaArtistasFav.setFont(new Font("", Font.BOLD,15));
 		
 		//Add
-		ImagemFundo("/imagem/Home.png");
+		ImagemFundo("imagem/Home.png");
+		frame.add(bemVindo);
+		frame.add(listaPlaylists);
+		frame.add(miArtistas);
+		frame.add(listaArtistasFav);
+		Buscar();
+		btnCriarPlaylist();
+		btnAddArtista();
+		frame.add(miPlaylist);
+		frame.add(panel);
+		
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
+		frame.setLayout(null);
+		frame.setVisible(true);
+	}
+
+	public TelaUsuario() {
+		frame = new JFrame("Letters");
+		frame.setSize(900,600);
+		
+		panel = new JPanel();
+		panel.setBackground(new Color(121,150,71));
+		panel.setBounds(75,80,750,400);
+		
+		//Cabeçalho
+		bemVindo = new JLabel("Bem vindo(a) "/*+controleU.getNomeUsuario(idx)*/);
+		bemVindo.setForeground(Color.white);
+		bemVindo.setBounds(75,35,400,40);
+		bemVindo.setFont(new Font("Times New Roman", Font.BOLD, 27));
+		
+		//Playlists
+		miPlaylist = new JLabel("Minhas Playlists");
+		miPlaylist.setForeground(Color.white);
+		miPlaylist.setBounds(215,100,200,20);
+		miPlaylist.setFont(new Font("", Font.BOLD, 18));
+		
+		listaPlaylists = new JList<String>(controleP.getNomePlaylists());
+		listaPlaylists.setBounds(115,130,295,330);
+		listaPlaylists.setBackground(new Color(121,150,71));
+		miArtistas = new JLabel("Meus Artistas Favoritos");
+		miArtistas.setForeground(Color.white);
+		miArtistas.setBounds(525,100,300,20);
+		miArtistas.setFont(new Font("", Font.BOLD, 18));
+		
+		listaArtistasFav = new JList<String>(controleA.getNomeArtistas());
+		listaArtistasFav.setBounds(490,130,295,330);
+		listaArtistasFav.setBackground(new Color(121,150,71));
+		listaArtistasFav.setForeground(new Color(30,30,30));
+		listaArtistasFav.setFont(new Font("", Font.BOLD,15));
+		
+		//Add
+		ImagemFundo("./imagem/Home.png");
 		frame.add(bemVindo);
 		frame.add(listaPlaylists);
 		frame.add(miArtistas);
@@ -146,16 +209,13 @@ public class TelaUsuario implements ActionListener{
 		}
 	}
 	
-	public static void main(String[] args) {
-		TelaUsuario tela = new TelaUsuario();
-	}
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "criarPlaylist") {
-			new TelaCriarPlaylistAlbum(2);
+			//new TelaCriarPlaylistAlbum(2);
 			frame.dispose();
 		}else if(e.getActionCommand() == "addArtista") {
-			new TelaAdicionarArtista();
+			new TelaAdicionarArtista(cd);
 			frame.dispose();
 			
 		}else if(e.getActionCommand() == "buscar") {

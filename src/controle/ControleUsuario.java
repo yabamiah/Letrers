@@ -8,8 +8,8 @@ public class ControleUsuario {
     private int qtdusuarios;
 
     public ControleUsuario(ControleDados cd) {
-        this.usuarios = cd.getUsuarios();
-        this.qtdusuarios = cd.getQtdUsuarios();
+        usuarios = cd.getUsuarios();
+        qtdusuarios = cd.getQtdUsuarios();
     }
 
     public int getQtdusuarios() {

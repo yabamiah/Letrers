@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import modelo.*;
+import controle.*;
 
 public class TelaAdicionarMusica implements ActionListener {
 	private JFrame frame;
@@ -11,17 +13,50 @@ public class TelaAdicionarMusica implements ActionListener {
 	private JButton cancelar;
 	private JButton btnCriarArtista;
 	private JLabel titulo;
-	private JLabel nomeMusica;
 	private JLabel nomeArtista;
+	private JLabel nomeMusica;
 	private JLabel nomeLetra;
 	private JLabel nomeTraducao;
 	private JTextField musica;
 	private JTextArea letra;
 	private JTextArea traducao;	
 	private JComboBox<String> listaArtista;
+	private ControleMusica controleMusica;
+	private ControleDados controleDados;
+	private int idxArtista;
 	
 	private String[] albuns = {"Midnight", "Lover", "Red", "evermore"};
 	
+	public TelaAdicionarMusica(ControleDados cd, int idxArtista){
+		controleDados = cd;
+		controleMusica = new ControleMusica(cd);
+		this.idxArtista = idxArtista;
+		
+		frame = new JFrame("Letters");
+		frame.setSize(900,600);
+		frame.getContentPane().setBackground(new Color(121,150,71));
+		
+		titulo = new JLabel("Adicionar Música");
+		titulo.setBounds(290,30,400,30);
+		titulo.setFont(new Font("Times New Roman", Font.BOLD, 40));
+		titulo.setForeground(Color.white);
+		
+		frame.add(titulo);
+		musica();
+		//album();
+		artista();
+		letra();
+		traducao();
+		btnCriar();
+		btnCancelar();
+		
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null); //centraliza o frame
+		frame.setLayout(null);
+		frame.setVisible(true);
+		
+	}
+
 	public TelaAdicionarMusica(){
 		frame = new JFrame("Letters");
 		frame.setSize(900,600);
@@ -140,15 +175,22 @@ public class TelaAdicionarMusica implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "adicionar") {
-			//ir pra tela da musica
-			frame.dispose();
-			
+			String nomeMusica = musica.getText();
+			String nomeArtista = (String) listaArtista.getSelectedItem();
+			boolean verif = controleDados.adicionarMusica(nomeMusica, null);
+
+			if(verif) {
+				new TelaArtista(controleDados, idxArtista);
+				frame.dispose();
+			} else {
+				JOptionPane.showMessageDialog(null, "Música já cadastrada!");
+			}
 		} else if(e.getActionCommand() == "cancelar") {
-			new TelaUsuario();
+			//TelaArtista(controleDados);
 			frame.dispose();
 			
 		} else if(e.getActionCommand() == "criarArtista") {
-			new TelaAdicionarArtista();
+			//new TelaAdicionarArtista();
 			frame.dispose();
 		}
 		
