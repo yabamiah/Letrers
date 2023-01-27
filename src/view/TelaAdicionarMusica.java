@@ -21,9 +21,8 @@ public class TelaAdicionarMusica implements ActionListener {
 	private JTextArea letra;
 	private JTextArea traducao;	
 	private JComboBox<String> listaArtista;
-	private ControleMusica controleMusica;
 	private ControleDados controleDados;
-	private ControleArtista controleArista;
+	private ControleArtista controleArtista;
 	private int idxArtista;
 	private int idxUsuario;
 	
@@ -31,8 +30,8 @@ public class TelaAdicionarMusica implements ActionListener {
 	
 	public TelaAdicionarMusica(ControleDados cd, int idxArtista, int idxUsuario){
 		controleDados = cd;
-		controleMusica = new ControleMusica(cd);
-		controleArista = new ControleArtista(cd);
+		
+		controleArtista = new ControleArtista(cd);
 		this.idxArtista = idxArtista;
 		
 		this.idxUsuario = idxUsuario;
@@ -62,7 +61,14 @@ public class TelaAdicionarMusica implements ActionListener {
 		
 	}
 
-	public TelaAdicionarMusica(){
+	public TelaAdicionarMusica(ControleDados cd, int idxArtista, int idxMusica, int editar){
+		controleDados = cd;
+		this.idxArtista = idxArtista;
+		cd.removerMusica(idxMusica);
+
+		controleArtista = new ControleArtista(cd);
+
+
 		frame = new JFrame("Letters");
 		frame.setSize(900,600);
 		frame.getContentPane().setBackground(new Color(121,150,71));
@@ -106,7 +112,7 @@ public class TelaAdicionarMusica implements ActionListener {
 		nomeArtista.setBounds(350,112,120,20);
 		nomeArtista.setForeground(Color.black);
 		
-		listaArtista = new JComboBox<String>(controleArista.getNomeArtistas());
+		listaArtista = new JComboBox<String>(controleArtista.getNomeArtistas());
 		listaArtista.setBounds(350,135,120,25);
 		listaArtista.setBackground(Color.white);
 		listaArtista.setForeground(Color.black);
@@ -172,10 +178,6 @@ public class TelaAdicionarMusica implements ActionListener {
 		cancelar.setBorder(null);
 		
 		frame.add(cancelar);
-	}
-	
-	public static void main(String[] args) {
-		TelaAdicionarMusica tela = new TelaAdicionarMusica();
 	}
 
 	@Override

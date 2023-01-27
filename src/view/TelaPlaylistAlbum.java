@@ -42,13 +42,6 @@ public class TelaPlaylistAlbum implements ActionListener {
 		this.idxUsuario = idxUsuario;
 
 		if(opcao == 1) {
-			frame = new JFrame("Álbum - " + albumPlaylist);
-		
-			nomeAlbumPlaylist.setBounds(193, 50, 300, 50);
-			nomeArtista.setBounds(193, 80, 300, 50);
-			nomeArtista.setFont(new Font("Times New Roman", Font.PLAIN, 16));
-			nomeArtista.setForeground(Color.white);	        
-
 		} else {
 			frame = new JFrame("Álbum - " + controleP.getNomePlaylist(idxPlaylist));
 			

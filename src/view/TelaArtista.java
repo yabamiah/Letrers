@@ -17,7 +17,6 @@ public class TelaArtista implements ActionListener{
     //private JLabel classificacao;
     //private JLabel generos;
     //private JList<String> listaGeneros;
-    private JLabel labelAlbum;
     private JLabel labelMusica;
 	private JList<String> listaMusicas;
     private JList<String> listaAlbuns;
@@ -29,9 +28,9 @@ public class TelaArtista implements ActionListener{
     private JButton addMusica;
 	private String artistaAtual;
 	private int idxArtista;
+	private int idxMusica;
 	private ControleArtista controlA;
 	private ControleMusica controlM;
-	private ControleAlbum controlAl;
 	private ControleDados cd;
 	private int idxUsuario;
     
@@ -39,7 +38,6 @@ public class TelaArtista implements ActionListener{
 		this.cd = cd;
 		controlM = new controle.ControleMusica(cd);
 		controlA = new controle.ControleArtista(cd);
-		controlAl = new controle.ControleAlbum(cd);
 		nomeArtista = new JLabel(controlA.getNomeArtista(idxArtista));
 
 		this.idxUsuario = idxUsuario;
@@ -58,7 +56,6 @@ public class TelaArtista implements ActionListener{
         ImagemFundo("imagem/Home.png");
         frame.add(nomeArtista);
         btnVoltar();
-        areaAlbum();
         areaMusica();
         btnAddMusica();
         btnEditar();
@@ -70,14 +67,11 @@ public class TelaArtista implements ActionListener{
         frame.setVisible(true);
     }
 
-	public TelaArtista(ControleDados cd, ControleMusica cm, int idxArtista) {
+	public TelaArtista(ControleDados cd, int idxArtista, int idxUsuario, int idxMusica) {
 		this.cd = cd;
+
 		controlM = new ControleMusica(cd);
 		controlA = new controle.ControleArtista(cd);
-		controlAl = new controle.ControleAlbum(cd);
-		System.out.println(cd.getMusicas());
-		System.out.println(controlM.getNomeMusicas());
-		System.out.println(cm.getNomeMusicas());
 
 		nomeArtista = new JLabel(controlA.getNomeArtista(idxArtista));
 
@@ -95,7 +89,6 @@ public class TelaArtista implements ActionListener{
         ImagemFundo("imagem/Home.png");
         frame.add(nomeArtista);
         btnVoltar();
-        areaAlbum();
         areaMusica();
         btnAddMusica();
         btnEditar();
@@ -120,29 +113,6 @@ public class TelaArtista implements ActionListener{
 		
 		frame.add(voltar);
 	}
-    
-    public void areaAlbum() {
-    	labelAlbum = new JLabel("Álbuns:");
-    	labelAlbum.setBounds(110, 70, 300, 60);
-    	labelAlbum.setForeground(Color.white);
-    	labelAlbum.setFont(new Font("Times New Roman", Font.BOLD, 18));
-        
-        listaAlbuns = new JList<String>(controlAl.getNomeAlbuns());
-        listaAlbuns.setBounds(110, 120, 310, 330);
-        //listaAlbuns.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        //listaAlbuns.setLayoutOrientation(JList.VERTICAL);
-        //listaAlbuns.setVisibleRowCount(-1);
-        listaAlbuns.setForeground(Color.black);
-        //listaAlbuns.setBackground(new Color(54,74,20));
-        listaAlbuns.setFont(new Font("", Font.PLAIN, 14));
-
-        listaAlbunsScroll = new JScrollPane(listaAlbuns);
-        listaAlbunsScroll.setBounds(listaAlbuns.getX(), listaAlbuns.getY(), 
-    		listaAlbuns.getWidth(), listaAlbuns.getHeight());;
-
-        frame.add(labelAlbum);
-        frame.add(listaAlbunsScroll);
-    }
 
     public void areaMusica() {
     	labelMusica = new JLabel("Músicas deste artista:");
@@ -234,9 +204,10 @@ public class TelaArtista implements ActionListener{
 			frame.dispose();
 			
 		} else if(e.getActionCommand() == "excluir") {
-			boolean verif = cd.removerArtista(idxArtista);
+			boolean verifA = cd.removerArtista(idxArtista);
+			boolean verifM = cd.removerMusica(idxMusica);
 
-			if(verif) {
+			if(verifA && verifM) {
 				JOptionPane.showMessageDialog(null, "Artista excluído com sucesso!");
 				new TelaUsuario(cd, idxUsuario);
 				frame.dispose();

@@ -1,4 +1,4 @@
-package testes; //coloquei na package testes porque o eclipse tava exigindo um package
+package testes;
 
 import modelo.*;
 import view.*;

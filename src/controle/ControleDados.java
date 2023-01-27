@@ -59,15 +59,6 @@ public class ControleDados {
         return dados.getQtdPlaylists();
     }
 
-    public ArrayList<Album> getAlbuns() {
-        return dados.getAlbuns();
-    }
-
-    public int getQtdAlbuns() {
-        return dados.getQtdAlbuns();
-    }
-
-
     /*
      * CRUD de Artista
      */
@@ -324,62 +315,6 @@ public class ControleDados {
     }
 
     /*
-     * CRUD de Album
-     */
-
-    public boolean adicionarAlbum(String nome, ArrayList<Musica> musicas, ArrayList<String> artistas) {
-        int count = 0;
-
-        for(int i = 0; i < dados.getQtdAlbuns(); i++) {
-            boolean verif = dados.getAlbuns().get(i).getNome().equals(nome);
-
-            if(verif) {
-                count++;
-            }
-        }
-
-        if(count >= 1) {
-            System.out.println("Album já cadastrado!");
-            return false;
-        } else {
-            System.out.println("Album cadastrado com sucesso!");
-            Album a = new Album(nome, musicas.size(), musicas, artistas);
-            dados.adicionarAlbum(a);
-            return true;
-        }
-    }
-
-    public boolean removarAlbum(int idx) {
-        String nome = dados.getAlbuns().get(idx).getNome();
-
-        for(int i = 0; i < dados.getQtdAlbuns(); i++) {
-            if(dados.getAlbuns().get(i).getNome().equals(nome)) {
-                dados.getAlbuns().remove(i);
-                dados.setQtdAlbuns(dados.getQtdAlbuns() - 1);
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public boolean editarAlbum(int idx, String nomeNovo, ArrayList<Musica> musicas, ArrayList<String> artistas) {
-        String nomeAntigo = dados.getAlbuns().get(idx).getNome();
-
-        for(int i = 0; i < dados.getQtdAlbuns(); i++) {
-            if(dados.getAlbuns().get(i).getNome().equals(nomeAntigo)) {
-                dados.getAlbuns().get(i).setNome(nomeNovo);
-                dados.getAlbuns().get(i).setMusicas(musicas);
-                dados.getAlbuns().get(i).setQtdMusica(musicas.size());
-                dados.getAlbuns().get(i).setArtistaNome(artistas);
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /*
      * CRUD de Playlist
      */
 
@@ -434,48 +369,4 @@ public class ControleDados {
 
         return -1;
     }
-
-
-    /*
-     * Teste
-     */
-    public static void main(String[] args) {
-        ControleDados cd = new ControleDados();
-
-        ArrayList<String> generos = new ArrayList<String>();
-        ArrayList<Musica> musicas = new ArrayList<Musica>();
-
-        cd.adicionarArtista("Artista 0", generos, musicas);
-        cd.adicionarArtista("!@#$@!", generos, musicas);
-
-        cd.editarArtista(4, "Artista 37", generos, musicas);
-
-
-        var ca = new ControleArtista(cd).getNomeArtistas();
-        //System.out.println("--------------------");
-        //System.out.println(ca);
-        
-        cd.removerArtista(5);
-
-        ca = new ControleArtista(cd).getNomeArtistas();
-        //System.out.println("--------------------");
-        //System.out.println(ca);
-
-        //cd.adicionarArtista("Artista 34", generos, musicas);
-        cd.editarArtista(4, "Artista 87", generos, musicas);
-        //System.out.println(cd.getArtistas());
-
-        //cd.adicionarAlbum("Master of Puppets", musicas, generos);
-        //cd.adicionarAlbum("Master of Puppets", musicas, generos);
-
-        System.out.println(cd.dados.getUsuarios());
-        System.out.println(cd.dados.getArtistas());
-        System.out.println(cd.dados.getMusicas());
-        System.out.println(cd.dados.getLetras());
-        System.out.println(cd.dados.getAlbuns());
-        System.out.println(cd.dados.getPlaylists());
-
-        //System.out.println(cd.getAlbuns());
-    }
-
 }

@@ -52,49 +52,22 @@ public class TelaCriarPlaylistAlbum implements ActionListener{
 		controleA = new ControleArtista(cd);
 		controleM = new ControleMusica(cd);
 
-		if(opcao == 1) {
-			frame = new JFrame("Letters - Criar Álbum");
-			labelTituloFrame = new JLabel("Criar Álbum");
-			labelNomePlaylist = new JLabel("Nome do Álbum:");
-			atualizarLista = new JButton("Atualizar Listas");
-			
-			listSelecMusicas = new JList<String>(musicas);
-
-			labelSelecMusicas.setBounds(590,120,200,30);
-			listSelecMusicas.setBounds(500,150,300,100);
-			removerMusica.setBounds(500,258,130,20);
-			atualizarLista.setBounds(670,418,130,20);
-			
-			addArtistas();
-			SelecArtistas();
-			
-		}
-		else {
-			frame = new JFrame("Letters - Criar Playlist");
-			labelTituloFrame = new JLabel("Criar Playlist");
-			labelNomePlaylist = new JLabel("Nome da Playlist:");
-			atualizarLista = new JButton("Atualizar Lista");
-			
-			listSelecMusicas = new JList<String>(controleM.getNomeMusicas());
-
-			labelSelecMusicas.setBounds(590,135,200,30);
-			listSelecMusicas.setBounds(500,170,300,220);
-			removerMusica.setBounds(500,400,130,20);
-			atualizarLista.setBounds(670,400,130,20);			
-		}
-		
+		frame = new JFrame("Letters - Criar Playlist");
 		frame.setSize(900,600);
 		frame.getContentPane().setBackground(new Color(121,150,71));
-		
+					
+		labelTituloFrame = new JLabel("Criar Playlist");
 		labelTituloFrame.setBounds(327,30, 300, 50);
 		labelTituloFrame.setFont(new Font("Times New Roman", Font.BOLD, 40));
 		labelTituloFrame.setForeground(Color.white);
-		
+
+		atualizarLista = new JButton("Atualizar Lista");
 		atualizarLista.setBackground(new Color(0,0,0));
 		atualizarLista.setForeground(Color.white);
 		atualizarLista.setBorder(null);
 		atualizarLista.setActionCommand("atualizarLista");
 		atualizarLista.addActionListener(this);
+		atualizarLista.setBounds(670,400,130,20);
 		
 		frame.add(labelTituloFrame);
 		frame.add(atualizarLista);
@@ -120,50 +93,23 @@ public class TelaCriarPlaylistAlbum implements ActionListener{
 		
 		this.idxUsuario = idxUsuario;
 
-		if(opcao == 1) {
-			frame = new JFrame("Letters - Criar Álbum");
-			labelTituloFrame = new JLabel("Criar Álbum");
-			labelNomePlaylist = new JLabel("Nome do Álbum:");
-			atualizarLista = new JButton("Atualizar Listas");
-			
-			listSelecMusicas = new JList<String>(controleM.getNomeMusicas());
-
-			labelSelecMusicas.setBounds(590,120,200,30);
-			listSelecMusicas.setBounds(500,150,300,100);
-			removerMusica.setBounds(500,258,130,20);
-			atualizarLista.setBounds(670,418,130,20);
-			
-			addArtistas();
-			SelecArtistas();
-			
-		}
-		else {
-			frame = new JFrame("Letters - Criar Playlist");
-			labelTituloFrame = new JLabel("Criar Playlist");
-			labelNomePlaylist = new JLabel("Nome da Playlist:");
-			atualizarLista = new JButton("Atualizar Lista");
-			
-			listSelecMusicas = new JList<String>(controleM.getNomeMusicas());
-
-			labelSelecMusicas.setBounds(590,135,200,30);
-			listSelecMusicas.setBounds(500,170,300,220);
-			removerMusica.setBounds(500,400,130,20);
-			atualizarLista.setBounds(670,400,130,20);			
-		}
-		
+		frame = new JFrame("Letters - Criar Playlist");
 		frame.setSize(900,600);
 		frame.getContentPane().setBackground(new Color(121,150,71));
-		
+				
+		labelTituloFrame = new JLabel("Criar Playlist");
 		labelTituloFrame.setBounds(327,30, 300, 50);
 		labelTituloFrame.setFont(new Font("Times New Roman", Font.BOLD, 40));
 		labelTituloFrame.setForeground(Color.white);
-		
+
+		atualizarLista = new JButton("Atualizar Lista");
 		atualizarLista.setBackground(new Color(0,0,0));
 		atualizarLista.setForeground(Color.white);
 		atualizarLista.setBorder(null);
 		atualizarLista.setActionCommand("atualizarLista");
 		atualizarLista.addActionListener(this);
-		
+		atualizarLista.setBounds(670,400,130,20);
+
 		frame.add(labelTituloFrame);
 		frame.add(atualizarLista);
 		InfoPlaylist();
@@ -182,6 +128,7 @@ public class TelaCriarPlaylistAlbum implements ActionListener{
 	}
 	
 	public void InfoPlaylist() {
+		labelNomePlaylist = new JLabel("Nome da Playlist:");
 		labelNomePlaylist.setForeground(new Color(255,255,255));
 		labelNomePlaylist.setBounds(80,140,200,30);
 		
@@ -213,64 +160,25 @@ public class TelaCriarPlaylistAlbum implements ActionListener{
 		frame.add(fieldNomeMusica);
 		frame.add(adicionarMusica);
 	}
-	
-	public void addArtistas() {
-		labelNomeArtista = new JLabel("Adicionar Artista:");
-		labelNomeArtista.setForeground(Color.white);
-		labelNomeArtista.setBounds(80,290,150,30);
 		
-		fieldNomeArtista = new JTextField("");
-		fieldNomeArtista.setBounds(80,320,200,25);
-		
-		adicionarArtista = new JButton("Adicionar Artista");
-		adicionarArtista.setBounds(290,320,140,25);
-		adicionarArtista.setBackground(new Color(0,0,0));
-		adicionarArtista.setForeground(Color.white);
-		adicionarArtista.setBorder(null);
-		
-		adicionarArtista.setActionCommand("addArtista");
-		adicionarArtista.addActionListener(this);
-		
-		frame.add(labelNomeArtista);
-		frame.add(fieldNomeArtista);
-		frame.add(adicionarArtista);
-	}
-	
 	public void SelecMusicas() {
+		listSelecMusicas = new JList<String>(controleM.getNomeMusicas());
+		listSelecMusicas.setBounds(500,170,300,220);
+
 		labelSelecMusicas.setBackground(new Color(0,0,0));
 		labelSelecMusicas.setForeground(Color.white);
+		labelSelecMusicas.setBounds(590,135,200,30);
 		
 		removerMusica.setBackground(new Color(0,0,0));
 		removerMusica.setForeground(Color.white);
 		removerMusica.setBorder(null);
 		removerMusica.setActionCommand("removerMusica");
 		removerMusica.addActionListener(this);
+		removerMusica.setBounds(500,400,130,20);
 		
 		frame.add(labelSelecMusicas);
 		frame.add(listSelecMusicas);
 		frame.add(removerMusica);
-	}
-	
-	public void SelecArtistas() {
-		labelSelecArtistas = new JLabel("Artistas Selecionados:");
-		labelSelecArtistas.setBounds(590,280,200,30);
-		labelSelecArtistas.setBackground(new Color(0,0,0));
-		labelSelecArtistas.setForeground(Color.white);
-		
-		listSelecArtistas = new JList<String>(musicas);
-		listSelecArtistas.setBounds(500,310,300,100);
-		
-		removerArtista.setBounds(500,418,130,20);
-		removerArtista.setBackground(new Color(0,0,0));
-		removerArtista.setForeground(Color.white);
-		removerArtista.setBorder(null);
-		
-		removerArtista.setActionCommand("removerArtista");
-		removerArtista.addActionListener(this);
-		
-		frame.add(labelSelecArtistas);
-		frame.add(listSelecArtistas);
-		frame.add(removerArtista);
 	}
 	
 	public void btnCriar() {
@@ -329,13 +237,19 @@ public class TelaCriarPlaylistAlbum implements ActionListener{
 		} else if(e.getActionCommand() == "addMusica") {
 			
 		} else if(e.getActionCommand() == "removerMusica") {
+			int idxMusica = listSelecMusicas.getSelectedIndex();
+			this.cd.removerMusica(idxMusica);
+			controleM = new ControleMusica(this.cd);
+			listSelecMusicas = new JList<String>(controleM.getNomeMusicas());
+
 			
 		} else if(e.getActionCommand() == "addArtista") {
 			
 		} else if(e.getActionCommand() == "removerArtista") {
 			
 		} else if(e.getActionCommand() == "atualizarLista") {
-			
+			controleM = new ControleMusica(this.cd);
+			listSelecMusicas = new JList<String>(controleM.getNomeMusicas());
 		}
 		
 	}

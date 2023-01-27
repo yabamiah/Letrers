@@ -230,6 +230,9 @@ public class TelaUsuario implements ActionListener{
 			new TelaMusica(cd, idxMusica, idxUsuario, null );
 			frame.dispose();
 		
+		}else if(true) {
+			int indexPlaylist = listaPlaylists.getSelectedIndex();
+			
 		}
 	}
 }

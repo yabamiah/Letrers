@@ -139,7 +139,11 @@ public class TelaCadastroLogin implements ActionListener {
 						JOptionPane.ERROR_MESSAGE);
 			}
 		} else if(e.getActionCommand() == "logar") {
-			//new TelaUsuario();
+			String nome = usuarioCampo.getText();
+			cd = new ControleDados();
+			int idxUsuario = cd.BuscarUsuario(nome);
+
+			new TelaUsuario(cd, idxUsuario);
 			frame.dispose();
 		} else if(e.getActionCommand() == "voltar") {
 			new TelaInicial();

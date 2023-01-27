@@ -195,7 +195,7 @@ public class TelaMusica implements ActionListener{
 		labelLetra.setForeground(Color.white);
 		labelLetra.setFont(new Font("Times New Roman", Font.BOLD,17));
 		
-		textoLetra = new JTextArea(controleM.getNomeMusica(idxMusica));
+		textoLetra = new JTextArea(controleM.getLetraOriginal(idxMusica));
 		textoLetra.setBounds(80, 130, 350, 350);
 		textoLetra.setFont(new Font("Times New Roman",Font.BOLD,15));
 		textoLetra.setLineWrap(true);
@@ -294,13 +294,21 @@ public class TelaMusica implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "voltar") {
-			new TelaArtista(cd, idxArtista, idxUsuario);
+			new TelaArtista(cd, idxArtista, idxUsuario, idxMusica);
 			frame.dispose();
 			
 		} else if(e.getActionCommand() == "editar") {
+			new TelaAdicionarMusica(cd, idxArtista, idxMusica, 0);
+			frame.dispose();
 			
 		} else if(e.getActionCommand() == "excluir") {
 			boolean verif = cd.removerMusica(idxMusica);
+
+			if(verif) {
+				JOptionPane.showMessageDialog(null, "Música excluída com sucesso!");
+				new TelaArtista(cd, idxArtista, idxUsuario);
+				frame.dispose();
+			}
 
 			if(verif) {
 				JOptionPane.showMessageDialog(null, "Música excluída com sucesso!");
