@@ -22,6 +22,8 @@ public class TelaArtista implements ActionListener{
     private JList<String> listaAlbuns;
     private JScrollPane listaAlbunsScroll;
     private JScrollPane listaMusicasScroll;
+	private JTextField buscar;
+	private JButton btnBuscar;
     private JButton voltar;
     private JButton editar;
     private JButton excluir;
@@ -55,6 +57,7 @@ public class TelaArtista implements ActionListener{
         
         ImagemFundo("imagem/Home.png");
         frame.add(nomeArtista);
+		Buscar();
         btnVoltar();
         areaMusica();
         btnAddMusica();
@@ -88,6 +91,7 @@ public class TelaArtista implements ActionListener{
         
         ImagemFundo("imagem/Home.png");
         frame.add(nomeArtista);
+		Buscar();
         btnVoltar();
         areaMusica();
         btnAddMusica();
@@ -176,6 +180,23 @@ public class TelaArtista implements ActionListener{
 	
 		frame.add(excluir);
 	}
+
+	public void Buscar() {
+		buscar = new JTextField("");
+		buscar.setBounds(520,35,222,30);
+		
+		btnBuscar = new JButton("Buscar");
+		btnBuscar.setBounds(746,35,80,30);
+		btnBuscar.setForeground(Color.white);
+		btnBuscar.setBackground(new Color(0,0,0));
+		btnBuscar.setBorderPainted(true);
+		btnBuscar.setActionCommand("buscarMusica");
+		btnBuscar.addActionListener(this);
+		btnBuscar.setBorder(null);
+
+		frame.add(buscar);
+		frame.add(btnBuscar);
+	}
     
     public void ImagemFundo(String srcImg) {
 		try {
@@ -222,7 +243,15 @@ public class TelaArtista implements ActionListener{
 		} else if(e.getActionCommand() == "addMusica") {
 			new TelaAdicionarMusica(cd, idxArtista, idxUsuario);
 			frame.dispose();
+
+		} else if(e.getActionCommand() == "buscarMusica"){
+			String nomeArtista = artistaAtual;
+			String nomeMusica = buscar.getText();
+			
+			int idxMusica = cd.buscarMusica(nomeMusica);
+			
+			new TelaMusica(cd, idxMusica, idxUsuario, nomeArtista);
+			frame.dispose();
 		}
-		
 	}
 }

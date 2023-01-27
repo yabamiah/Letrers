@@ -1,8 +1,8 @@
 package view;
 
 import javax.imageio.ImageIO;
-//import javax.imageio.ImageIO;
 import javax.swing.*;
+
 import controle.*;
 
 import java.awt.*;
@@ -160,7 +160,7 @@ public class TelaUsuario implements ActionListener{
 		btnBuscar.setForeground(Color.white);
 		btnBuscar.setBackground(new Color(0,0,0));
 		btnBuscar.setBorderPainted(true);
-		btnBuscar.setActionCommand("buscar");
+		btnBuscar.setActionCommand("buscarArtista");
 		btnBuscar.addActionListener(this);
 		btnBuscar.setBorder(null);
 
@@ -221,18 +221,13 @@ public class TelaUsuario implements ActionListener{
 			new TelaAdicionarArtista(cd, idxUsuario);
 			frame.dispose();
 			
-		}else if(e.getActionCommand() == "buscar") {
-			String nomeMusica = buscar.getText();
+		}else if(e.getActionCommand() == "buscarArtista") {
+			String nomeArtista = buscar.getText();
 			
-			int idxMusica = cd.buscarMusica(nomeMusica);
+			int idxArtista = cd.buscarArtista(nomeArtista);
 			
-				
-			new TelaMusica(cd, idxMusica, idxUsuario, null );
+			new TelaArtista(cd, idxArtista, idxUsuario);
 			frame.dispose();
-		
-		}else if(true) {
-			int indexPlaylist = listaPlaylists.getSelectedIndex();
-			
 		}
 	}
 }

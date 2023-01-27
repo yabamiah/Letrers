@@ -87,9 +87,7 @@ public class TelaPlaylistAlbum implements ActionListener {
         listaMusicas = new JList<String>(controleM.getNomeMusicas());
         listaMusicas.setBounds(192, 135, 500, 325);
         listaMusicas.setFont(new Font("Times New Roman",Font.BOLD,18));
-        //listaMusicas.setForeground(new Color(255, 0, 110));
         listaMusicas.setForeground(Color.black);
-        //listaMusicas.setBackground(new Color(54,74,20));
         
         listaMusicas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listaMusicas.setLayoutOrientation(JList.VERTICAL);
@@ -171,6 +169,5 @@ public class TelaPlaylistAlbum implements ActionListener {
 			}
 			frame.dispose();
 		}
-		
 	}
 }
