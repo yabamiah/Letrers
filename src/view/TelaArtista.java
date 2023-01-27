@@ -51,7 +51,7 @@ public class TelaArtista implements ActionListener{
         frame.setSize(900,600);
         frame.getContentPane().setBackground(Color.PINK);
 
-        nomeArtista.setBounds(385, 20, 300, 50);
+        nomeArtista.setBounds(225, 20, 300, 50);
         nomeArtista.setFont(new Font("Times New Roman", Font.BOLD, 25));
         nomeArtista.setForeground(Color.white);
         
@@ -85,7 +85,7 @@ public class TelaArtista implements ActionListener{
         frame.setSize(900,600);
         frame.getContentPane().setBackground(Color.PINK);
 
-        nomeArtista.setBounds(385, 20, 300, 50);
+        nomeArtista.setBounds(225, 20, 300, 50);
         nomeArtista.setFont(new Font("Times New Roman", Font.BOLD, 25));
         nomeArtista.setForeground(Color.white);
         
@@ -120,19 +120,18 @@ public class TelaArtista implements ActionListener{
 
     public void areaMusica() {
     	labelMusica = new JLabel("Músicas deste artista:");
-    	labelMusica.setBounds(480, 70, 300, 60);
+    	labelMusica.setBounds(225, 70, 500, 60);
     	labelMusica.setForeground(Color.white);
     	labelMusica.setFont(new Font("Times New Roman", Font.BOLD, 18));
     	
 		listaMusicas = new JList<String>(controlM.getNomeMusicas());
 
-        listaMusicas.setBounds(480, 120, 310, 330);
+        listaMusicas.setBounds(225, 120, 442, 330);
         listaMusicas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listaMusicas.setLayoutOrientation(JList.VERTICAL);
         listaMusicas.setVisibleRowCount(-1);
         listaMusicas.setForeground(Color.black);
-        //listaMusicas.setBackground(new Color(54,74,20));
-        listaMusicas.setFont(new Font("", Font.PLAIN, 14));
+        listaMusicas.setFont(new Font("", Font.PLAIN, 18));
         
         listaMusicasScroll = new JScrollPane(listaMusicas);
         listaMusicasScroll.setBounds(listaMusicas.getX(), listaMusicas.getY(), 
@@ -183,10 +182,10 @@ public class TelaArtista implements ActionListener{
 
 	public void Buscar() {
 		buscar = new JTextField("");
-		buscar.setBounds(520,35,222,30);
+		buscar.setBounds(500,35,222,30);
 		
-		btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(746,35,80,30);
+		btnBuscar = new JButton("Buscar Música");
+		btnBuscar.setBounds(726,35,100,30);
 		btnBuscar.setForeground(Color.white);
 		btnBuscar.setBackground(new Color(0,0,0));
 		btnBuscar.setBorderPainted(true);

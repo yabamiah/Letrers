@@ -153,10 +153,10 @@ public class TelaUsuario implements ActionListener{
 	
 	public void Buscar() {
 		buscar = new JTextField("");
-		buscar.setBounds(520,35,222,30);
+		buscar.setBounds(500,35,222,30);
 		
-		btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(746,35,80,30);
+		btnBuscar = new JButton("Buscar Artista");
+		btnBuscar.setBounds(726,35,100,30);
 		btnBuscar.setForeground(Color.white);
 		btnBuscar.setBackground(new Color(0,0,0));
 		btnBuscar.setBorderPainted(true);
