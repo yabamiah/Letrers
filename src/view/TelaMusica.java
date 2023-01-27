@@ -2,6 +2,7 @@ package view;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import controle.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -23,11 +24,14 @@ public class TelaMusica implements ActionListener{
 	private JButton editar;
 	private JScrollPane textoLetraScroll;
 	private JScrollPane textoTraducaoScroll;
-	
-	
-	
-	private String musica = "champagne problems";
-	private String artista = "Taylor Swift";
+	private ControleDados cd;
+	private ControleMusica controleM;
+	private ControleArtista controleA;
+	private ControleLetra controleL;
+	private int idxMusica;
+	private int idxUsuario;
+	private String artista;
+	private int idxArtista;
 	private String letra = "You booked the night train for a reason\r\n"
 			+ "So you could sit there in this hurt\r\n"
 			+ "Bustling crowds or silent sleepers\r\n"
@@ -141,8 +145,18 @@ public class TelaMusica implements ActionListener{
 			+ "Você não vai se lembrar de todos os meus\r\n"
 			+ "Problemas insignificantes";
 	
-	public TelaMusica(controle.ControleDados cd, int idxMusica) {
-		frame = new JFrame("Letters - " + musica);
+	public TelaMusica(ControleDados cd, int idxMusica, int idxUsuario, String nomeArtista) {
+		this.cd = cd;
+		controleA = new ControleArtista(cd);
+		controleM = new ControleMusica(cd);
+		controleL = new ControleLetra(cd);
+
+		this.idxMusica = idxMusica;
+		this.idxUsuario = idxUsuario;
+		artista = nomeArtista;
+		idxArtista = cd.buscarArtista(artista);
+	
+		frame = new JFrame("Letters - " + controleM.getNomeMusica(idxMusica));
 		frame.setSize(900,600);
 		
         ImagemFundo("imagem/Home.png");
@@ -161,7 +175,7 @@ public class TelaMusica implements ActionListener{
 	}
 	
 	public void infoMusica() {
-		nomeMusica = new JLabel(musica);
+		nomeMusica = new JLabel(controleM.getNomeMusica(idxMusica));
 		nomeMusica.setBounds(193, 20, 300, 50);
 		nomeMusica.setFont(new Font("Times New Roman", Font.BOLD, 25));
 		nomeMusica.setForeground(Color.white);
@@ -176,12 +190,12 @@ public class TelaMusica implements ActionListener{
 	}
 	
 	public void Letra() {
-		labelLetra = new JLabel("Letra Original");
+		labelLetra = new JLabel(controleM.getLetraOriginal(idxMusica));
 		labelLetra.setBounds(80,-65,350,350);
 		labelLetra.setForeground(Color.white);
 		labelLetra.setFont(new Font("Times New Roman", Font.BOLD,17));
 		
-		textoLetra = new JTextArea(letra);
+		textoLetra = new JTextArea(controleM.getNomeMusica(idxMusica));
 		textoLetra.setBounds(80, 130, 350, 350);
 		textoLetra.setFont(new Font("Times New Roman",Font.BOLD,15));
 		textoLetra.setLineWrap(true);
@@ -199,12 +213,12 @@ public class TelaMusica implements ActionListener{
 	}
 	
 	public void Traducao() {
-		labelTraducao = new JLabel("Tradução");
+		labelTraducao = new JLabel(controleM.getLetraTraduzido(idxMusica));
 		labelTraducao.setBounds(470,-65,350,350);
 		labelTraducao.setForeground(Color.white);
 		labelTraducao.setFont(new Font("Times New Roman", Font.BOLD,17));
 		
-		textoTraducao = new JTextArea(traducao);
+		textoTraducao = new JTextArea(controleM.getLetraTraduzido(idxMusica));
 		textoTraducao.setBounds(470, 130, 350, 350);
 		textoTraducao.setFont(new Font("Times New Roman",Font.BOLD,15));
 		textoTraducao.setLineWrap(true);
@@ -276,20 +290,22 @@ public class TelaMusica implements ActionListener{
 			err.printStackTrace();
 		}
 	}
-	
-	public static void main(String[] args) {
-		new TelaMusica(); 
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "voltar") {
-			//new TelaUsuario();
+			new TelaArtista(cd, idxArtista, idxUsuario);
 			frame.dispose();
 			
 		} else if(e.getActionCommand() == "editar") {
 			
 		} else if(e.getActionCommand() == "excluir") {
+			boolean verif = cd.removerMusica(idxMusica);
+
+			if(verif) {
+				JOptionPane.showMessageDialog(null, "Música excluída com sucesso!");
+				new TelaArtista(cd, idxArtista, idxUsuario);
+			}
 			
 		}
 	}

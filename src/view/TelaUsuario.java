@@ -29,12 +29,6 @@ public class TelaUsuario implements ActionListener{
 	private ControleDados cd;
 	private int idxUsuario;
 	
-	String usuario = "Marys";
-	String playlists[] = {"Meu Apocalipse", "Estados Extremos de Euforia", 
-			"We were so tired", "Nacionais" }; 
-	String artistas[] = {"Manoel Gomes", "Alec Benjamin", "Valeria Almeida", "Taylor Swift"};
-	
-	
 	public TelaUsuario(controle.ControleDados cd, int idx) {
 		this.cd = cd;
 		controleP = new controle.ControlePlaylist(cd);
@@ -233,7 +227,7 @@ public class TelaUsuario implements ActionListener{
 			int idxMusica = cd.buscarMusica(nomeMusica);
 			
 				
-			new TelaMusica(cd, idxMusica);
+			new TelaMusica(cd, idxMusica, idxUsuario, null );
 			frame.dispose();
 		
 		}

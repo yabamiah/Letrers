@@ -18,7 +18,11 @@ public class TelaAdicionarArtista implements ActionListener {
 	private ControleDados cd;
 	private int idxUsuario;
 	
-	public TelaAdicionarArtista() {
+	public TelaAdicionarArtista(ControleDados cd, int idxUsuario, int idxArtista) {
+		this.cd = cd;
+		this.idxUsuario = idxUsuario;
+		cd.removerArtista(idxArtista);
+
 		frame = new JFrame("Letters");
 		frame.setSize(600,300);
 		frame.getContentPane().setBackground(new Color(121,150,71));
@@ -40,9 +44,9 @@ public class TelaAdicionarArtista implements ActionListener {
 		frame.setVisible(true);
 	}
 
-	public TelaAdicionarArtista(ControleDados cd, int idx) {
+	public TelaAdicionarArtista(ControleDados cd, int idxUsuario) {
 		this.cd = cd;
-		idxUsuario = idx;
+		this.idxUsuario = idxUsuario;
 
 		frame = new JFrame("Letters");
 		frame.setSize(600,300);

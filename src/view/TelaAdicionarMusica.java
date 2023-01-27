@@ -23,6 +23,7 @@ public class TelaAdicionarMusica implements ActionListener {
 	private JComboBox<String> listaArtista;
 	private ControleMusica controleMusica;
 	private ControleDados controleDados;
+	private ControleArtista controleArista;
 	private int idxArtista;
 	private int idxUsuario;
 	
@@ -31,6 +32,7 @@ public class TelaAdicionarMusica implements ActionListener {
 	public TelaAdicionarMusica(ControleDados cd, int idxArtista, int idxUsuario){
 		controleDados = cd;
 		controleMusica = new ControleMusica(cd);
+		controleArista = new ControleArtista(cd);
 		this.idxArtista = idxArtista;
 		
 		this.idxUsuario = idxUsuario;
@@ -104,7 +106,7 @@ public class TelaAdicionarMusica implements ActionListener {
 		nomeArtista.setBounds(350,112,120,20);
 		nomeArtista.setForeground(Color.black);
 		
-		listaArtista = new JComboBox<String>(albuns);
+		listaArtista = new JComboBox<String>(controleArista.getNomeArtistas());
 		listaArtista.setBounds(350,135,120,25);
 		listaArtista.setBackground(Color.white);
 		listaArtista.setForeground(Color.black);
@@ -181,10 +183,15 @@ public class TelaAdicionarMusica implements ActionListener {
 		if(e.getActionCommand() == "adicionar") {
 			String nomeMusica = musica.getText();
 			String nomeArtista = (String) listaArtista.getSelectedItem();
-			boolean verif = controleDados.adicionarMusica(nomeMusica, null);
+			String letraOriginal = letra.getText();
+			String letraTraducao = traducao.getText();
+			LetraDeMusica letraMusica = new LetraDeMusica(letraOriginal, letraTraducao);
+
+			boolean verif = controleDados.adicionarMusica(nomeMusica, null, letraMusica);
+			int idxMusica = controleDados.buscarMusica(nomeMusica);
 
 			if(verif) {
-				new TelaArtista(controleDados, idxArtista, idxUsuario);
+				new TelaMusica(controleDados, idxMusica, idxUsuario, nomeArtista);
 				frame.dispose();
 			} else {
 				JOptionPane.showMessageDialog(null, "Música já cadastrada!");

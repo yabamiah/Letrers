@@ -230,7 +230,7 @@ public class TelaArtista implements ActionListener{
 			frame.dispose();
 			
 		} else if(e.getActionCommand() == "editar") {
-			new TelaAdicionarArtista();
+			new TelaAdicionarArtista(cd, idxUsuario, idxArtista);
 			frame.dispose();
 			
 		} else if(e.getActionCommand() == "excluir") {

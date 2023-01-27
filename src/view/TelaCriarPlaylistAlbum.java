@@ -37,13 +37,20 @@ public class TelaCriarPlaylistAlbum implements ActionListener{
 	private ControleArtista controleA;
 	private ControleMusica controleM;
 	private int idxUsuario;
+	private int idxPlaylist;
 	
-	private static int opcao = 2;
+	private int opcao;
 	
 	String musicas[] = {"Apocalipse", "champagne problems"};
 	
-	public TelaCriarPlaylistAlbum(int opcao) {
-		
+	public TelaCriarPlaylistAlbum(ControleDados cd, int idxPlaylist, int opcao, int editar) {
+		this.cd = cd;
+		this.idxPlaylist = idxPlaylist;
+		this.opcao = opcao;
+		cd.removerPlaylist(idxPlaylist);
+
+		controleA = new ControleArtista(cd);
+		controleM = new ControleMusica(cd);
 
 		if(opcao == 1) {
 			frame = new JFrame("Letters - Criar Álbum");
@@ -68,7 +75,7 @@ public class TelaCriarPlaylistAlbum implements ActionListener{
 			labelNomePlaylist = new JLabel("Nome da Playlist:");
 			atualizarLista = new JButton("Atualizar Lista");
 			
-			listSelecMusicas = new JList<String>(musicas);
+			listSelecMusicas = new JList<String>(controleM.getNomeMusicas());
 
 			labelSelecMusicas.setBounds(590,135,200,30);
 			listSelecMusicas.setBounds(500,170,300,220);
@@ -106,12 +113,12 @@ public class TelaCriarPlaylistAlbum implements ActionListener{
 		frame.setVisible(true);
 	}
 	
-	public TelaCriarPlaylistAlbum(ControleDados cd, int idx, int opcao) {
+	public TelaCriarPlaylistAlbum(ControleDados cd, int idxUsuario, int opcao) {
 		this.cd = cd;
 		controleA = new ControleArtista(cd);
 		controleM = new ControleMusica(cd);
 		
-		idxUsuario = idx;
+		this.idxUsuario = idxUsuario;
 
 		if(opcao == 1) {
 			frame = new JFrame("Letters - Criar Álbum");
@@ -308,7 +315,7 @@ public class TelaCriarPlaylistAlbum implements ActionListener{
 			ArrayList<Musica> musicas = new ArrayList();
 
 			for(int i = 0; i < listSelecMusicas.getModel().getSize(); i++) {
-				musicas.add( new Musica(listSelecMusicas.getModel().getElementAt(i), null));
+				musicas.add( new Musica(listSelecMusicas.getModel().getElementAt(i), null, null));
 			}
 
 			boolean verif = cd.adicionarPlaylist(nomePlaylist, musicas);
@@ -332,9 +339,4 @@ public class TelaCriarPlaylistAlbum implements ActionListener{
 		}
 		
 	}
-public static void main(String[] args) {
-		new TelaCriarPlaylistAlbum(opcao);
-	}
 }
-
-	

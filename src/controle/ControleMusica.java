@@ -35,4 +35,24 @@ public class ControleMusica {
     public String getGeneroMusica(int i) {
         return musicas.get(i).getGenero();
     }
+
+    public String getNomeMusica(int idx) {
+        return musicas.get(idx).getNome();
+    }
+
+    public String getLetraOriginal(int idx) {
+        return musicas.get(idx).getLetras().getCorpoOriginal();
+    }
+
+    public void getLetraOriginal(String letraOriginal, int idx) {
+        musicas.get(idx).getLetras().setCorpoOriginal(letraOriginal);
+    }
+
+    public String getLetraTraduzido(int idx) {
+        return musicas.get(idx).getLetras().getCorpoTraduzido();
+    }
+
+    public void getLetraTraduzido(String letraTraduzido, int idx) {
+        musicas.get(idx).getLetras().setCorpoTraduzido(letraTraduzido);
+    }
 }

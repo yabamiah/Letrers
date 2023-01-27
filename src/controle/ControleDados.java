@@ -200,7 +200,7 @@ public class ControleDados {
     /*
      * CRUD de Músicas
      */
-    public boolean adicionarMusica(String nome, String genero) {
+    public boolean adicionarMusica(String nome, String genero, LetraDeMusica letras) {
         int count = 0;
 
         for(int i = 0; i < dados.getQtdMusicas(); i++) {
@@ -216,7 +216,7 @@ public class ControleDados {
             return false;
         } else {
             System.out.println("Música cadastrada com sucesso!");
-            Musica m = new Musica(nome, genero);
+            Musica m = new Musica(nome, genero, letras);
             dados.adicionarMusica(m);
             return true;
         }
@@ -404,17 +404,10 @@ public class ControleDados {
     }
 
     public boolean removerPlaylist(int idx) {
-        String nome = dados.getPlaylists().get(idx).getNome();
+        dados.getPlaylists().remove(idx);
+        dados.setQtdPlaylists(dados.getQtdPlaylists() - 1);
 
-        for(int i = 0; i < dados.getQtdPlaylists(); i++) {
-            if(dados.getPlaylists().get(i).getNome().equals(nome)) {
-                dados.getPlaylists().remove(i);
-                dados.setQtdPlaylists(dados.getQtdPlaylists() - 1);
-                return true;
-            }
-        }
-
-        return false;
+        return true;
     }
 
     public boolean editarPlaylist(int idx, String nomeNovo, ArrayList<Musica> musicas) {

@@ -1,15 +1,16 @@
 package modelo;
 
-//import java.util.*;
+import java.util.*;
 
 public class Musica {
   private String nome;
   private String genero;
-  private int classificacao;
+  private LetraDeMusica letra;
 
-  public Musica(String nome, String genero) {
+  public Musica(String nome, String genero, LetraDeMusica letra) {
     this.nome = nome;
     this.genero = genero;
+    this.letra = letra;
   }
 
   public String getNome() { return nome; }
@@ -20,14 +21,12 @@ public class Musica {
 
   public void setGenero(String genero) { this.genero = genero; }
 
-  public int getClassificacao() { return classificacao; }
+  public LetraDeMusica getLetras() { return this.letra; }
 
-  public void setClassificacao(int classificacao) {
-    this.classificacao = classificacao;
-  }
+  public void setLetras(LetraDeMusica letras) { this.letra = letras; }
 
   public String toString() {
-    String musica = "Nome da música: " + nome + ", Genêro: " + genero + ", Classificação: " + classificacao;
+    String musica = "Nome da música: " + nome + ", Genêro: " + genero + ", Letras: " + letra;
     return musica;
   }
 }

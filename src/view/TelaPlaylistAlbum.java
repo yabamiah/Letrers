@@ -30,12 +30,13 @@ public class TelaPlaylistAlbum implements ActionListener {
     private JButton voltar;
     private JButton editar = new JButton("Editar");;
     private JButton excluir = new JButton("Excluir");
-    private static int opcao = 1;
+    private int opcao;
         
     public TelaPlaylistAlbum(int opcao, ControleDados cd, int idxPlaylist, int idxUsuario) {
 		this.cd = cd;
 		controleM = new ControleMusica(cd);
 		controleP = new ControlePlaylist(cd);
+		this.opcao = opcao;
 		this.idxPlaylist = idxPlaylist;
 		
 		this.idxUsuario = idxUsuario;
@@ -49,6 +50,8 @@ public class TelaPlaylistAlbum implements ActionListener {
 			nomeArtista.setForeground(Color.white);	        
 
 		} else {
+			frame = new JFrame("Álbum - " + controleP.getNomePlaylist(idxPlaylist));
+			
 			nomeAlbumPlaylist = new JLabel(controleP.getNomePlaylist(idxPlaylist));
 			frame = new JFrame("Playlist - " + controleP.getNomePlaylist(idxPlaylist));    		
             nomeAlbumPlaylist.setBounds(193, 60, 300, 50);
@@ -155,11 +158,24 @@ public class TelaPlaylistAlbum implements ActionListener {
 			frame.dispose();
 			
 		} else if(e.getActionCommand() == "editar") {
-			//new TelaCriarPlaylistAlbum(opcao);
-			frame.dispose();
+			if(opcao == 1) {
+
+			} else {
+				new TelaCriarPlaylistAlbum(cd, idxPlaylist, opcao, 0);
+				frame.dispose();
+			}
 			
 		} else if(e.getActionCommand() == "excluir") {
-			//new TelaUsuario(cd);
+			if(opcao == 1) {
+
+			} else {
+				boolean verif = cd.removerPlaylist(idxPlaylist);
+
+				if(verif) {
+					JOptionPane.showMessageDialog(null, "Playlist excluída com sucesso!");
+					new TelaUsuario(cd, idxUsuario);
+				}
+			}
 			frame.dispose();
 		}
 		
