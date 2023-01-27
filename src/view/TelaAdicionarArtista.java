@@ -21,7 +21,6 @@ public class TelaAdicionarArtista implements ActionListener {
 	public TelaAdicionarArtista() {
 		frame = new JFrame("Letters");
 		frame.setSize(600,300);
-		frame.setLocationRelativeTo(null);
 		frame.getContentPane().setBackground(new Color(121,150,71));
 		
 		titulo = new JLabel("Adicionar Artista");
@@ -34,8 +33,10 @@ public class TelaAdicionarArtista implements ActionListener {
 		btnCriar();
 		btnCancelar();
 		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		frame.setLayout(null);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
 
@@ -45,7 +46,6 @@ public class TelaAdicionarArtista implements ActionListener {
 
 		frame = new JFrame("Letters");
 		frame.setSize(600,300);
-		frame.setLocationRelativeTo(null);
 		frame.getContentPane().setBackground(new Color(121,150,71));
 		
 		titulo = new JLabel("Adicionar Artista");
@@ -58,8 +58,10 @@ public class TelaAdicionarArtista implements ActionListener {
 		btnCriar();
 		btnCancelar();
 		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		frame.setLayout(null);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
 	

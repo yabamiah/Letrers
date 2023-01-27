@@ -65,6 +65,9 @@ public class TelaUsuario implements ActionListener{
 		listaPlaylists = new JList<String>(controleP.getNomePlaylists());
 		listaPlaylists.setBounds(115,130,295,330);
 		listaPlaylists.setBackground(new Color(121,150,71));
+		listaPlaylists.setForeground(new Color(30,30,30));
+		listaPlaylists.setFont(new Font("", Font.BOLD,15));
+		
 		miArtistas = new JLabel("Meus Artistas Favoritos");
 		miArtistas.setForeground(Color.white);
 		miArtistas.setBounds(525,100,300,20);

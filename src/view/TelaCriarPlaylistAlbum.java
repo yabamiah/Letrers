@@ -38,9 +38,73 @@ public class TelaCriarPlaylistAlbum implements ActionListener{
 	private ControleMusica controleM;
 	private int idxUsuario;
 	
-	private static int opcao = 1;
+	private static int opcao = 2;
 	
 	String musicas[] = {"Apocalipse", "champagne problems"};
+	
+	public TelaCriarPlaylistAlbum(int opcao) {
+		
+
+		if(opcao == 1) {
+			frame = new JFrame("Letters - Criar Álbum");
+			labelTituloFrame = new JLabel("Criar Álbum");
+			labelNomePlaylist = new JLabel("Nome do Álbum:");
+			atualizarLista = new JButton("Atualizar Listas");
+			
+			listSelecMusicas = new JList<String>(musicas);
+
+			labelSelecMusicas.setBounds(590,120,200,30);
+			listSelecMusicas.setBounds(500,150,300,100);
+			removerMusica.setBounds(500,258,130,20);
+			atualizarLista.setBounds(670,418,130,20);
+			
+			addArtistas();
+			SelecArtistas();
+			
+		}
+		else {
+			frame = new JFrame("Letters - Criar Playlist");
+			labelTituloFrame = new JLabel("Criar Playlist");
+			labelNomePlaylist = new JLabel("Nome da Playlist:");
+			atualizarLista = new JButton("Atualizar Lista");
+			
+			listSelecMusicas = new JList<String>(musicas);
+
+			labelSelecMusicas.setBounds(590,135,200,30);
+			listSelecMusicas.setBounds(500,170,300,220);
+			removerMusica.setBounds(500,400,130,20);
+			atualizarLista.setBounds(670,400,130,20);			
+		}
+		
+		frame.setSize(900,600);
+		frame.getContentPane().setBackground(new Color(121,150,71));
+		
+		labelTituloFrame.setBounds(327,30, 300, 50);
+		labelTituloFrame.setFont(new Font("Times New Roman", Font.BOLD, 40));
+		labelTituloFrame.setForeground(Color.white);
+		
+		atualizarLista.setBackground(new Color(0,0,0));
+		atualizarLista.setForeground(Color.white);
+		atualizarLista.setBorder(null);
+		atualizarLista.setActionCommand("atualizarLista");
+		atualizarLista.addActionListener(this);
+		
+		frame.add(labelTituloFrame);
+		frame.add(atualizarLista);
+		InfoPlaylist();
+		InfoMusica();
+		SelecMusicas();
+		
+		btnCriar();
+		btnCancelar();
+		Imagem("imagem/ImagemPlaylist2.jpg");
+		
+		frame.setResizable(false);
+		frame.setLocationRelativeTo(null);
+		frame.setLayout(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+	}
 	
 	public TelaCriarPlaylistAlbum(ControleDados cd, int idx, int opcao) {
 		this.cd = cd;
@@ -268,5 +332,9 @@ public class TelaCriarPlaylistAlbum implements ActionListener{
 		}
 		
 	}
-
+public static void main(String[] args) {
+		new TelaCriarPlaylistAlbum(opcao);
+	}
 }
+
+	
