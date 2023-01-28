@@ -2,6 +2,10 @@ package modelo;
 
 import java.util.*;
 
+/** Classe Usuário herda da classe abstrata pessoa, possui uma associação simples com a classe playlist e armazena playlists criadas pelo usuário. Estão presentes o toString e os gets e sets.
+ * @author Maria Alice Bernardo da Costa Silva
+ */
+
 public class Usuario extends Pessoa{
 	private ArrayList<Playlist> playlist;
 	

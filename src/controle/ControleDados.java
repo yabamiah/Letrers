@@ -77,7 +77,7 @@ public class ControleDados {
             return false;
         } else {
             System.out.println("Artista cadastrado com sucesso!");
-            Artista a = new Artista(nome, generos, musicas);
+            Artista a = new Artista(nome, musicas);
             dados.adicionarArtista(a);
             return true;
         }
@@ -104,7 +104,6 @@ public class ControleDados {
             if(dados.getArtistas().get(i).getNome().equals(nomeAntigo)) {
 
                 dados.getArtistas().get(i).setNome(nomeNovo);
-                dados.getArtistas().get(i).setGeneros(generos);
                 dados.getArtistas().get(i).setMusicas(musicas);
                 return true;
             }
@@ -169,7 +168,6 @@ public class ControleDados {
             if(dados.getArtistas().get(i).getNome().equals(nomeAntigo)) {
 
                 dados.getArtistas().get(i).setNome(nomeNovo);
-                dados.getArtistas().get(i).setGeneros(generos);
                 dados.getArtistas().get(i).setMusicas(musicas);
                 return true;
             }
@@ -207,7 +205,7 @@ public class ControleDados {
             return false;
         } else {
             System.out.println("Música cadastrada com sucesso!");
-            Musica m = new Musica(nome, genero, letras);
+            Musica m = new Musica(nome,letras);
             dados.adicionarMusica(m);
             return true;
         }
@@ -233,7 +231,6 @@ public class ControleDados {
         for(int i = 0; i < dados.getQtdMusicas(); i++) {
             if(dados.getMusicas().get(i).getNome().equals(nomeAntigo)) {
                 dados.getMusicas().get(i).setNome(nomeNovo);
-                dados.getMusicas().get(i).setGenero(genero);
                 return true;
             }
         }

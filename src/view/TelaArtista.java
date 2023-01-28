@@ -225,9 +225,8 @@ public class TelaArtista implements ActionListener{
 			
 		} else if(e.getActionCommand() == "excluir") {
 			boolean verifA = cd.removerArtista(idxArtista);
-			boolean verifM = cd.removerMusica(idxMusica);
 
-			if(verifA && verifM) {
+			if(verifA) {
 				JOptionPane.showMessageDialog(null, "Artista excluído com sucesso!");
 				new TelaUsuario(cd, idxUsuario);
 				frame.dispose();
@@ -248,9 +247,12 @@ public class TelaArtista implements ActionListener{
 			String nomeMusica = buscar.getText();
 			
 			int idxMusica = cd.buscarMusica(nomeMusica);
-			
-			new TelaMusica(cd, idxMusica, idxUsuario, nomeArtista);
+			if(idxMusica == -1) {
+				JOptionPane.showMessageDialog(null, "Essa música não está cadastrada!");
+			} {
+				new TelaMusica(cd, idxMusica, idxUsuario, nomeArtista);
 			frame.dispose();
+			}
 		}
 	}
 }

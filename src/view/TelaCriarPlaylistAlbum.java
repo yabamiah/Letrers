@@ -223,7 +223,7 @@ public class TelaCriarPlaylistAlbum implements ActionListener{
 			ArrayList<Musica> musicas = new ArrayList();
 
 			for(int i = 0; i < listSelecMusicas.getModel().getSize(); i++) {
-				musicas.add( new Musica(listSelecMusicas.getModel().getElementAt(i), null, null));
+				musicas.add( new Musica(listSelecMusicas.getModel().getElementAt(i), null));
 			}
 
 			boolean verif = cd.adicionarPlaylist(nomePlaylist, musicas);

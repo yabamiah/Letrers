@@ -2,6 +2,11 @@ package modelo;
 
 import java.util.ArrayList;
 
+/**
+ * Classe Dados simula o comportamento de um banco de dados
+ * @author Vinicius Mendes Martins
+ */
+
 public class Dados {
     private ArrayList<Artista> artistas = new ArrayList<Artista>();
     private int qtdArtistas = 10;
@@ -15,11 +20,15 @@ public class Dados {
     private ArrayList<Playlist> playlists = new ArrayList<Playlist>();
     private int qtdPlaylists = 0;
 
+    /**
+     * Preenche as classes Artista, Usuario, Musica, LetraDeMusica e Playlist com valores iniciais, para a apresentação do trabalho 
+    */
+
     public void EncherDados() {
         for(int i =0; i < 5; i++) {
-            Artista artista = new Artista("Artista " + i, new ArrayList<String>(), new ArrayList<Musica>());
+            Artista artista = new Artista("Artista " + i, new ArrayList<Musica>());
             Usuario usuario = new Usuario("Usuario " + i);
-            Musica musica = new Musica("Musica " + i, "Genero " + i, new LetraDeMusica("", ""));
+            Musica musica = new Musica("Musica " + i, new LetraDeMusica("", ""));
             LetraDeMusica letra = new LetraDeMusica("CorpoOriginal " + i, "CorpoTraduzido " + i);
             Playlist playlist = new Playlist("Playlist " + i, i, new ArrayList<Musica>());            
 

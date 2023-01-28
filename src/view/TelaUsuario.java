@@ -225,9 +225,12 @@ public class TelaUsuario implements ActionListener{
 			String nomeArtista = buscar.getText();
 			
 			int idxArtista = cd.buscarArtista(nomeArtista);
-			
-			new TelaArtista(cd, idxArtista, idxUsuario);
+			if(idxArtista == -1) {
+				JOptionPane.showMessageDialog(null, "Esse artista não está cadastrado!");
+			} else {
+				new TelaArtista(cd, idxArtista, idxUsuario);
 			frame.dispose();
+			}
 		}
 	}
 }

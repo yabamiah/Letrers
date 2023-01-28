@@ -2,6 +2,11 @@ package modelo;
 
 import java.util.*;
 
+/**
+ * Classe Playlist possui uma associação simples com a classe usuário e armazena musicas selecionadas pelo usuário. Estão presentes o toString e os gets e sets.
+ * @author Maria Alice Bernardo da Costa Silva
+ */
+
 public class Playlist {
     private String nome;
     private int qtdMusica;

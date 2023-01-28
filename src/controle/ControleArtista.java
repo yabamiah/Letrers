@@ -43,10 +43,6 @@ public class ControleArtista {
             return artistas.get(i).getNome();
     }
 
-    public String getGeneroArtista(int i) {
-        return artistas.get(i).getGeneros().get(i);
-    }
-
     public String getMusicasArtista(int i) {
         return artistas.get(i).getMusicas().get(i).getNome();
     }
@@ -54,7 +50,7 @@ public class ControleArtista {
     public String[] getMusicas() {
         String[] musicas = new String[artistas.size()];
         for (int i = 0; i <= artistas.size(); i++) {
-            if (artistas.get(i).getMusicas() != null) {
+            if (artistas.get(i).getMusicas() == null) {
                 return musicas;
             } else {
                 musicas[i] = artistas.get(i).getMusicas().get(i).getNome();

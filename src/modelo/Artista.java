@@ -2,37 +2,22 @@ package modelo;
 
 import java.util.*;
 
+/**
+ * Classe Artista herda da classe abstrata pessoa earmazena o nome e as músicas do artista.
+ * @author Maria Alice Bernardo da Costa Silva
+ */
+
 public class Artista extends Pessoa {
-    private int classificacao;
-    private ArrayList<String> generos;
     private ArrayList<Musica> musicas;
     
 
-    public Artista(String nome, ArrayList<String> generos) {
+    public Artista(String nome) {
         super(nome);
-        this.generos = generos;
     }
 
-    public Artista(String nome, ArrayList<String> generos, ArrayList<Musica> musicas) {
+    public Artista(String nome, ArrayList<Musica> musicas) {
         super(nome);
-        this.generos = generos;
         this.musicas = musicas;
-    }
-
-    public int getClassificacao() {
-        return classificacao;
-    }
-
-    public void setClassificacao(int classificacao) {
-        this.classificacao = classificacao;
-    }
-
-    public ArrayList<String> getGeneros() {
-        return generos;
-    }
-
-    public void setGeneros(ArrayList<String> generos) {
-        this.generos = generos;
     }
 
     public ArrayList<Musica> getMusicas() {
@@ -44,7 +29,7 @@ public class Artista extends Pessoa {
     }
 
     public String toString() {
-        String artista = "Nome do artista: " + getNome() + ", Genêros: " + generos + ", Músicas: " + musicas;
+        String artista = "Nome do artista: " + getNome() + ", Músicas: " + musicas;
         return artista;
     }
 }

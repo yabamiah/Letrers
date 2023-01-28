@@ -33,7 +33,6 @@ public class TelaAdicionarMusica implements ActionListener {
 		
 		controleArtista = new ControleArtista(cd);
 		this.idxArtista = idxArtista;
-		
 		this.idxUsuario = idxUsuario;
 		
 		frame = new JFrame("Letters");

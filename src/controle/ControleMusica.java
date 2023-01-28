@@ -32,10 +32,6 @@ public class ControleMusica {
         this.musicas = musicas;
     }
 
-    public String getGeneroMusica(int i) {
-        return musicas.get(i).getGenero();
-    }
-
     public String getNomeMusica(int idx) {
         return musicas.get(idx).getNome();
     }
