@@ -2,6 +2,13 @@ package modelo;
 
 import java.lang.StringBuilder;
 
+/**
+ * Classe LetraDeMusica armazena a letra original e a tradução de cada música.
+ * 
+ * @author Maria Alice Bernardo da Costa Silva
+ * @author Vinicius Mendes Martins
+ */
+
 public class LetraDeMusica {
     private String corpoOriginal;
     private String corpoTraduzido;
@@ -15,6 +22,8 @@ public class LetraDeMusica {
         this.corpoTraduzido = corpoTraduzido;
     }
 
+    //gets e sets
+    
     public String getCorpoOriginal() {
         return corpoOriginal;
     }
@@ -31,6 +40,8 @@ public class LetraDeMusica {
         this.corpoTraduzido = corpoTraduzido;
     }
 
+    //toString
+    
     public String toString() {
         StringBuilder letra = new StringBuilder();
         letra.append("\tLETRA TRADUZIDA\n\n");

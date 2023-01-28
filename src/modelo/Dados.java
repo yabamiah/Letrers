@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 /**
  * Classe Dados simula o comportamento de um banco de dados
+ * 
+ * @author Maria Alice Bernardo da Costa Silva
  * @author Vinicius Mendes Martins
  */
 
@@ -16,12 +18,12 @@ public class Dados {
     private int qtdMusicas = 0;
     private ArrayList<LetraDeMusica> letras = new ArrayList<LetraDeMusica>();
     private int qtdLetras = 0;
-    private int qtdAlbuns = 0;
     private ArrayList<Playlist> playlists = new ArrayList<Playlist>();
     private int qtdPlaylists = 0;
 
     /**
-     * Preenche as classes Artista, Usuario, Musica, LetraDeMusica e Playlist com valores iniciais, para a apresentação do trabalho 
+     * Preenche as classes Artista, Usuario, Musica, LetraDeMusica e Playlist com valores iniciais, 
+     * para a apresentação do trabalho 
     */
 
     public void EncherDados() {
@@ -39,6 +41,8 @@ public class Dados {
             playlists.add(playlist);
         }
     }
+    
+    //gets, sets e adicionar Artista
 
     public ArrayList<Artista> getArtistas() {
         return artistas;
@@ -61,6 +65,8 @@ public class Dados {
     public void setQtdArtistas(int qtdArtistas) {
         this.qtdArtistas = qtdArtistas;
     }
+    
+  //gets, sets e adicionar Usuario
 
     public ArrayList<Usuario> getUsuarios() {
         return usuarios;
@@ -82,6 +88,8 @@ public class Dados {
     public void setQtdUsuarios(int qtdUsuarios) {
         this.qtdUsuarios = qtdUsuarios;
     }
+    
+  //gets, sets e adicionar Musica
 
     public ArrayList<Musica> getMusicas() {
         return musicas;
@@ -104,6 +112,8 @@ public class Dados {
     public void setQtdMusicas(int qtdMusicas) {
         this.qtdMusicas = qtdMusicas;
     }
+    
+  //gets, sets e adicionar LetraDeMusica
 
     public ArrayList<LetraDeMusica> getLetras() {
         return letras;
@@ -126,6 +136,8 @@ public class Dados {
     public void setQtdLetras(int qtdLetras) {
         this.qtdLetras = qtdLetras;
     }
+    
+  //gets, sets e adicionar Playlist
 
     public ArrayList<Playlist> getPlaylists() {
         return playlists;

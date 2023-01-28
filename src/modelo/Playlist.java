@@ -3,8 +3,10 @@ package modelo;
 import java.util.*;
 
 /**
- * Classe Playlist possui uma associação simples com a classe usuário e armazena musicas selecionadas pelo usuário. Estão presentes o toString e os gets e sets.
+ * Classe Playlist armazena as músicas selecionadas pelo usuário.
+ * 
  * @author Maria Alice Bernardo da Costa Silva
+ * @author Vinicius Mendes Martins
  */
 
 public class Playlist {
@@ -21,6 +23,8 @@ public class Playlist {
     public Playlist(String nome) {
         this.nome = nome;
     }
+    
+    //gets e sets
 
     public String getNome() {
         return nome;
@@ -49,6 +53,8 @@ public class Playlist {
     public Boolean adicionarEmPlaylist(Musica musica) {
         return getMusicas().add(musica);
     }
+    
+    //toString
 
     public String toString() {
         String playlist = "Músicas: " + musicas;

@@ -3,7 +3,9 @@ package modelo;
 import java.util.*;
 
 /**
- * Classe Música usada para escrever os métodos gets e sets e sobrescrever o ToString
+ * Classe Musica armazena o nome e a classe LetraDeMusica
+ * 
+ * @author Maria Alice Bernardo da Costa Silva
  * @author Vinícius Mendes Martins 
  */
 
@@ -16,6 +18,8 @@ public class Musica {
     this.letra = letra;
   }
 
+  //gets e sets
+  
   public String getNome() { return nome; }
 
   public void setNome(String nome) { this.nome = nome; }
@@ -24,6 +28,8 @@ public class Musica {
 
   public void setLetras(LetraDeMusica letras) { this.letra = letras; }
 
+  //toString
+  
   public String toString() {
     String musica = "Nome da música: " + nome + ", Letras: " + letra;
     return musica;
