@@ -10,45 +10,56 @@ import java.lang.StringBuilder;
  */
 
 public class LetraDeMusica {
-    private String corpoOriginal;
-    private String corpoTraduzido;
+	private String corpoOriginal;
+	private String corpoTraduzido;
 
-    public LetraDeMusica(String corpoOriginal) {
-        this.corpoOriginal = corpoOriginal;
-    }
+	public LetraDeMusica(String corpoOriginal) {
+		this.corpoOriginal = corpoOriginal;
+	}
 
-    public LetraDeMusica(String corpoOriginal, String corpoTraduzido) {
-        this.corpoOriginal = corpoOriginal;
-        this.corpoTraduzido = corpoTraduzido;
-    }
+	/**
+	 * Construtor LetraDeMusica
+	 * 
+	 * @param corpoOriginal
+	 * @param corpoTraduzido
+	 */
 
-    //gets e sets
-    
-    public String getCorpoOriginal() {
-        return corpoOriginal;
-    }
+	public LetraDeMusica(String corpoOriginal, String corpoTraduzido) {
+		this.corpoOriginal = corpoOriginal;
+		this.corpoTraduzido = corpoTraduzido;
+	}
 
-    public void setCorpoOriginal(String corpoOriginal) {
-        this.corpoOriginal = corpoOriginal;
-    }
+	/*
+	 * Gets e sets
+	 */
 
-    public String getCorpoTraduzido() {
-        return corpoTraduzido;
-    }
+	public String getCorpoOriginal() {
+		return corpoOriginal;
+	}
 
-    public void setCorpoTraduzido(String corpoTraduzido) {
-        this.corpoTraduzido = corpoTraduzido;
-    }
+	public void setCorpoOriginal(String corpoOriginal) {
+		this.corpoOriginal = corpoOriginal;
+	}
 
-    //toString
-    
-    public String toString() {
-        StringBuilder letra = new StringBuilder();
-        letra.append("\tLETRA TRADUZIDA\n\n");
-        letra.append(corpoTraduzido +"\n\n\n");
-        letra.append("\tLETRA ORIGINAL\n\n");
-        letra.append(corpoOriginal + "\n\n");
+	public String getCorpoTraduzido() {
+		return corpoTraduzido;
+	}
 
-        return letra.toString();
-    }
+	public void setCorpoTraduzido(String corpoTraduzido) {
+		this.corpoTraduzido = corpoTraduzido;
+	}
+
+	/*
+	 * toString
+	 */
+
+	public String toString() {
+		StringBuilder letra = new StringBuilder();
+		letra.append("\tLETRA TRADUZIDA\n\n");
+		letra.append(corpoTraduzido + "\n\n\n");
+		letra.append("\tLETRA ORIGINAL\n\n");
+		letra.append(corpoOriginal + "\n\n");
+
+		return letra.toString();
+	}
 }

@@ -7,6 +7,14 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import controle.*;
 
+/**
+ * Classe TelaAdicionarArtista exibe um TextField para que o usuário adicione um artista.
+ * 
+ * @author Maria Alice Bernardo da Costa Silva
+ * @author Vinícius Mendes Martins
+ *
+ */
+
 public class TelaAdicionarArtista implements ActionListener {
 	
 	private JFrame frame;
@@ -17,6 +25,14 @@ public class TelaAdicionarArtista implements ActionListener {
 	private JButton cancelar;
 	private ControleDados cd;
 	private int idxUsuario;
+	
+	/**
+	 * Construtor do frame
+	 *  
+	 * @param cd
+	 * @param idxUsuario
+	 * @param idxArtista
+	 */
 	
 	public TelaAdicionarArtista(ControleDados cd, int idxUsuario, int idxArtista) {
 		this.cd = cd;

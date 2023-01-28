@@ -3,40 +3,50 @@ package modelo;
 import java.util.*;
 
 /**
- * Classe Artista herda da classe abstrata {@link Pessoa} e armazena o nome e 
- * as músicas do artista.
+ * Classe Artista herda da classe abstrata {@link Pessoa} e armazena o nome e as
+ * músicas do artista.
  * 
  * @author Maria Alice Bernardo da Costa Silva
  * @author Vinicius Mendes Martins
  */
 
 public class Artista extends Pessoa {
-    private ArrayList<Musica> musicas;
-    
+	private ArrayList<Musica> musicas;
 
-    public Artista(String nome) {
-        super(nome);
-    }
+	public Artista(String nome) {
+		super(nome);
+	}
 
-    public Artista(String nome, ArrayList<Musica> musicas) {
-        super(nome);
-        this.musicas = musicas;
-    }
+	/**
+	 * Construtor de artista.
+	 * 
+	 * @param nome
+	 * @param musicas
+	 */
 
-    //gets e sets
-    
-    public ArrayList<Musica> getMusicas() {
-        return musicas;
-    }
+	public Artista(String nome, ArrayList<Musica> musicas) {
+		super(nome);
+		this.musicas = musicas;
+	}
 
-    public void setMusicas(ArrayList<Musica> musicas) {
-        this.musicas = musicas;
-    }
-    
-    //toString
+	/**
+	 * Gets e sets
+	 */
 
-    public String toString() {
-        String artista = "Nome do artista: " + getNome() + ", Músicas: " + musicas;
-        return artista;
-    }
+	public ArrayList<Musica> getMusicas() {
+		return musicas;
+	}
+
+	public void setMusicas(ArrayList<Musica> musicas) {
+		this.musicas = musicas;
+	}
+
+	/**
+	 * ToString
+	 */
+
+	public String toString() {
+		String artista = "Nome do artista: " + getNome() + ", Músicas: " + musicas;
+		return artista;
+	}
 }
