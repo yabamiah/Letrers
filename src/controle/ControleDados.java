@@ -229,7 +229,6 @@ public class ControleDados {
             Musica m = new Musica(nome,letras);
             //dados.adicionarMusica(m);
             dados.getArtistas().get(idxArtista).getMusicas().add(m);
-            System.out.println(dados.getArtistas().get(idxArtista).toString());
             return true;
         }
     }

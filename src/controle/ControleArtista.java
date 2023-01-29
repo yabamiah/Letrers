@@ -83,4 +83,16 @@ public class ControleArtista {
         }
         return musicas;
     }
+
+    public int buscarMusica(String nomeMusica, int idxArtista) {
+        for(int i = 0; i < artistas.get(idxArtista).getMusicas().size(); i++) {
+            System.out.println(artistas.get(idxArtista).getNome());
+            System.out.print(artistas.get(idxArtista).getMusicas().get(i).getNome());
+
+            if(artistas.get(idxArtista).getMusicas().get(i).getNome().equals(nomeMusica)) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }

@@ -8,8 +8,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import controle.*;
+import modelo.*;
 
 /**
  * Classe TelaMusica exibe as informações da música, a letra e a tradução.
@@ -43,6 +45,9 @@ public class TelaMusica implements ActionListener {
 	private int idxArtista;
 	private String letra;
 	private String traducao;
+	private String musicaNome;
+	private String letraOriginal;
+	private String letraTraduzido;
 
 	/**
 	 * Contrutor do frame.
@@ -58,13 +63,17 @@ public class TelaMusica implements ActionListener {
 		this.idxArtista = idxArtista;
 		
 		controleA = new ControleArtista(cd);
-		controleM = new ControleMusica(cd);
+
+		musicaNome = cd.getArtistas().get(idxArtista).getMusicas().get(idxMusica).getNome();
+		letraOriginal = cd.getArtistas().get(idxArtista).getMusicas().get(idxMusica).getLetras().getCorpoOriginal();
+		letraTraduzido = cd.getArtistas().get(idxArtista).getMusicas().get(idxMusica).getLetras().getCorpoTraduzido();
+		
 		controleL = new ControleLetra(cd);
 
 		this.idxMusica = idxMusica;
 		this.idxUsuario = idxUsuario;
 
-		frame = new JFrame("Letters - " + controleM.getNomeMusica(idxMusica));
+		frame = new JFrame("Letters - " + musicaNome);
 		frame.setSize(900, 600);
 
 		ImagemFundo("imagem/Home.png");
@@ -87,7 +96,7 @@ public class TelaMusica implements ActionListener {
 	 */
 
 	public void infoMusica() {
-		nomeMusica = new JLabel(controleM.getNomeMusica(idxMusica));
+		nomeMusica = new JLabel(musicaNome);
 		nomeMusica.setBounds(193, 20, 300, 50);
 		nomeMusica.setFont(new Font("Times New Roman", Font.BOLD, 25));
 		nomeMusica.setForeground(Color.white);
@@ -112,7 +121,7 @@ public class TelaMusica implements ActionListener {
 		labelLetra.setForeground(Color.white);
 		labelLetra.setFont(new Font("Times New Roman", Font.BOLD, 17));
 
-		textoLetra = new JTextArea(controleM.getLetraOriginal(idxMusica));
+		textoLetra = new JTextArea(letraOriginal);
 		textoLetra.setBounds(80, 130, 350, 350);
 		textoLetra.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		textoLetra.setLineWrap(true);
@@ -139,7 +148,7 @@ public class TelaMusica implements ActionListener {
 		labelTraducao.setForeground(Color.white);
 		labelTraducao.setFont(new Font("Times New Roman", Font.BOLD, 17));
 
-		textoTraducao = new JTextArea(controleM.getLetraTraduzido(idxMusica));
+		textoTraducao = new JTextArea(letraTraduzido);
 		textoTraducao.setBounds(470, 130, 350, 350);
 		textoTraducao.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		textoTraducao.setLineWrap(true);

@@ -25,6 +25,10 @@ public class ControleMusica {
         this.qtdMusicas = cd.getQtdMusicas();
     }
 
+    public ArrayList<Musica> getMusicas() {
+        return musicas;
+    }
+
     public int getQtdMusicas() {
         return qtdMusicas;
     }

@@ -30,7 +30,7 @@ public class TelaArtista implements ActionListener, ListSelectionListener {
 	private JLabel labelMusica;
 	private JList<String> listaMusicas;
 	private JScrollPane listaMusicasScroll;
-	private JTextField buscar;
+	private JTextField buscar = new JTextField();
 	private JButton btnBuscar;
 	private JButton voltar;
 	private JButton editar;
@@ -43,6 +43,7 @@ public class TelaArtista implements ActionListener, ListSelectionListener {
 	private ControleDados cd;
 	private int idxUsuario;
 	private String[] musicas;
+	String nomeMusica;
 
 	/**
 	 * Construtor um do frame. Foi colocado mais de um para possibilitar a entrada
@@ -237,7 +238,6 @@ public class TelaArtista implements ActionListener, ListSelectionListener {
 	 */
 
 	public void Buscar() {
-		buscar = new JTextField("");
 		buscar.setBounds(500, 35, 222, 30);
 
 		btnBuscar = new JButton("Buscar Música");
@@ -310,17 +310,11 @@ public class TelaArtista implements ActionListener, ListSelectionListener {
 			frame.dispose();
 
 		} else if (e.getActionCommand() == "buscarMusica") {
-			String nomeArtista = artistaAtual;
 			String nomeMusica = buscar.getText();
 
-			int idxMusica = cd.buscarMusica(idxArtista, nomeMusica);
-			if (idxMusica == -1) {
-				JOptionPane.showMessageDialog(null, "Essa música não está cadastrada!");
-			}
-			{
+			int idxMusica = controlA.buscarMusica(nomeMusica, idxArtista);
 				new TelaMusica(cd, idxMusica, idxUsuario, idxArtista);
 				frame.dispose();
-			}
 		}
 	}
 	
@@ -330,11 +324,14 @@ public class TelaArtista implements ActionListener, ListSelectionListener {
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
+		nomeMusica = buscar.getText();
+		System.out.println(nomeMusica);
 		Object object = e.getSource();
 		String nome = listaMusicas.getSelectedValue().toString();
 		
 		if(e.getValueIsAdjusting() && object == listaMusicas) {
-			int idxMusica = controlA.buscarMusica(idxArtista, nome);
+			int idxMusica = controlA.buscarMusica(nome, idxArtista);
+			System.out.println(idxMusica);
 			
 			new TelaMusica(cd, idxMusica, idxUsuario, idxArtista);
 			frame.dispose();
