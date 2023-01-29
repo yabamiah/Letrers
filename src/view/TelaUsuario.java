@@ -2,6 +2,8 @@ package view;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import controle.*;
 
@@ -19,7 +21,7 @@ import java.io.IOException;
  * @author Vinícius Mendes Martins
  */
 
-public class TelaUsuario implements ActionListener {
+public class TelaUsuario implements ActionListener, ListSelectionListener {
 
 	private JFrame frame;
 	private JPanel panel;
@@ -79,6 +81,8 @@ public class TelaUsuario implements ActionListener {
 		listaPlaylists.setBackground(new Color(121, 150, 71));
 		listaPlaylists.setForeground(new Color(30, 30, 30));
 		listaPlaylists.setFont(new Font("", Font.BOLD, 15));
+		listaPlaylists.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		listaPlaylists.addListSelectionListener(this);
 
 		miArtistas = new JLabel("Meus Artistas Favoritos");
 		miArtistas.setForeground(Color.white);
@@ -90,6 +94,8 @@ public class TelaUsuario implements ActionListener {
 		listaArtistasFav.setBackground(new Color(121, 150, 71));
 		listaArtistasFav.setForeground(new Color(30, 30, 30));
 		listaArtistasFav.setFont(new Font("", Font.BOLD, 15));
+		listaArtistasFav.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		listaArtistasFav.addListSelectionListener(this);
 
 		// Add
 		ImagemFundo("imagem/Home.png");
@@ -305,5 +311,34 @@ public class TelaUsuario implements ActionListener {
 			new TelaInicial();
 			frame.dispose();
 		}
+	}
+	
+	/**
+	 * Método da interface ListSelectionListener que abre as telas selecionadas pelo usuário.
+	 */
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		Object object = e.getSource();
+		String nome;
+		
+		if(e.getValueIsAdjusting() && object == listaPlaylists) {
+			nome = listaPlaylists.getSelectedValue().toString();
+			int idxPlaylist = cd.buscarPlaylist(nome);
+			System.out.println(nome);
+			
+			new TelaPlaylist(2, cd, idxPlaylist, idxUsuario);
+			frame.dispose();
+			
+		} else if(e.getValueIsAdjusting() && object == listaArtistasFav) {
+			nome = listaArtistasFav.getSelectedValue().toString();
+			int idxArtista = cd.buscarArtista(nome);
+			
+			new TelaArtista(cd, idxArtista, idxUsuario);
+			frame.dispose();			
+		}
+		
+		
+		
 	}
 }

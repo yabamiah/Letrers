@@ -27,6 +27,14 @@ public class ControlePlaylist {
         }
         return nomes;
     }
+    
+    public String getNomePlaylists(int i) {
+        if(playlists.get(i).getNome() == null) {
+        	return "Playlist não encontrada";
+        } else {
+        	return playlists.get(i).getNome();
+        }
+    }
 
     public String getMusicasPlaylist(int i) {
         String musicas = "";

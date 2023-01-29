@@ -53,7 +53,6 @@ public class TelaArtista implements ActionListener {
 
 		controlM = new controle.ControleMusica(cd);
 		controlA = new controle.ControleArtista(cd);
-		nomeArtista = new JLabel(controlA.getNomeArtista(idxArtista));
 
 		this.idxUsuario = idxUsuario;
 		this.idxArtista = idxArtista;
@@ -62,7 +61,8 @@ public class TelaArtista implements ActionListener {
 		frame = new JFrame("Letters - " + artistaAtual);
 		frame.setSize(900, 600);
 		frame.getContentPane().setBackground(Color.PINK);
-
+		
+		nomeArtista = new JLabel(controlA.getNomeArtista(idxArtista));
 		nomeArtista.setBounds(225, 20, 300, 50);
 		nomeArtista.setFont(new Font("Times New Roman", Font.BOLD, 25));
 		nomeArtista.setForeground(Color.white);

@@ -31,11 +31,11 @@ public class TelaPlaylist implements ActionListener {
 	private int idxPlaylist;
 	private int idxUsuario;
 	private JFrame frame;
-	private JLabel nomeAlbumPlaylist = new JLabel();
-	private JLabel nomeArtista = new JLabel(artista);
+	private JLabel nomePlaylist;
 	private JButton voltar;
 	private JButton editar = new JButton("Editar");;
 	private JButton excluir = new JButton("Excluir");
+	private String playlistAtual;
 	private int opcao;
 
 	/**
@@ -54,18 +54,22 @@ public class TelaPlaylist implements ActionListener {
 		this.opcao = opcao;
 		this.idxPlaylist = idxPlaylist;
 		this.idxUsuario = idxUsuario;
+		playlistAtual = controleP.getNomePlaylist(idxPlaylist);
 
+		frame = new JFrame("Letters - Playlist: " + playlistAtual);
 		frame.setSize(900, 600);
 
-		nomeAlbumPlaylist.setFont(new Font("Times New Roman", Font.BOLD, 25));
-		nomeAlbumPlaylist.setForeground(Color.white);
+		nomePlaylist = new JLabel(playlistAtual);
+		nomePlaylist.setBounds(225, 20, 300, 50);
+		nomePlaylist.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		nomePlaylist.setForeground(Color.white);
 
 		ImagemFundo("imagem/Home.png");
+		frame.add(nomePlaylist);
 		btnVoltar();
 		listaMus();
 		btnEditar();
 		btnExcluir();
-		frame.add(nomeAlbumPlaylist);
 
 		frame.setLayout(null);
 		frame.setLocationRelativeTo(null);

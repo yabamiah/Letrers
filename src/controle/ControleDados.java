@@ -123,7 +123,7 @@ public class ControleDados {
     }
 
     /*
-     * CRUD de Uusario
+     * CRUD de Usuário
      */
     public boolean adicionarUsuario(String nome, ArrayList<Playlist> playlist) {
         int count = 0;
