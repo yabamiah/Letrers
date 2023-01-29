@@ -29,6 +29,10 @@ public class ControleArtista {
     public ArrayList<Artista> getArtistas() {
         return artistas;
     }
+    
+    public Artista getArtista(int idxArtista) {    	
+        return artistas.get(idxArtista);
+    }
 
     public void setArtistas(ArrayList<Artista> artistas) {
         this.artistas = artistas;
@@ -57,8 +61,15 @@ public class ControleArtista {
             return artistas.get(i).getNome();
     }
 
-    public String getMusicasArtista(int i) {
-        return artistas.get(i).getMusicas().get(i).getNome();
+    public String[] getMusicasArtista(int i) {
+    	
+    	int qtdMusicasArtista = artistas.get(i).getMusicas().size();
+    	String[] musicas = new String[qtdMusicasArtista]; 
+    	
+    	for(int j = 0; j < qtdMusicasArtista; j++) {
+    		musicas[j] = artistas.get(i).getMusicas().get(j).getNome();
+    	}
+        return musicas;
     }
 
     public String[] getMusicas() {

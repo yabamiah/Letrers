@@ -52,46 +52,17 @@ public class TelaMusica implements ActionListener {
 	 * @param idxUsuario
 	 * @param nomeArtista
 	 */
-	
-	public TelaMusica(ControleDados cd, int idxMusica, int idxUsuario) {
+
+	public TelaMusica(ControleDados cd, int idxMusica, int idxUsuario, int idxArtista) {
 		this.cd = cd;
+		this.idxArtista = idxArtista;
+		
 		controleA = new ControleArtista(cd);
 		controleM = new ControleMusica(cd);
 		controleL = new ControleLetra(cd);
 
 		this.idxMusica = idxMusica;
 		this.idxUsuario = idxUsuario;
-		//artista = nomeArtista;
-		idxArtista = cd.buscarArtista(artista);
-
-		frame = new JFrame("Letters - " + controleM.getNomeMusica(idxMusica));
-		frame.setSize(900, 600);
-
-		ImagemFundo("imagem/Home.png");
-		infoMusica();
-		Letra();
-		Traducao();
-		btnVoltar();
-		btnEditar();
-		btnExcluir();
-
-		frame.setResizable(false);
-		frame.setLayout(null);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-	}
-
-	public TelaMusica(ControleDados cd, int idxMusica, int idxUsuario, String nomeArtista) {
-		this.cd = cd;
-		controleA = new ControleArtista(cd);
-		controleM = new ControleMusica(cd);
-		controleL = new ControleLetra(cd);
-
-		this.idxMusica = idxMusica;
-		this.idxUsuario = idxUsuario;
-		artista = nomeArtista;
-		idxArtista = cd.buscarArtista(artista);
 
 		frame = new JFrame("Letters - " + controleM.getNomeMusica(idxMusica));
 		frame.setSize(900, 600);
@@ -121,7 +92,7 @@ public class TelaMusica implements ActionListener {
 		nomeMusica.setFont(new Font("Times New Roman", Font.BOLD, 25));
 		nomeMusica.setForeground(Color.white);
 
-		nomeArtista = new JLabel(artista);
+		nomeArtista = new JLabel(cd.getArtistas().get(idxArtista).getNome());
 		nomeArtista.setBounds(193, 50, 300, 50);
 		nomeArtista.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		nomeArtista.setForeground(Color.white);
@@ -269,7 +240,7 @@ public class TelaMusica implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "voltar") {
-			new TelaUsuario(cd,idxUsuario);			
+			new TelaArtista(cd, idxArtista, idxUsuario, idxMusica);			
 			frame.dispose();
 
 		} else if (e.getActionCommand() == "editar") {
@@ -277,7 +248,7 @@ public class TelaMusica implements ActionListener {
 			frame.dispose();
 
 		} else if (e.getActionCommand() == "excluir") {
-			boolean verif = cd.removerMusica(idxMusica);
+			boolean verif = cd.removerMusica(idxMusica, idxArtista);
 
 			if (verif) {
 				JOptionPane.showMessageDialog(null, "Música excluída com sucesso!");
@@ -288,6 +259,7 @@ public class TelaMusica implements ActionListener {
 			if (verif) {
 				JOptionPane.showMessageDialog(null, "Música excluída com sucesso!");
 				new TelaArtista(cd, idxArtista, idxUsuario);
+				frame.dispose();
 			}
 		}
 	}

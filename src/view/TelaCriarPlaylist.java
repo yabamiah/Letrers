@@ -317,7 +317,7 @@ public class TelaCriarPlaylist implements ActionListener {
 
 		} else if (e.getActionCommand() == "removerMusica") {
 			int idxMusica = listSelecMusicas.getSelectedIndex();
-			this.cd.removerMusica(idxMusica);
+			this.cd.removerMusica(idxMusica /*removerPlaylist*/);
 			controleM = new ControleMusica(this.cd);
 			listSelecMusicas = new JList<String>(controleM.getNomeMusicas());
 

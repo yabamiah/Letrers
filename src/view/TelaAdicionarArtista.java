@@ -3,10 +3,12 @@ package view;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
 import controle.*;
+import modelo.Musica;
 
 /**
  * Classe TelaAdicionarArtista exibe um TextField para que o usuário adicione um
@@ -28,6 +30,8 @@ public class TelaAdicionarArtista implements ActionListener {
 	private ControleDados cd;
 	private int idxUsuario;
 	private int idxArtista;
+	private ControleArtista controleA;
+	private int editar;
 
 	/**
 	 * Construtor um do frame. Foi colocado mais de um para possibilitar a entrada
@@ -41,8 +45,10 @@ public class TelaAdicionarArtista implements ActionListener {
 	public TelaAdicionarArtista(ControleDados cd, int idxUsuario, int idxArtista) {
 		this.cd = cd;
 		this.idxUsuario = idxUsuario;
+		this.idxArtista = idxArtista;
+		editar = 1;
+		controleA = new ControleArtista(cd);
 		String nomeAntigo = cd.getArtistas().get(idxArtista).getNome();
-		cd.removerArtista(idxArtista);
 
 		frame = new JFrame("Letters");
 		frame.setSize(600, 300);
@@ -77,6 +83,7 @@ public class TelaAdicionarArtista implements ActionListener {
 	public TelaAdicionarArtista(ControleDados cd, int idxUsuario) {
 		this.cd = cd;
 		this.idxUsuario = idxUsuario;
+		editar = 0;
 
 		frame = new JFrame("Letters");
 		frame.setSize(600, 300);
@@ -158,16 +165,26 @@ public class TelaAdicionarArtista implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "criar") {
 			String nomeArtista = artista.getText();
+			ArrayList<Musica> musicas = new ArrayList<Musica>();
+			boolean verif = false;
 
-			boolean verif = cd.adicionarArtista(nomeArtista, null);
-
-			int idxArtista = cd.buscarArtista(nomeArtista);
-
-			if (verif) {
+			if(editar == 1) {
+				controleA.getArtista(idxArtista).setNome(nomeArtista);
 				new TelaArtista(cd, idxArtista, idxUsuario);
 				frame.dispose();
+				
 			} else {
-				JOptionPane.showMessageDialog(null, "Artista já existe!");
+				verif = cd.adicionarArtista(nomeArtista, musicas);
+				
+				int idxArtista = cd.buscarArtista(nomeArtista);
+
+				if (verif) {
+					new TelaArtista(cd, idxArtista, idxUsuario);
+					frame.dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "Artista já existe!");
+				}
+				
 			}
 
 			frame.dispose();

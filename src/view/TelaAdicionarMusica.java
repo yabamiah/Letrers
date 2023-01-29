@@ -23,9 +23,7 @@ public class TelaAdicionarMusica implements ActionListener {
 	private JFrame frame;
 	private JButton criar;
 	private JButton cancelar;
-	private JButton btnCriarArtista;
 	private JLabel titulo;
-	private JLabel nomeArtista;
 	private JLabel nomeMusica;
 	private JLabel nomeLetra;
 	private JLabel nomeTraducao;
@@ -67,7 +65,6 @@ public class TelaAdicionarMusica implements ActionListener {
 		
 		musica = new JTextField();
 		musica();
-		artista();
 		letra = new JTextArea(5, 10);
 		letra();
 		traducao = new JTextArea(5, 10);
@@ -98,7 +95,7 @@ public class TelaAdicionarMusica implements ActionListener {
 		String nomeAntigo = cd.getMusicas().get(idxMusica).getNome();
 		String letraAntiga = cd.getMusicas().get(idxMusica).getLetras().getCorpoOriginal();
 		String traducaoAntiga = cd.getMusicas().get(idxMusica).getLetras().getCorpoTraduzido();
-		cd.removerMusica(idxMusica);
+		cd.removerMusica(idxMusica, idxArtista);
 		controleArtista = new ControleArtista(cd);
 
 		frame = new JFrame("Letters");
@@ -113,7 +110,6 @@ public class TelaAdicionarMusica implements ActionListener {
 		frame.add(titulo);
 		musica = new JTextField(nomeAntigo);
 		musica();
-		artista();
 		letra = new JTextArea(letraAntiga);
 		letra();
 		traducao = new JTextArea(traducaoAntiga);
@@ -142,25 +138,6 @@ public class TelaAdicionarMusica implements ActionListener {
 
 		frame.add(musica);
 		frame.add(nomeMusica);
-	}
-
-	/**
-	 * Função artista exibe um JLabel, JComboBox para selecionar o artista a que
-	 * corresponde a música.
-	 */
-
-	public void artista() {
-		nomeArtista = new JLabel("Selecionar artista:");
-		nomeArtista.setBounds(350, 112, 120, 20);
-		nomeArtista.setForeground(Color.black);
-
-		listaArtista = new JComboBox<String>(controleArtista.getNomeArtistas());
-		listaArtista.setBounds(350, 135, 250, 25);
-		listaArtista.setBackground(Color.white);
-		listaArtista.setForeground(Color.black);
-
-		frame.add(nomeArtista);
-		frame.add(listaArtista);
 	}
 
 	/**
@@ -237,16 +214,16 @@ public class TelaAdicionarMusica implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "adicionar") {
 			String nomeMusica = musica.getText();
-			String nomeArtista = (String) listaArtista.getSelectedItem();
 			String letraOriginal = letra.getText();
 			String letraTraducao = traducao.getText();
 			LetraDeMusica letraMusica = new LetraDeMusica(letraOriginal, letraTraducao);
 
-			boolean verif = controleDados.adicionarMusica(nomeMusica, letraMusica);
-			int idxMusica = controleDados.buscarMusica(nomeMusica);
-
+			boolean verif = controleDados.adicionarMusica(idxArtista, nomeMusica, letraMusica);
+			System.out.println(idxArtista);
+			int idxMusica = controleDados.buscarMusica(idxArtista, nomeMusica);
+			
 			if (verif) {
-				new TelaMusica(controleDados, idxMusica, idxUsuario, nomeArtista);
+				new TelaArtista(controleDados,idxArtista,idxUsuario);
 				frame.dispose();
 			} else {
 				JOptionPane.showMessageDialog(null, "Música já cadastrada!");

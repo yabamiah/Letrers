@@ -210,7 +210,7 @@ public class ControleDados {
      * @param letras Letras da musica
      * @return
      */
-    public boolean adicionarMusica(String nome, LetraDeMusica letras) {
+    public boolean adicionarMusica(int idxArtista, String nome, LetraDeMusica letras) {
         int count = 0;
 
         for(int i = 0; i < dados.getQtdMusicas(); i++) {
@@ -221,13 +221,15 @@ public class ControleDados {
             }
         }
 
-        if(count >= 1) {
+        if(count == 1) {
             System.out.println("Música já cadastrada!");
             return false;
         } else {
             System.out.println("Música cadastrada com sucesso!");
             Musica m = new Musica(nome,letras);
-            dados.adicionarMusica(m);
+            //dados.adicionarMusica(m);
+            dados.getArtistas().get(idxArtista).getMusicas().add(m);
+            System.out.println(dados.getArtistas().get(idxArtista).toString());
             return true;
         }
     }
@@ -238,18 +240,16 @@ public class ControleDados {
      * 
      * @param idx Index da música na JList
      */
-    public Boolean removerMusica(int idx) {
-        String nome = dados.getMusicas().get(idx).getNome();
+    public Boolean removerMusica(int idxMusica, int idxArtista) {
+        String nome = dados.getMusicas().get(idxMusica).getNome();
+        System.out.println(idxMusica);
+        System.out.println(idxArtista);
 
-        for(int i = 0; i < dados.getQtdMusicas(); i++) {
-            if(dados.getMusicas().get(i).getNome().equals(nome)) {
-                dados.getMusicas().remove(i);
-                dados.setQtdMusicas(dados.getQtdMusicas() - 1);
-                return true;
-            }
-        }
+    	dados.getArtistas().get(idxArtista).getMusicas().remove(idxMusica);
+    	dados.getMusicas().remove(idxMusica);
+        dados.setQtdMusicas(dados.getQtdMusicas() - 1);
 
-        return false;
+        return true;
     }
 
     /**
@@ -258,13 +258,16 @@ public class ControleDados {
      * 
      * @param nome Nome da música
      */
-    public int buscarMusica(String nome) {
-        for(int i = 0; i < dados.getQtdMusicas(); i++) {
-            if(dados.getMusicas().get(i).getNome().equals(nome)) {
-                return i;
-            }
+    public int buscarMusica(int idxArtista, String nome) {
+        for (Artista artista : dados.getArtistas()) {
+        	for(Musica musica : artista.getMusicas()) {
+        		if(musica.getNome().equals(nome)) {
+        			return artista.getMusicas().indexOf(musica);
+        		} else {
+        			return -1;
+        		}
+        	}
         }
-
         return -1;
     }
 

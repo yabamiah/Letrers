@@ -43,7 +43,7 @@ public class Musica {
 	 */
 
 	public String toString() {
-		String musica = "Nome da música: " + nome + ", Letras: " + letra;
+		String musica = nome;
 		return musica;
 	}
 }

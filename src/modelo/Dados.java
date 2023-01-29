@@ -27,18 +27,22 @@ public class Dados {
 	 */
 
 	public void EncherDados() {
+		
 		for (int i = 0; i < 5; i++) {
 			Usuario usuario = new Usuario("Usuario " + i);
 			LetraDeMusica letra = new LetraDeMusica("CorpoOriginal " + i, "CorpoTraduzido " + i);
 			Musica musica = new Musica("Musica " + i, letra);
-			Artista artista = new Artista("Artista " + i, new ArrayList<Musica>());
 			Playlist playlist = new Playlist("Playlist " + i, i, new ArrayList<Musica>());
 
-			artistas.add(artista);
 			usuarios.add(usuario);
 			musicas.add(musica);
 			letras.add(letra);
 			playlists.add(playlist);
+		}
+		
+		for (int i = 0; i < 5; i++) {
+			Artista artista = new Artista("Artista " + i, musicas);
+			artistas.add(artista);
 		}
 	}
 
@@ -123,10 +127,10 @@ public class Dados {
 		this.musicas = musicas;
 	}
 
-	public void adicionarMusica(Musica musica) {
+	/*public void adicionarMusica(Musica musica) {
 		this.musicas.add(musica);
 		qtdMusicas++;
-	}
+	}*/
 
 	/**
 	 * Gets, sets quantidade de Musicas.

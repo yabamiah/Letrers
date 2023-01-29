@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -12,6 +13,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import controle.*;
+import modelo.Musica;
 
 /**
  * Classe TelaArtista exibe as informações e músicas cadastradas para o artista.
@@ -40,10 +42,11 @@ public class TelaArtista implements ActionListener, ListSelectionListener {
 	private ControleMusica controlM;
 	private ControleDados cd;
 	private int idxUsuario;
+	private String[] musicas;
 
 	/**
 	 * Construtor um do frame. Foi colocado mais de um para possibilitar a entrada
-	 * na tela com diferentes argumentos.
+	 * na tela com diferentes argumentos. Gera a TelaArtista vazia, para a primeira vez que for criada.
 	 * 
 	 * @param cd
 	 * @param idxArtista
@@ -53,7 +56,6 @@ public class TelaArtista implements ActionListener, ListSelectionListener {
 	public TelaArtista(ControleDados cd, int idxArtista, int idxUsuario) {
 		this.cd = cd;
 
-		controlM = new controle.ControleMusica(cd);
 		controlA = new controle.ControleArtista(cd);
 
 		this.idxUsuario = idxUsuario;
@@ -86,7 +88,7 @@ public class TelaArtista implements ActionListener, ListSelectionListener {
 
 	/**
 	 * Construtor dois do frame. Foi colocado mais de um para possibilitar a entrada
-	 * na tela com diferentes argumentos.
+	 * na tela com diferentes argumentos. Gera TelaArtista para abrir a tela de um artista já existente.
 	 * 
 	 * @param cd
 	 * @param idxArtista
@@ -100,11 +102,11 @@ public class TelaArtista implements ActionListener, ListSelectionListener {
 		controlM = new ControleMusica(cd);
 		controlA = new controle.ControleArtista(cd);
 		nomeArtista = new JLabel(controlA.getNomeArtista(idxArtista));
-
+		
 		this.idxUsuario = idxUsuario;
 		this.idxArtista = idxArtista;
 		artistaAtual = controlA.getNomeArtista(idxArtista);
-
+		
 		frame = new JFrame("Letters - " + artistaAtual);
 		frame.setSize(900, 600);
 		frame.getContentPane().setBackground(Color.PINK);
@@ -154,8 +156,10 @@ public class TelaArtista implements ActionListener, ListSelectionListener {
 		labelMusica.setBounds(225, 70, 500, 60);
 		labelMusica.setForeground(Color.white);
 		labelMusica.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		
+		musicas = controlA.getMusicasArtista(idxArtista);
 
-		listaMusicas = new JList<String>(controlM.getNomeMusicas());
+		listaMusicas = new JList<String>(musicas);
 
 		listaMusicas.setBounds(225, 120, 442, 330);
 		listaMusicas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -309,12 +313,12 @@ public class TelaArtista implements ActionListener, ListSelectionListener {
 			String nomeArtista = artistaAtual;
 			String nomeMusica = buscar.getText();
 
-			int idxMusica = cd.buscarMusica(nomeMusica);
+			int idxMusica = cd.buscarMusica(idxArtista, nomeMusica);
 			if (idxMusica == -1) {
 				JOptionPane.showMessageDialog(null, "Essa música não está cadastrada!");
 			}
 			{
-				new TelaMusica(cd, idxMusica, idxUsuario, nomeArtista);
+				new TelaMusica(cd, idxMusica, idxUsuario, idxArtista);
 				frame.dispose();
 			}
 		}
@@ -330,9 +334,9 @@ public class TelaArtista implements ActionListener, ListSelectionListener {
 		String nome = listaMusicas.getSelectedValue().toString();
 		
 		if(e.getValueIsAdjusting() && object == listaMusicas) {
-			int idxMusica = cd.buscarMusica(nome);
+			int idxMusica = controlA.buscarMusica(idxArtista, nome);
 			
-			new TelaMusica(cd, idxMusica, idxUsuario);
+			new TelaMusica(cd, idxMusica, idxUsuario, idxArtista);
 			frame.dispose();
 		}
 	}

@@ -28,6 +28,7 @@ public class Artista extends Pessoa {
 		super(nome);
 		this.musicas = musicas;
 	}
+	
 
 	/**
 	 * Gets e sets
