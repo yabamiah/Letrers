@@ -192,7 +192,7 @@ public class TelaPlaylist implements ActionListener, ListSelectionListener {
 			if (opcao == 1) {
 
 			} else {
-				new TelaCriarPlaylist(cd, idxPlaylist, opcao, 0);
+				new TelaCriarPlaylist(cd, idxPlaylist, opcao, 1);
 				frame.dispose();
 			}
 

@@ -42,6 +42,7 @@ public class TelaCriarPlaylist implements ActionListener {
 	private ControleMusica controleM;
 	private int idxUsuario;
 	private int idxPlaylist;
+	private int editar;
 
 	/**
 	 * Construtor um do frame. Foi colocado mais de um para possibilitar a entrada
@@ -54,6 +55,7 @@ public class TelaCriarPlaylist implements ActionListener {
 	 */
 
 	public TelaCriarPlaylist(ControleDados cd, int idxPlaylist, int opcao, int editar) {
+		this.editar = editar;
 		this.cd = cd;
 		this.idxPlaylist = idxPlaylist;
 		String nomeAntigo = cd.getPlaylists().get(idxPlaylist).getNome();
@@ -270,8 +272,26 @@ public class TelaCriarPlaylist implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "cancelar") {
-			new TelaUsuario(cd, idxUsuario);
-			frame.dispose();
+			if(editar == 1) {
+				String nomePlaylist = fieldNomePlaylist.getText();
+				ArrayList<Musica> musicas = new ArrayList();
+
+				for (int i = 0; i < listSelecMusicas.getModel().getSize(); i++) {
+					musicas.add(new Musica(listSelecMusicas.getModel().getElementAt(i), null));
+				}
+
+				boolean verif = cd.adicionarPlaylist(nomePlaylist, musicas);
+				int idx = cd.buscarPlaylist(nomePlaylist);
+
+				if (verif) {
+					new TelaPlaylist(2, cd, idx, idxUsuario);
+				}
+				frame.dispose();
+			} else {
+				new TelaUsuario(cd, idxUsuario);
+				frame.dispose();
+			}
+			
 
 		} else if (e.getActionCommand() == "criar") {
 			String nomePlaylist = fieldNomePlaylist.getText();
