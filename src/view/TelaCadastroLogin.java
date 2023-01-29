@@ -29,7 +29,7 @@ public class TelaCadastroLogin implements ActionListener {
 	private JButton btnCadastroLogin;
 	private JButton voltar;
 	private static int opcao = 1;
-	private controle.ControleDados cd;
+	private ControleDados cd;
 
 	/**
 	 * Construtor do frame.
@@ -38,6 +38,35 @@ public class TelaCadastroLogin implements ActionListener {
 	 */
 
 	public TelaCadastroLogin(int opcao) {
+
+		if (opcao == 1)
+			frame = new JFrame("Cadastro");
+		else
+			frame = new JFrame("Login");
+
+		frame.setSize(500, 600);
+
+		panel = new JPanel();
+		panel.setBounds(75, 80, 350, 350);
+		panel.setBackground(new Color(121, 150, 71));
+
+		ImagemFundo("imagem/Cadastro-Login.png");
+		TituloPagina(opcao);
+		InfoUsuario();
+		btnVoltar();
+		BtnCadastrarLogar(opcao);
+		frame.add(panel);
+
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+		frame.setLayout(null);
+		frame.setResizable(false);
+		frame.setVisible(true);
+	}
+
+	public TelaCadastroLogin(ControleDados cd ,int opcao) {
+		this.cd = cd;
+		cd.getUsuarios();
 
 		if (opcao == 1)
 			frame = new JFrame("Cadastro");
@@ -185,7 +214,8 @@ public class TelaCadastroLogin implements ActionListener {
 			}
 		} else if (e.getActionCommand() == "logar") {
 				String nome = usuarioCampo.getText();
-				cd = new ControleDados();
+		
+
 				int idxUsuario = cd.BuscarUsuario(nome);
 	
 				new TelaUsuario(cd, idxUsuario);

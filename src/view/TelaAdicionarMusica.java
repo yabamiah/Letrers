@@ -19,7 +19,7 @@ import controle.*;
  */
 
 public class TelaAdicionarMusica implements ActionListener {
-
+	
 	private JFrame frame;
 	private JButton criar;
 	private JButton cancelar;
@@ -242,7 +242,7 @@ public class TelaAdicionarMusica implements ActionListener {
 			String letraTraducao = traducao.getText();
 			LetraDeMusica letraMusica = new LetraDeMusica(letraOriginal, letraTraducao);
 
-			boolean verif = controleDados.adicionarMusica(nomeMusica, null, letraMusica);
+			boolean verif = controleDados.adicionarMusica(nomeMusica, letraMusica);
 			int idxMusica = controleDados.buscarMusica(nomeMusica);
 
 			if (verif) {

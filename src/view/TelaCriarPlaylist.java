@@ -40,6 +40,7 @@ public class TelaCriarPlaylist implements ActionListener {
 	private ControleDados cd;
 	private ControleArtista controleA;
 	private ControleMusica controleM;
+	private ControleUsuario controleU;
 	private int idxUsuario;
 	private int idxPlaylist;
 	private int editar;
@@ -113,6 +114,7 @@ public class TelaCriarPlaylist implements ActionListener {
 		this.cd = cd;
 		controleA = new ControleArtista(cd);
 		controleM = new ControleMusica(cd);
+		controleU = new ControleUsuario(cd);
 
 		this.idxUsuario = idxUsuario;
 
@@ -281,6 +283,8 @@ public class TelaCriarPlaylist implements ActionListener {
 				}
 
 				boolean verif = cd.adicionarPlaylist(nomePlaylist, musicas);
+				controleU = new ControleUsuario(cd);
+
 				int idx = cd.buscarPlaylist(nomePlaylist);
 
 				if (verif) {

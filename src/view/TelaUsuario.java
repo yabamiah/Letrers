@@ -241,8 +241,7 @@ public class TelaUsuario implements ActionListener, ListSelectionListener {
 				frame.dispose();
 			}
 		} else if (e.getActionCommand() == "sair") {
-			idxUsuario = 0;
-			new TelaInicial();
+			new TelaInicial(cd);
 			frame.dispose();
 		}
 	}
@@ -270,8 +269,5 @@ public class TelaUsuario implements ActionListener, ListSelectionListener {
 			new TelaArtista(cd, idxArtista, idxUsuario);
 			frame.dispose();			
 		}
-		
-		
-		
 	}
 }

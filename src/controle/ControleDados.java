@@ -4,9 +4,20 @@ import java.util.ArrayList;
 
 import modelo.*;
 
+/**
+ * Classe ControleDados que fornece todos os métodos de 
+ * criar, editar, deletar e ler
+ * 
+ * @author Maria Alice Bernardo da Costa Silva
+ * @author Vinícius Mendes Martins
+ * 
+ */
 public class ControleDados {
     private Dados dados = new Dados();
 
+    /**
+     * Construtor padrão que instancia uma objeto ControleDados
+     */
     public ControleDados() {
         dados.EncherDados();
     }
@@ -59,10 +70,14 @@ public class ControleDados {
         return dados.getQtdPlaylists();
     }
 
-    /*
-     * CRUD de Artista
+    /**
+     * Método responsável por receber os valores de entrada do usuário através da interface gráfica
+     * e instanciar um novo artista e logo em seguida amarzenar ele no arraylist da classe Dados.
+     * 
+     * @param nome Nome do artista
+     * @param musicas Musicas do artista
      */
-    public boolean adicionarArtista(String nome, ArrayList<String> generos, ArrayList<Musica> musicas) {
+    public boolean adicionarArtista(String nome, ArrayList<Musica> musicas) {
         int count = 0;
 
         for(int i = 0; i < dados.getQtdArtistas(); i++) {
@@ -83,6 +98,12 @@ public class ControleDados {
         }
     }
 
+    /**
+     * Método responsável por receber a posição do artista na JList da interface gráfica
+     * e remover o artista do arraylist da classe Dados
+     *
+     * @param idx Index do artista na JList
+     */
     public Boolean removerArtista(int idx) {
         String nome = dados.getArtistas().get(idx).getNome();
 
@@ -97,21 +118,13 @@ public class ControleDados {
         return false;
     }
 
-    public Boolean editarArtista(int idx, String nomeNovo, ArrayList<String> generos, ArrayList<Musica> musicas) {
-        String nomeAntigo = dados.getArtistas().get(idx).getNome();
-
-        for(int i = 0; i < dados.getQtdArtistas(); i++) {
-            if(dados.getArtistas().get(i).getNome().equals(nomeAntigo)) {
-
-                dados.getArtistas().get(i).setNome(nomeNovo);
-                dados.getArtistas().get(i).setMusicas(musicas);
-                return true;
-            }
-        }
-
-        return false;
-    }
-
+    /**
+     * Método responsável por buscar o index do artista no arraylist da classe Dados
+     * a partir do nome dado na interface gráfica pelo usuário
+     * 
+     * @param nome Nome do artista
+     * @return
+     */
     public int buscarArtista(String nome) {
         for(int i = 0; i < dados.getQtdArtistas(); i++) {
             if(dados.getArtistas().get(i).getNome().equals(nome)) {
@@ -122,8 +135,12 @@ public class ControleDados {
         return -1;
     }
 
-    /*
-     * CRUD de Usuário
+    /**
+     * Método responsável por receber os valores de entrada do usuário através da interface gráfica
+     * e instanciar um novo usuário e logo em seguida amarzenar ele no arraylist da classe Dados.
+     * 
+     * @param nome Nome do Usuário
+     * @param playlist Objeto playlist
      */
     public boolean adicionarUsuario(String nome, ArrayList<Playlist> playlist) {
         int count = 0;
@@ -147,6 +164,13 @@ public class ControleDados {
         }
     }
 
+    /**
+     * Método responsável por receber a posição do usuário na JList da interface gráfica
+     * e remover o usuário do arraylist da classe Dados
+     * 
+     * @param idx Index do usuário no arraylist da classe Dados
+     * @return
+     */
     public Boolean removerUsuario(int idx) {
         String nome = dados.getArtistas().get(idx).getNome();
 
@@ -161,21 +185,13 @@ public class ControleDados {
         return false;
     }
 
-    public Boolean editarUsuario(int idx, String nomeNovo, ArrayList<String> generos, ArrayList<Musica> musicas) {
-        String nomeAntigo = dados.getArtistas().get(idx).getNome();
-
-        for(int i = 0; i < dados.getQtdArtistas(); i++) {
-            if(dados.getArtistas().get(i).getNome().equals(nomeAntigo)) {
-
-                dados.getArtistas().get(i).setNome(nomeNovo);
-                dados.getArtistas().get(i).setMusicas(musicas);
-                return true;
-            }
-        }
-
-        return false;
-    }
-
+    /**
+     * Método responsável por buscar o index do usuário no arraylist da classe Dados
+     * a partir do nome dado na interface gráfica pelo usuário
+     * 
+     * @param nome Nome do usuário
+     * @return
+     */
     public int BuscarUsuario(String nome) {
         for(int i = 0; i < dados.getQtdUsuarios(); i++) {
             if(dados.getUsuarios().get(i).getNome().equals(nome)) {
@@ -186,10 +202,15 @@ public class ControleDados {
         return -1;
     }
 
-    /*
-     * CRUD de Músicas
+    /**
+     * Método responsável por receber os valores de entrada do usuário através da interface gráfica
+     * e instanciar uma nova música e logo em seguida amarzenar ela no arraylist da classe Dados.
+     * 
+     * @param nome Nome da música
+     * @param letras Letras da musica
+     * @return
      */
-    public boolean adicionarMusica(String nome, String genero, LetraDeMusica letras) {
+    public boolean adicionarMusica(String nome, LetraDeMusica letras) {
         int count = 0;
 
         for(int i = 0; i < dados.getQtdMusicas(); i++) {
@@ -211,6 +232,12 @@ public class ControleDados {
         }
     }
 
+    /**
+     * Método responsável por receber a posição da música na JList da interface gráfica
+     * e remover a música do arraylist da classe Dados
+     * 
+     * @param idx Index da música na JList
+     */
     public Boolean removerMusica(int idx) {
         String nome = dados.getMusicas().get(idx).getNome();
 
@@ -225,19 +252,12 @@ public class ControleDados {
         return false;
     }
 
-    public Boolean editarMusica(int idx, String nomeNovo, String genero) {
-        String nomeAntigo = dados.getMusicas().get(idx).getNome();
-
-        for(int i = 0; i < dados.getQtdMusicas(); i++) {
-            if(dados.getMusicas().get(i).getNome().equals(nomeAntigo)) {
-                dados.getMusicas().get(i).setNome(nomeNovo);
-                return true;
-            }
-        }
-
-        return false;
-    }
-
+    /**
+     * Método responsável por buscar o index da música no arraylist da classe Dados
+     * a partir do nome dado na interface gráfica pelo usuário
+     * 
+     * @param nome Nome da música
+     */
     public int buscarMusica(String nome) {
         for(int i = 0; i < dados.getQtdMusicas(); i++) {
             if(dados.getMusicas().get(i).getNome().equals(nome)) {
@@ -248,8 +268,12 @@ public class ControleDados {
         return -1;
     }
 
-    /*
-     * CRUD de Letras
+    /**
+     * Método responsável por receber os valores de entrada do usuário através da interface gráfica
+     * e instanciar uma nova letra e logo em seguida amarzenar ela no arraylist da classe Dados.
+     * 
+     * @param corpoOriginal Letra original da música
+     * @param corpoTraduzido Letra traduzida 
      */
     public boolean adicionarLetra(String corpoOriginal, String corpoTraduzido) {
         int count = 0;
@@ -273,34 +297,12 @@ public class ControleDados {
         }
     }
 
-    public Boolean removerLetra(int idx) {
-        String nome = dados.getLetras().get(idx).getCorpoOriginal();
-
-        for(int i = 0; i < dados.getQtdLetras(); i++) {
-            if(dados.getLetras().get(i).getCorpoOriginal().equals(nome)) {
-                dados.getLetras().remove(i);
-                dados.setQtdLetras(dados.getQtdLetras() - 1);
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public Boolean editarLetra(int idx, String corpoOriginalNovo, String corpoTraduzidoNovo) {
-        String corpoOriginalAntigo = dados.getLetras().get(idx).getCorpoOriginal();
-
-        for(int i = 0; i < dados.getQtdLetras(); i++) {
-            if(dados.getLetras().get(i).getCorpoOriginal().equals(corpoOriginalAntigo)) {
-                dados.getLetras().get(i).setCorpoOriginal(corpoOriginalNovo);
-                dados.getLetras().get(i).setCorpoTraduzido(corpoTraduzidoNovo);
-                return true;
-            }
-        }
-        
-        return false;
-    }
-
+    /**
+     * Método responsável por buscar o index da letra no arraylist da classe Dados
+     * a partir do nome dado na interface gráfica pelo usuário
+     * 
+     * @param corpoOriginal Letra original da música
+     */
     public int buscarLetra(String corpoOriginal) {
         for(int i = 0; i < dados.getQtdLetras(); i++) {
             if(dados.getLetras().get(i).getCorpoOriginal().equals(corpoOriginal)) {
@@ -311,8 +313,12 @@ public class ControleDados {
         return -1;
     }
 
-    /*
-     * CRUD de Playlist
+    /**
+     * Método responsável por receber os valores de entrada do usuário através da interface gráfica
+     * e instanciar uma nova playlist e logo em seguida amarzenar ela no arraylist da classe Dados.
+     * 
+     * @param nome Nome da playlist
+     * @param musicas Musicas contidas na playlist
      */
 
     public boolean adicionarPlaylist(String nome, ArrayList<Musica> musicas) {
@@ -335,6 +341,12 @@ public class ControleDados {
         }
     }
 
+    /**
+     * Método responsável por receber a posição da playlist da interface gráfica
+     * e remover a música do arraylist da classe Dados
+     * 
+     * @param idx Index da playlist na classe Dados
+     */
     public boolean removerPlaylist(int idx) {
         dados.getPlaylists().remove(idx);
         dados.setQtdPlaylists(dados.getQtdPlaylists() - 1);
@@ -342,21 +354,13 @@ public class ControleDados {
         return true;
     }
 
-    public boolean editarPlaylist(int idx, String nomeNovo, ArrayList<Musica> musicas) {
-        String nomeAntigo = dados.getPlaylists().get(idx).getNome();
-
-        for(int i = 0; i < dados.getQtdPlaylists(); i++) {
-            if(dados.getPlaylists().get(i).getNome().equals(nomeAntigo)) {
-                dados.getPlaylists().get(i).setNome(nomeNovo);
-                dados.getPlaylists().get(i).setMusicas(musicas);
-                dados.getPlaylists().get(i).setQtdMusica(musicas.size());
-                return true;
-            }
-        }
-
-        return false;
-    }
-
+    /**
+     * Método responsável por buscar o index da playlist no arraylist da classe Dados
+     * a partir do nome dado na interface gráfica pelo usuário
+     * 
+     * @param nome Nome da playlist
+     * @return
+     */
     public int buscarPlaylist(String nome) {
         for(int i = 0; i < dados.getQtdPlaylists(); i++) {
             if(dados.getPlaylists().get(i).getNome().equals(nome)) {

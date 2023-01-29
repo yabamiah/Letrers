@@ -3,10 +3,24 @@ package controle;
 import modelo.*;
 import java.util.ArrayList;
 
+/**
+ * Classe ControleArtista controla todas as informações 
+ * dos artistas armazenados.
+ * 
+ * @author Maria Alice Bernardo da Costa Silva
+ * @author Vinícius Mendes Martins
+ * 
+ */
+
 public class ControleArtista {
     private ArrayList<Artista> artistas;
     private int qtdArtistas = 10;
 
+    /**
+     * Construtor padrão para instanciar um objeto ControleArtista
+     * 
+     * @param cd
+     */
     public ControleArtista(ControleDados cd) {
         this.artistas = cd.getArtistas();
         this.qtdArtistas = cd.getQtdArtistas();

@@ -159,7 +159,7 @@ public class TelaAdicionarArtista implements ActionListener {
 		if (e.getActionCommand() == "criar") {
 			String nomeArtista = artista.getText();
 
-			boolean verif = cd.adicionarArtista(nomeArtista, null, null);
+			boolean verif = cd.adicionarArtista(nomeArtista, null);
 
 			int idxArtista = cd.buscarArtista(nomeArtista);
 

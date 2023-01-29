@@ -3,10 +3,23 @@ package controle;
 import modelo.Playlist;
 import java.util.ArrayList;
 
+/**
+ * Classe ControlePlaylist controla todas as informações das playlists armazenadas
+ * 
+ * @author Maria Alice Bernardo da Costa Silva
+ * @author Vinícius Mendes Martins
+ * 
+ */
 public class ControlePlaylist {
     private ArrayList<Playlist> playlists;
     private int qtdPlaylists;
-
+    
+    /**
+     * Construtor recebe um objeto do tipo ControleDados para preencher 
+     * a ArrayList playlist para instanciar um objeto ControlePlaylist
+     * 
+     * @param cd ControleDados com os objetos Playlist
+     */
     public ControlePlaylist(ControleDados cd) {
         this.playlists = cd.getPlaylists();
         this.qtdPlaylists = cd.getQtdPlaylists();
@@ -36,12 +49,13 @@ public class ControlePlaylist {
         }
     }
 
-    public String getMusicasPlaylist(int i) {
-        String musicas = "";
+    public String[] getMusicasPlaylist(int i) {
+        int tam = playlists.get(i).getMusicas().size();
+        String[] musicas = new String[tam];
+        
         for (int j = 0; j < playlists.get(i).getQtdMusica(); j++) {
-            int tam = playlists.get(i).getMusicas().size();
             for (int k = 0; k < tam; k++) {
-                musicas += playlists.get(i).getMusicas().get(k).getNome() + ", ";
+                musicas[k] = playlists.get(i).getMusicas().get(k).getNome();
             }
         }
         return musicas;

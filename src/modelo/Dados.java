@@ -28,10 +28,10 @@ public class Dados {
 
 	public void EncherDados() {
 		for (int i = 0; i < 5; i++) {
-			Artista artista = new Artista("Artista " + i, new ArrayList<Musica>());
 			Usuario usuario = new Usuario("Usuario " + i);
-			Musica musica = new Musica("Musica " + i, new LetraDeMusica("", ""));
 			LetraDeMusica letra = new LetraDeMusica("CorpoOriginal " + i, "CorpoTraduzido " + i);
+			Musica musica = new Musica("Musica " + i, letra);
+			Artista artista = new Artista("Artista " + i, new ArrayList<Musica>());
 			Playlist playlist = new Playlist("Playlist " + i, i, new ArrayList<Musica>());
 
 			artistas.add(artista);
