@@ -8,6 +8,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import controle.*;
 
@@ -19,7 +21,7 @@ import controle.*;
  *
  */
 
-public class TelaArtista implements ActionListener {
+public class TelaArtista implements ActionListener, ListSelectionListener {
 
 	private JFrame frame;
 	private JLabel nomeArtista;
@@ -157,6 +159,7 @@ public class TelaArtista implements ActionListener {
 
 		listaMusicas.setBounds(225, 120, 442, 330);
 		listaMusicas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		listaMusicas.addListSelectionListener(this);
 		listaMusicas.setLayoutOrientation(JList.VERTICAL);
 		listaMusicas.setVisibleRowCount(-1);
 		listaMusicas.setForeground(Color.black);
@@ -314,6 +317,23 @@ public class TelaArtista implements ActionListener {
 				new TelaMusica(cd, idxMusica, idxUsuario, nomeArtista);
 				frame.dispose();
 			}
+		}
+	}
+	
+	/**
+	 * Método da interface ListSelectionListener que abre as telas selecionadas pelo usuário.
+	 */
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		Object object = e.getSource();
+		String nome = listaMusicas.getSelectedValue().toString();
+		
+		if(e.getValueIsAdjusting() && object == listaMusicas) {
+			int idxMusica = cd.buscarMusica(nome);
+			
+			new TelaMusica(cd, idxMusica, idxUsuario);
+			frame.dispose();
 		}
 	}
 }

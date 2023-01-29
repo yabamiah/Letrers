@@ -118,72 +118,6 @@ public class TelaUsuario implements ActionListener, ListSelectionListener {
 	}
 
 	/**
-	 * Contrutor dois do frame. Foram colocados mais de um para possibilitar a
-	 * entrada na tela com diferentes argumentos.
-	 * 
-	 * @param cd
-	 */
-
-	public TelaUsuario(ControleDados cd) {
-		this.cd = cd;
-		controleP = new ControlePlaylist(cd);
-		controleA = new ControleArtista(cd);
-		controleU = new ControleUsuario(cd);
-
-		frame = new JFrame("Letters");
-		frame.setSize(900, 600);
-
-		panel = new JPanel();
-		panel.setBackground(new Color(121, 150, 71));
-		panel.setBounds(75, 80, 750, 400);
-
-		// Cabeçalho
-		bemVindo = new JLabel("Bem vindo(a) "/* +controleU.getNomeUsuario(idx) */);
-		bemVindo.setForeground(Color.white);
-		bemVindo.setBounds(75, 35, 400, 40);
-		bemVindo.setFont(new Font("Times New Roman", Font.BOLD, 27));
-
-		// Playlists
-		miPlaylist = new JLabel("Minhas Playlists");
-		miPlaylist.setForeground(Color.white);
-		miPlaylist.setBounds(215, 100, 200, 20);
-		miPlaylist.setFont(new Font("", Font.BOLD, 18));
-
-		listaPlaylists = new JList<String>(controleP.getNomePlaylists());
-		listaPlaylists.setBounds(115, 130, 295, 330);
-		listaPlaylists.setBackground(new Color(121, 150, 71));
-
-		miArtistas = new JLabel("Meus Artistas Favoritos");
-		miArtistas.setForeground(Color.white);
-		miArtistas.setBounds(525, 100, 300, 20);
-		miArtistas.setFont(new Font("", Font.BOLD, 18));
-
-		listaArtistasFav = new JList<String>(controleA.getNomeArtistas());
-		listaArtistasFav.setBounds(490, 130, 295, 330);
-		listaArtistasFav.setBackground(new Color(121, 150, 71));
-		listaArtistasFav.setForeground(new Color(30, 30, 30));
-		listaArtistasFav.setFont(new Font("", Font.BOLD, 15));
-
-		// Add
-		ImagemFundo("imagem/Home.png");
-		frame.add(bemVindo);
-		frame.add(listaPlaylists);
-		frame.add(miArtistas);
-		frame.add(listaArtistasFav);
-		Buscar();
-		btnCriarPlaylist();
-		btnAddArtista();
-		frame.add(miPlaylist);
-		frame.add(panel);
-
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
-		frame.setLayout(null);
-		frame.setVisible(true);
-	}
-
-	/**
 	 * Função Buscar exibe uma JTextField e um botão para realizar a busca dos
 	 * artista.
 	 */
@@ -325,7 +259,6 @@ public class TelaUsuario implements ActionListener, ListSelectionListener {
 		if(e.getValueIsAdjusting() && object == listaPlaylists) {
 			nome = listaPlaylists.getSelectedValue().toString();
 			int idxPlaylist = cd.buscarPlaylist(nome);
-			System.out.println(nome);
 			
 			new TelaPlaylist(2, cd, idxPlaylist, idxUsuario);
 			frame.dispose();

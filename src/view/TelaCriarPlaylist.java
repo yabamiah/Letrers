@@ -56,6 +56,8 @@ public class TelaCriarPlaylist implements ActionListener {
 	public TelaCriarPlaylist(ControleDados cd, int idxPlaylist, int opcao, int editar) {
 		this.cd = cd;
 		this.idxPlaylist = idxPlaylist;
+		String nomeAntigo = cd.getPlaylists().get(idxPlaylist).getNome();
+		ArrayList<Musica> musicasAntigas = cd.getPlaylists().get(idxPlaylist).getMusicas();
 		cd.removerPlaylist(idxPlaylist);
 
 		controleA = new ControleArtista(cd);
@@ -80,8 +82,10 @@ public class TelaCriarPlaylist implements ActionListener {
 
 		frame.add(labelTituloFrame);
 		frame.add(atualizarLista);
+		fieldNomePlaylist = new JTextField(nomeAntigo);
 		InfoPlaylist();
 		InfoMusica();
+		listSelecMusicas = new JList<String>(controleM.getNomeMusicas());
 		SelecMusicas();
 		btnCriar();
 		btnCancelar();
@@ -129,8 +133,10 @@ public class TelaCriarPlaylist implements ActionListener {
 
 		frame.add(labelTituloFrame);
 		frame.add(atualizarLista);
+		fieldNomePlaylist = new JTextField("");
 		InfoPlaylist();
 		InfoMusica();
+		listSelecMusicas = new JList<String>(controleM.getNomeMusicas());
 		SelecMusicas();
 		btnCriar();
 		btnCancelar();
@@ -153,7 +159,6 @@ public class TelaCriarPlaylist implements ActionListener {
 		labelNomePlaylist.setForeground(new Color(255, 255, 255));
 		labelNomePlaylist.setBounds(80, 140, 200, 30);
 
-		fieldNomePlaylist = new JTextField("");
 		fieldNomePlaylist.setBounds(80, 170, 200, 25);
 
 		frame.add(labelNomePlaylist);
@@ -193,7 +198,6 @@ public class TelaCriarPlaylist implements ActionListener {
 	 */
 
 	public void SelecMusicas() {
-		listSelecMusicas = new JList<String>(controleM.getNomeMusicas());
 		listSelecMusicas.setBounds(500, 170, 300, 220);
 
 		labelSelecMusicas.setBackground(new Color(0, 0, 0));

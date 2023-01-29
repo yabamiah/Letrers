@@ -2,6 +2,9 @@ package view;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +19,7 @@ import controle.*;
  * @author Vinícius Mendes Martins
  */
 
-public class TelaPlaylist implements ActionListener {
+public class TelaPlaylist implements ActionListener, ListSelectionListener {
 
 	// REMOVER
 	private String artista = "Lana Del Rey";
@@ -105,6 +108,7 @@ public class TelaPlaylist implements ActionListener {
 		listaMusicas.setForeground(Color.black);
 
 		listaMusicas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		listaMusicas.addListSelectionListener(this);
 		listaMusicas.setLayoutOrientation(JList.VERTICAL);
 		listaMusicas.setVisibleRowCount(-1);
 
@@ -204,6 +208,24 @@ public class TelaPlaylist implements ActionListener {
 				}
 			}
 			frame.dispose();
+		}
+	}
+	
+	/**
+	 * Método da interface ListSelectionListener que abre as telas selecionadas pelo usuário.
+	 */
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		Object object = e.getSource();
+		String nome = listaMusicas.getSelectedValue().toString();
+		
+		if(e.getValueIsAdjusting() && object == listaMusicas) {
+			int idxMusica = cd.buscarMusica(nome);
+		new TelaMusica(cd, idxMusica, idxUsuario);
+		frame.dispose();
+		} else {
+			JOptionPane.showMessageDialog(null, "Erro ao procurar playlist");
 		}
 	}
 }

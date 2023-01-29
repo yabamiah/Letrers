@@ -184,12 +184,13 @@ public class TelaCadastroLogin implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Opção não encontrada!", null, JOptionPane.ERROR_MESSAGE);
 			}
 		} else if (e.getActionCommand() == "logar") {
-			String nome = usuarioCampo.getText();
-			cd = new ControleDados();
-			int idxUsuario = cd.BuscarUsuario(nome);
-
-			new TelaUsuario(cd, idxUsuario);
-			frame.dispose();
+				String nome = usuarioCampo.getText();
+				cd = new ControleDados();
+				int idxUsuario = cd.BuscarUsuario(nome);
+	
+				new TelaUsuario(cd, idxUsuario);
+				frame.dispose();
+				
 		} else if (e.getActionCommand() == "voltar") {
 			new TelaInicial();
 			frame.dispose();

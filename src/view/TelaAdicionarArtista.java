@@ -27,6 +27,7 @@ public class TelaAdicionarArtista implements ActionListener {
 	private JButton cancelar;
 	private ControleDados cd;
 	private int idxUsuario;
+	private int idxArtista;
 
 	/**
 	 * Construtor um do frame. Foi colocado mais de um para possibilitar a entrada
@@ -40,6 +41,7 @@ public class TelaAdicionarArtista implements ActionListener {
 	public TelaAdicionarArtista(ControleDados cd, int idxUsuario, int idxArtista) {
 		this.cd = cd;
 		this.idxUsuario = idxUsuario;
+		String nomeAntigo = cd.getArtistas().get(idxArtista).getNome();
 		cd.removerArtista(idxArtista);
 
 		frame = new JFrame("Letters");
@@ -52,6 +54,7 @@ public class TelaAdicionarArtista implements ActionListener {
 		titulo.setForeground(Color.black);
 
 		frame.add(titulo);
+		artista = new JTextArea(nomeAntigo);
 		artista();
 		btnCriar();
 		btnCancelar();
@@ -85,6 +88,7 @@ public class TelaAdicionarArtista implements ActionListener {
 		titulo.setForeground(Color.black);
 
 		frame.add(titulo);
+		artista = new JTextArea();
 		artista();
 		btnCriar();
 		btnCancelar();
@@ -105,8 +109,7 @@ public class TelaAdicionarArtista implements ActionListener {
 		labelArtista = new JLabel("Insira o nome do artista:");
 		labelArtista.setBounds(192, 90, 200, 30);
 		labelArtista.setForeground(Color.black);
-
-		artista = new JTextArea();
+		
 		artista.setBounds(192, 120, 200, 25);
 
 		frame.add(labelArtista);

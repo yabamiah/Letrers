@@ -64,9 +64,13 @@ public class TelaAdicionarMusica implements ActionListener {
 		titulo.setForeground(Color.white);
 
 		frame.add(titulo);
+		
+		musica = new JTextField();
 		musica();
 		artista();
+		letra = new JTextArea(5, 10);
 		letra();
+		traducao = new JTextArea(5, 10);
 		traducao();
 		btnCriar();
 		btnCancelar();
@@ -91,6 +95,9 @@ public class TelaAdicionarMusica implements ActionListener {
 		controleDados = cd;
 
 		this.idxArtista = idxArtista;
+		String nomeAntigo = cd.getMusicas().get(idxMusica).getNome();
+		String letraAntiga = cd.getMusicas().get(idxMusica).getLetras().getCorpoOriginal();
+		String traducaoAntiga = cd.getMusicas().get(idxMusica).getLetras().getCorpoTraduzido();
 		cd.removerMusica(idxMusica);
 		controleArtista = new ControleArtista(cd);
 
@@ -104,9 +111,12 @@ public class TelaAdicionarMusica implements ActionListener {
 		titulo.setForeground(Color.white);
 
 		frame.add(titulo);
+		musica = new JTextField(nomeAntigo);
 		musica();
 		artista();
+		letra = new JTextArea(letraAntiga);
 		letra();
+		traducao = new JTextArea(traducaoAntiga);
 		traducao();
 		btnCriar();
 		btnCancelar();
@@ -127,8 +137,7 @@ public class TelaAdicionarMusica implements ActionListener {
 		nomeMusica = new JLabel("Nome da Música");
 		nomeMusica.setBounds(70, 112, 120, 20);
 		nomeMusica.setForeground(Color.black);
-
-		musica = new JTextField();
+	
 		musica.setBounds(70, 135, 250, 25);
 
 		frame.add(musica);
@@ -164,7 +173,6 @@ public class TelaAdicionarMusica implements ActionListener {
 		nomeLetra.setForeground(Color.black);
 		nomeLetra.setBounds(70, 175, 200, 20);
 
-		letra = new JTextArea(5, 10);
 		letra.setBounds(70, 200, 250, 300);
 
 		frame.add(nomeLetra);
@@ -181,7 +189,6 @@ public class TelaAdicionarMusica implements ActionListener {
 		nomeTraducao.setForeground(Color.black);
 		nomeTraducao.setBounds(350, 175, 200, 20);
 
-		traducao = new JTextArea(5, 10);
 		traducao.setBounds(350, 200, 250, 300);
 
 		frame.add(nomeTraducao);

@@ -52,6 +52,35 @@ public class TelaMusica implements ActionListener {
 	 * @param idxUsuario
 	 * @param nomeArtista
 	 */
+	
+	public TelaMusica(ControleDados cd, int idxMusica, int idxUsuario) {
+		this.cd = cd;
+		controleA = new ControleArtista(cd);
+		controleM = new ControleMusica(cd);
+		controleL = new ControleLetra(cd);
+
+		this.idxMusica = idxMusica;
+		this.idxUsuario = idxUsuario;
+		//artista = nomeArtista;
+		idxArtista = cd.buscarArtista(artista);
+
+		frame = new JFrame("Letters - " + controleM.getNomeMusica(idxMusica));
+		frame.setSize(900, 600);
+
+		ImagemFundo("imagem/Home.png");
+		infoMusica();
+		Letra();
+		Traducao();
+		btnVoltar();
+		btnEditar();
+		btnExcluir();
+
+		frame.setResizable(false);
+		frame.setLayout(null);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+	}
 
 	public TelaMusica(ControleDados cd, int idxMusica, int idxUsuario, String nomeArtista) {
 		this.cd = cd;
@@ -107,7 +136,7 @@ public class TelaMusica implements ActionListener {
 	 */
 
 	public void Letra() {
-		labelLetra = new JLabel(controleM.getLetraOriginal(idxMusica));
+		labelLetra = new JLabel("Letra Original:");
 		labelLetra.setBounds(80, -65, 350, 350);
 		labelLetra.setForeground(Color.white);
 		labelLetra.setFont(new Font("Times New Roman", Font.BOLD, 17));
@@ -134,7 +163,7 @@ public class TelaMusica implements ActionListener {
 	 */
 
 	public void Traducao() {
-		labelTraducao = new JLabel(controleM.getLetraTraduzido(idxMusica));
+		labelTraducao = new JLabel("Tradução:");
 		labelTraducao.setBounds(470, -65, 350, 350);
 		labelTraducao.setForeground(Color.white);
 		labelTraducao.setFont(new Font("Times New Roman", Font.BOLD, 17));
@@ -240,7 +269,7 @@ public class TelaMusica implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "voltar") {
-			new TelaArtista(cd, idxArtista, idxUsuario, idxMusica);
+			new TelaUsuario(cd,idxUsuario);			
 			frame.dispose();
 
 		} else if (e.getActionCommand() == "editar") {
