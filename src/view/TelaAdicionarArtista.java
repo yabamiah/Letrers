@@ -47,6 +47,7 @@ public class TelaAdicionarArtista implements ActionListener {
 		this.idxUsuario = idxUsuario;
 		this.idxArtista = idxArtista;
 		editar = 1;
+		
 		controleA = new ControleArtista(cd);
 		String nomeAntigo = cd.getArtistas().get(idxArtista).getNome();
 

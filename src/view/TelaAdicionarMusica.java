@@ -35,6 +35,8 @@ public class TelaAdicionarMusica implements ActionListener {
 	private ControleArtista controleArtista;
 	private int idxArtista;
 	private int idxUsuario;
+	private int idxMusica;
+	private int editar = 0;
 
 	/**
 	 * Construtor um do frame. Foi colocado mais de um para possibilitar a entrada
@@ -92,11 +94,14 @@ public class TelaAdicionarMusica implements ActionListener {
 		controleDados = cd;
 
 		this.idxArtista = idxArtista;
-		String nomeAntigo = cd.getMusicas().get(idxMusica).getNome();
-		String letraAntiga = cd.getMusicas().get(idxMusica).getLetras().getCorpoOriginal();
-		String traducaoAntiga = cd.getMusicas().get(idxMusica).getLetras().getCorpoTraduzido();
-		cd.removerMusica(idxMusica, idxArtista);
+		this.idxMusica = idxMusica;
+
+		this.editar = editar = 1;
+
 		controleArtista = new ControleArtista(cd);
+		String nomeAntigo = cd.getArtistas().get(idxArtista).getMusicas().get(idxMusica).getNome();
+		String letraAntiga = cd.getArtistas().get(idxArtista).getMusicas().get(idxMusica).getLetras().getCorpoOriginal();
+		String traducaoAntiga = cd.getArtistas().get(idxArtista).getMusicas().get(idxMusica).getLetras().getCorpoTraduzido();
 
 		frame = new JFrame("Letters");
 		frame.setSize(900, 600);
@@ -218,17 +223,22 @@ public class TelaAdicionarMusica implements ActionListener {
 			String letraTraducao = traducao.getText();
 			LetraDeMusica letraMusica = new LetraDeMusica(letraOriginal, letraTraducao);
 
-			boolean verif = controleDados.adicionarMusica(idxArtista, nomeMusica, letraMusica);
-			System.out.println(idxArtista);
-			int idxMusica = controleDados.buscarMusica(idxArtista, nomeMusica);
-			
-			if (verif) {
-				new TelaArtista(controleDados,idxArtista,idxUsuario);
+			if(editar == 1) {
+				controleArtista.getArtista(idxArtista).getMusicas().get(idxMusica).setNome(nomeMusica);
+				controleArtista.getArtista(idxArtista).getMusicas().get(idxMusica).setLetras(letraMusica);
+				new TelaArtista(controleDados, idxArtista, idxUsuario);
 				frame.dispose();
-			} else {
-				JOptionPane.showMessageDialog(null, "Música já cadastrada!");
-			}
 
+			} else{
+				boolean verif = controleDados.adicionarMusica(idxArtista, nomeMusica, letraMusica);
+				
+				if (verif) {
+					new TelaArtista(controleDados,idxArtista,idxUsuario);
+					frame.dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "Música já cadastrada!");
+				}
+			}
 		} else if (e.getActionCommand() == "cancelar") {
 			new TelaArtista(controleDados, idxArtista, idxUsuario);
 			frame.dispose();
