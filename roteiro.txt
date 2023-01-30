@@ -1,2 +1,0 @@
-1. Ao executar o binário, o programa pede para criar um perfil (Usuario ou Artista)
-2. Após criar o perfil, se Usuario: Pode criar Playlist e cadastrar Letra, se Artista: Cadastrar Musica e Album
