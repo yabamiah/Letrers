@@ -1,25 +1,43 @@
 package controle;
 
 import modelo.LetraDeMusica;
+import java.util.ArrayList;
 
+/**
+ * Classe ControleLetra controla todas as informações das letras armazenadas
+ * 
+ * @author Maria Alice Bernardo da Costa Silva
+ * @author Vinícius Mendes Martins
+ * 
+ */
 public class ControleLetra {
-    private LetraDeMusica[] letras;
+    private ArrayList<LetraDeMusica> letras;
     private int qtdLetras;
 
-    public ControleLetra() {
-        this.letras = new LetraDeMusica[100];
-        this.qtdLetras = 0;
+    /**
+     * Construtor recebe um objeto do tipo ControleDados para preencher 
+     * a ArrayList letras para instanciar um objeto ControleLetra.
+     * 
+     * @param cd ControleDados com os objetos LetraDeMusica
+     */
+    public ControleLetra(ControleDados cd) {
+        this.letras = cd.getLetras();
+        this.qtdLetras = cd.getQtdLetras();
     }
 
-    public void adicionarLetra(LetraDeMusica letra) {
-
+    public int getQtdLetras() {
+        return qtdLetras;
     }
 
-    public Boolean removerLetra(LetraDeMusica letra) {
-        return false;
+    public void setQtdLetras(int qtdLetras) {
+        this.qtdLetras = qtdLetras;
     }
 
-    public Boolean editarLetra(LetraDeMusica letra) {
-        return false;
+    public String getCorpoOriginal(int i) {
+        return letras.get(i).getCorpoOriginal();
+    }
+
+    public String getCorpoTraduzido(int i) {
+        return letras.get(i).getCorpoTraduzido();
     }
 }

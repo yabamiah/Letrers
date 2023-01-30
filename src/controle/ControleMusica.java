@@ -1,46 +1,72 @@
 package controle;
 
-import java.util.*;
+import modelo.Musica;
+import java.util.ArrayList;
 
-import modelo.Musica; // Importa a classe Musica do pacote modelo
-
+/**
+ * Classe ControleMusica controla todas as informações das musicas armazenadas
+ * 
+ * @author Maria Alice Bernardo da Costa Silva
+ * @author Vinícius Mendes Martins
+ * 
+ */
 public class ControleMusica {
-    private Musica[] musicas;
-    private int qtdMusicas;
+    private ArrayList<Musica> musicas;
+    private int qtdMusicas = 10;
 
-    public ControleMusica() {
-        this.musicas = new Musica[100];
-        this.qtdMusicas = 0;
+    /**
+     * Construtor recebe um objeto do tipo ControleDados para preencher 
+     * a ArrayList musicas para instanciar um objeto ControleMusica
+     * 
+     * @param cd ControleDados com os objetos Musica
+     */
+    public ControleMusica(ControleDados cd) {
+        this.musicas = cd.getMusicas();
+        this.qtdMusicas = cd.getQtdMusicas();
     }
 
-    public void adicionarMusica(Musica musica) {
-        this.musicas[this.qtdMusicas] = musica;
-        this.qtdMusicas++;
+    public ArrayList<Musica> getMusicas() {
+        return musicas;
     }
 
-    public Boolean removerMusica(Musica musica) {
-        for (int i = 0; i < this.qtdMusicas; i++) {
-            if (this.musicas[i].getId() == musica.getId()) {
-                this.musicas[i] = null;
-                this.qtdMusicas--;
-                return true;
-            } else {
-                return false;
-            }
+    public int getQtdMusicas() {
+        return qtdMusicas;
+    }
+
+    public void setQtdMusicas(int qtdMusicas) {
+        this.qtdMusicas = qtdMusicas;
+    }
+
+    public String[] getNomeMusicas() {
+        String[] nomes = new String[qtdMusicas];
+        
+        for (int i = 0; i < qtdMusicas; i++) {
+            nomes[i] = musicas.get(i).getNome();
         }
-        return false;
+        return nomes;
     }
 
-    public Boolean editarMusica(Musica musica) {
-        for (int i = 0; i < this.qtdMusicas; i++) {
-            if (this.musicas[i].getId() == musica.getId()) {
-                this.musicas[i] = musica;
-                return true;
-            } else {
-                return false;
-            }
-        }
-        return false;
+    public void setMusicas(ArrayList<Musica> musicas) {
+        this.musicas = musicas;
     }
 
+    public String getNomeMusica(int idx) {
+        return musicas.get(idx).getNome();
+    }
+
+    public String getLetraOriginal(int idx) {
+        return musicas.get(idx).getLetras().getCorpoOriginal();
+    }
+
+    public void getLetraOriginal(String letraOriginal, int idx) {
+        musicas.get(idx).getLetras().setCorpoOriginal(letraOriginal);
+    }
+
+    public String getLetraTraduzido(int idx) {
+        return musicas.get(idx).getLetras().getCorpoTraduzido();
+    }
+
+    public void getLetraTraduzido(String letraTraduzido, int idx) {
+        musicas.get(idx).getLetras().setCorpoTraduzido(letraTraduzido);
+    }
 }

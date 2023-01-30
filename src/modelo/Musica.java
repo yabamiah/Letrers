@@ -1,29 +1,49 @@
 package modelo;
 
-//import java.util.*;
+import java.util.*;
+
+/**
+ * Classe Musica armazena o nome e a classe LetraDeMusica
+ * 
+ * @author Maria Alice Bernardo da Costa Silva
+ * @author Vinícius Mendes Martins
+ */
 
 public class Musica {
-  private String nome;
-  private String genero;
-  private int classificacao;
+	private String nome;
+	private LetraDeMusica letra;
 
-  public Musica(String nome, String genero, int classificacao) {
-    this.nome = nome;
-    this.genero = genero;
-    this.classificacao = classificacao;
-  }
+	public Musica(String nome, LetraDeMusica letra) {
+		this.nome = nome;
+		this.letra = letra;
+	}
 
-  public String getNome() { return nome; }
+	/*
+	 * Gets e sets
+	 */
 
-  public void setNome(String nome) { this.nome = nome; }
+	public String getNome() {
+		return nome;
+	}
 
-  public String getGenero() { return genero; }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-  public void setGenero(String genero) { this.genero = genero; }
+	public LetraDeMusica getLetras() {
+		return this.letra;
+	}
 
-  public int getClassificacao() { return classificacao; }
+	public void setLetras(LetraDeMusica letras) {
+		this.letra = letras;
+	}
 
-  public void setClassificacao(int classificacao) {
-    this.classificacao = classificacao;
-  }
+	/*
+	 * toString
+	 */
+
+	public String toString() {
+		String musica = nome;
+		return musica;
+	}
 }
